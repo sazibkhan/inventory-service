@@ -24,18 +24,17 @@ public class ReconciliationItemEntity {
     @JoinColumn(
             name = "product_id",
             foreignKey = @ForeignKey(
-                    name = "purchase_items_product_fk"))
+                    name = "reconciliation_items_product_id_fk"))
     private ProductEntity product;
 
     @Column(name = "product_id", insertable = false, updatable = false)
-    private Long   productId;
+    private Long  productId;
 
     @Column(name="reconciliation_date")
     private String reconciliation_date;
 
     @Column(name="quantity")
     private Double quantity;
-
 
     @Column(name = "enabled")
     private boolean enabled;

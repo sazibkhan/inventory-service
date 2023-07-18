@@ -29,7 +29,6 @@ public class SupplierEntity {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-
     @Column(name = "enabled")
     private boolean enabled;
 

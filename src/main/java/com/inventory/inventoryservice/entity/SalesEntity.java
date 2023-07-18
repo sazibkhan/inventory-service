@@ -27,7 +27,7 @@ public class SalesEntity {
     @JoinColumn(
             name = "customer_id",
             foreignKey = @ForeignKey(
-                    name = "sales_customer_fk"))
+                    name = "sales_customer_id_fk"))
     private CustomerEntity customer;
 
     @Column(name = "customer_id", insertable = false, updatable = false)

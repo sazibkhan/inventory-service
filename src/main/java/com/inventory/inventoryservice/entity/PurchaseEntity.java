@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PurchaseEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,7 +26,7 @@ public class PurchaseEntity {
     @JoinColumn(
             name = "supplier_id",
             foreignKey = @ForeignKey(
-                    name = "purchases_supplier_fk"
+                    name = "purchases_supplier_id_fk"
             ))
     private SupplierEntity supplier;
 

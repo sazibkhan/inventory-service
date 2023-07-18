@@ -18,7 +18,7 @@ public class ProductEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long productId;
+    private Long id;
 
     @Column(name = "product_name")
     private String productName;
@@ -26,7 +26,7 @@ public class ProductEntity {
     @Column(name = "discription")
     private String discription;
 
-    @Column(name = "barCode")
+    @Column(name = "barcode")
     private String barCode;
 
     @ManyToOne

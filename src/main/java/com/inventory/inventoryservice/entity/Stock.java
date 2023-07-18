@@ -24,7 +24,7 @@ public class Stock {
     @JoinColumn(
             name = "product_id",
             foreignKey = @ForeignKey(
-                    name = "stock_product_fk"))
+                    name = "stocks_product_id_fk"))
     private ProductEntity product;
 
     @Column(name = "product_id", insertable = false, updatable = false)
@@ -32,8 +32,6 @@ public class Stock {
 
     @Column(name = "current_stock")
     private Double currentStock;
-
-
 
     @Column(name = "enabled")
     private boolean enabled;

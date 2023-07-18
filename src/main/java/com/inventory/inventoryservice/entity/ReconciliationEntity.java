@@ -15,16 +15,16 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ReconciliationEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name="reconciliation_date")
     private LocalDateTime reconciliationDate;
-            ;
+
     @Column(name="status")
     private String  status;
-
 
     @Column(name = "enabled")
     private boolean enabled;

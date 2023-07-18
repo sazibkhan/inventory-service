@@ -20,7 +20,7 @@ public class UserRoleEntity {
             name = "user_id",
             nullable = false,
             foreignKey = @ForeignKey(
-                    name = "auth_users_role_user22_id_fk"
+                    name = "auth_users_role_user_id_fk"
             )
     )
     private UserEntity user;

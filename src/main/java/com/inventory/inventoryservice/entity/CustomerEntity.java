@@ -1,15 +1,13 @@
 package com.inventory.inventoryservice.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Builder
 @Table(name = "customers")
 @AllArgsConstructor
@@ -32,11 +30,11 @@ public class CustomerEntity {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "customer images")
-    private String customerImages;
+    @Column(name = "customer_image")
+    private String customerImage;
 
     @Column(name = "enabled")
-    private boolean enabled;
+    private Boolean enabled;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;

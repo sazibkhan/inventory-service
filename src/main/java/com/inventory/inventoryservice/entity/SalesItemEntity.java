@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Entity
 @Data
 @Builder
-@Table(name = " sales_items")
+@Table(name = "sales_items")
 @AllArgsConstructor
 @NoArgsConstructor
 public class SalesItemEntity {
@@ -24,7 +24,7 @@ public class SalesItemEntity {
     @JoinColumn(
             name = "sales_id",
             foreignKey = @ForeignKey(
-                    name = "purchase_items_sales_fk"))
+                    name = "sales_items_sales_id_fk"))
     private SalesEntity sales ;
 
     @Column(name = "sales_id", insertable = false, updatable = false)
@@ -34,12 +34,11 @@ public class SalesItemEntity {
     @JoinColumn(
             name = "product_id",
             foreignKey = @ForeignKey(
-                    name = "purchase_items_product_fk"))
+                    name = "sales_items_product_id_fk"))
     private ProductEntity product;
 
     @Column(name = "product_id", insertable = false, updatable = false)
     private Long   productId;
-
 
     @Column(name = "purchase_price")
     private Double purchasePrice;
@@ -49,7 +48,6 @@ public class SalesItemEntity {
 
     @Column(name = "discount_amount")
     private Double discountAmount;
-
 
     @Column(name = "enabled")
     private boolean enabled;
