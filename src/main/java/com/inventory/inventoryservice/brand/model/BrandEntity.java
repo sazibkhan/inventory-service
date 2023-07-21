@@ -1,4 +1,4 @@
-package com.inventory.inventoryservice.entity;
+package com.inventory.inventoryservice.brand.model;
 
 import lombok.*;
 
@@ -20,7 +20,7 @@ public class BrandEntity {
     private String brandName;
 
     @Column(name = "enabled")
-    private boolean enabled;
+    private Boolean enabled;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;

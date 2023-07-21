@@ -1,0 +1,21 @@
+
+
+### BrandController::saveBrand
+POST http://localhost:8099/api/v1/brands
+Content-Type: application/json
+Accept: application/json
+
+{
+  "brandName": "Square",
+  "enabled": true
+}
+
+### BrandController::updateBrand
+PUT http://localhost:8099/api/v1/brands/1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "brandName": "Square2",
+  "enabled": true
+}
