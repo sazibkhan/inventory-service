@@ -19,3 +19,13 @@ Accept: application/json
   "brandName": "Square2",
   "enabled": true
 }
+
+### BrandController::deleteBrand
+DELETE http://localhost:8099/api/v1/brands/1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "brandName": "Square2",
+  "enabled": true
+}
