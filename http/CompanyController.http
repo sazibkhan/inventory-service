@@ -1,0 +1,32 @@
+### CompanyController::saveCompany
+POST http://localhost:8099/api/v1/companys
+Content-Type: application/json
+Accept: application/json
+
+{
+  "companyName": "Square",
+  "email": "s@gmail.com",
+  "mobile": "01717226385",
+  "address": "Dhaka",
+  "enabled": true
+}
+
+
+### CompanyController::updateCompany
+PUT http://localhost:8099/api/v1/companys/1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "companyName": "Square",
+  "email": "s@gmail.com",
+  "mobile": "01717226385",
+  "address": "Dhaka",
+  "enabled": true
+}
+
+
+### CompanyController::deleteCompany
+DELETE http://localhost:8099/api/v1/companys/1
+Content-Type: application/json
+Accept: application/json

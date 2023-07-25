@@ -1,4 +1,4 @@
-package com.inventory.inventoryservice.entity;
+package com.inventory.inventoryservice.company.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Data
-@Table(name = "companies")
+@Table(name = "companys")
 @AllArgsConstructor
 @NoArgsConstructor
 public class CompanyEntity {
@@ -31,7 +31,7 @@ public class CompanyEntity {
     private String address;
 
     @Column(name = "enabled")
-    private boolean enabled;
+    private Boolean enabled;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;

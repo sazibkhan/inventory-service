@@ -1,4 +1,4 @@
-package com.inventory.inventoryservice.entity;
+package com.inventory.inventoryservice.customer.model;
 
 import lombok.*;
 

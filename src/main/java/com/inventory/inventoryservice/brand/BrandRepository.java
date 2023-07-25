@@ -6,8 +6,7 @@ import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface BrandRepository extends
-    JpaRepository<BrandEntity, Long>,
-    QuerydslPredicateExecutor<BrandEntity> {
+public interface BrandRepository extends JpaRepository<BrandEntity, Long>,
+                                         QuerydslPredicateExecutor<BrandEntity> {
 
 }

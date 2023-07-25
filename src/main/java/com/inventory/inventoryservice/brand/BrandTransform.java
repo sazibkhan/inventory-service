@@ -8,7 +8,7 @@ import org.springframework.beans.BeanUtils;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class BrandTransform {
+public class  BrandTransform {
 
   public static BrandEntity toBrandEntity(BrandDto brandDto) {
 
