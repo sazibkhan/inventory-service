@@ -6,7 +6,7 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "brandName": "Square",
+  "brandName": "Napa",
   "enabled": true
 }
 

@@ -1,0 +1,12 @@
+### SupplierController::saveSupplier
+POST http://localhost:8099/api/v1/suppliers
+Content-Type: application/json
+Accept: application/json
+
+{
+  "supplierName": "Square",
+  "supplierAddress": "sazib@gmail.com",
+  "phoneNumber": "Square",
+  "enabled": true
+}
+

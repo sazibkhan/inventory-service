@@ -4,7 +4,7 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "companyName": "Square",
+  "companyName": "Square-1",
   "email": "s@gmail.com",
   "mobile": "01717226385",
   "address": "Dhaka",
