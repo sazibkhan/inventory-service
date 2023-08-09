@@ -1,4 +1,4 @@
-package com.inventory.inventoryservice.entity;
+package com.inventory.inventoryservice.category.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,7 +19,7 @@ public class CategoryEntity {
     private Long id;
 
     @Column(name = "category_name")
-    private String CategoryName;
+    private String categoryName;
 
     @Column(name = "enabled")
     private boolean enabled;

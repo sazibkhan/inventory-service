@@ -1,0 +1,31 @@
+
+
+### CategoryController::saveCategory
+POST http://localhost:8099/api/v1/categorys
+Content-Type: application/json
+Accept: application/json
+
+{
+  "categoryName": "Napa-1",
+  "enabled": true
+}
+
+### CategoryController::updateCategory
+PUT http://localhost:8099/api/v1/categorys/1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "categoryName": "Square2",
+  "enabled": true
+}
+
+### CategoryController::deleteCategory
+DELETE http://localhost:8099/api/v1/categorys/1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "categoryName": "Square2",
+  "enabled": true
+}

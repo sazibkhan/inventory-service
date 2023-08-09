@@ -1,6 +1,7 @@
 package com.inventory.inventoryservice.entity;
 
 import com.inventory.inventoryservice.brand.model.BrandEntity;
+import com.inventory.inventoryservice.category.model.CategoryEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
