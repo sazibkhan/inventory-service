@@ -1,4 +1,4 @@
-package com.inventory.inventoryservice.entity;
+package com.inventory.inventoryservice.product.model;
 
 import com.inventory.inventoryservice.brand.model.BrandEntity;
 import com.inventory.inventoryservice.category.model.CategoryEntity;
