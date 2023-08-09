@@ -20,7 +20,6 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class CategoryService {
 
-
     private final CategoryRepository categoryRepository;
     private final CategoryValidatorService categoryValidatorService;
 

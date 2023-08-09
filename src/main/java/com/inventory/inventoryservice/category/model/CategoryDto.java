@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 public class CategoryDto {
 
     private String categoryName;
-    private boolean enabled;
+    private Boolean enabled;
     private LocalDateTime createdAt;
     private Long createdBy;
     private LocalDateTime updatedAt;

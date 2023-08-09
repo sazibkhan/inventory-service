@@ -22,7 +22,7 @@ public class CategoryEntity {
     private String categoryName;
 
     @Column(name = "enabled")
-    private boolean enabled;
+    private Boolean enabled;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;

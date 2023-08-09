@@ -10,5 +10,5 @@ import lombok.*;
 public class CategoryRest {
 
     private String categoryName;
-    private boolean enabled;
+    private Boolean enabled;
 }

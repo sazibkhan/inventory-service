@@ -1,5 +1,6 @@
 package com.inventory.inventoryservice.entity;
 
+import com.inventory.inventoryservice.product.model.ProductEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
