@@ -15,10 +15,10 @@ public class ProductRest {
     private String productName;
     private String description;
     private String barCode;
-    private String brand;
     private Long brandId;
-    private String category;
+    private String brandName;
     private Long categoryId;
+    private String categoryName;
     private String productImages;
     private Double purchasePrice;
     private Double salesPrice;

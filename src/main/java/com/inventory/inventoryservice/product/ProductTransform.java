@@ -6,6 +6,8 @@ import com.inventory.inventoryservice.product.model.ProductRest;
 import org.springframework.beans.BeanUtils;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class ProductTransform {
@@ -19,6 +21,12 @@ public class ProductTransform {
     public static ProductRest toProductRest(ProductEntity product) {
         var rest = new ProductRest();
         BeanUtils.copyProperties(product, rest);
+        Optional.ofNullable(product.getBrand()).ifPresent(brand-> {
+            rest.setBrandName(brand.getBrandName());
+        });
+        Optional.ofNullable(product.getCategory()).ifPresent(category-> {
+            rest.setCategoryName(category.getCategoryName());
+        });
         return rest;
     }
 

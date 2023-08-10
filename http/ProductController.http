@@ -7,7 +7,7 @@ Accept: application/json
   "productName":"Mango",
   "description":"WOW Product",
   "barCode":"inv-00123",
-  "branId": 1,
+  "brandId": 1,
   "categoryId": 1,
   "purchasePrice": 100,
   "salesPrice": 150,
