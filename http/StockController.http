@@ -1,0 +1,10 @@
+### StockController::saveStock
+POST http://localhost:8099/api/v1/stocks
+Content-Type: application/json
+Accept: application/json
+
+{
+    "currentStock": 288,
+    "productId": 1,
+    "enabled": true
+}

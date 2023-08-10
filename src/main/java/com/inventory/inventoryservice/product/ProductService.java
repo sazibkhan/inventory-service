@@ -24,9 +24,9 @@ public class ProductService {
 
         ProductEntity product = ProductTransform.toProductEntity(productDto);
         var  brand = brandValidatorService.ifFoundByIdReturnElseThrow(productDto.getBrandId());
-        var  category = categoryValidatorService.ifFoundByIdReturnElseThrow(productDto.getCategoryId());
+       // var  category = categoryValidatorService.ifFoundByIdReturnElseThrow(productDto.getCategoryId());
         product.setBrand(brand);
-        product.setCategory(category);
+      //  product.setCategory(category);
 
         productRepository.save(product);
         return ProductTransform.toProductRest(product);

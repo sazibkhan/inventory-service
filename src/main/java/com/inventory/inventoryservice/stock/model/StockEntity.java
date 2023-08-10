@@ -1,4 +1,4 @@
-package com.inventory.inventoryservice.entity;
+package com.inventory.inventoryservice.stock.model;
 
 import com.inventory.inventoryservice.product.model.ProductEntity;
 import lombok.AllArgsConstructor;
@@ -15,12 +15,11 @@ import java.time.LocalDateTime;
 @Table(name = "stocks")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Stock {
-
+public class StockEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @ManyToOne
     @JoinColumn(
             name = "product_id",
