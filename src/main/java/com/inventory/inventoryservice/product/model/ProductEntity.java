@@ -25,28 +25,21 @@ public class ProductEntity {
     @Column(name = "product_name")
     private String productName;
 
-    @Column(name = "discription")
-    private String discription;
+    @Column(name = "description")
+    private String description;
 
-    @Column(name = "barcode")
+    @Column(name = "bar_code")
     private String barCode;
 
-    @ManyToOne
-    @JoinColumn(
-            name = "brand_id",
-            foreignKey = @ForeignKey(
-                    name = "products_brand_fk"))
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "brand_id", foreignKey = @ForeignKey(name = "products_brand_fk"))
     private BrandEntity brand;
 
     @Column(name = "brand_id", insertable = false, updatable = false)
     private Long brandId;
 
-
-    @ManyToOne
-    @JoinColumn(
-            name = "category_id",
-            foreignKey =@ForeignKey(
-            name = "products_category_fk"))
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id", foreignKey = @ForeignKey(name = "products_category_fk"))
     private CategoryEntity category;
 
     @Column(name = "category_id", insertable = false, updatable = false)

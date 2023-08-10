@@ -1,7 +1,5 @@
 package com.inventory.inventoryservice.product.model;
 
-import com.inventory.inventoryservice.brand.model.BrandEntity;
-import com.inventory.inventoryservice.category.model.CategoryEntity;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -13,8 +11,9 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class ProductRest {
 
+    private Long id;
     private String productName;
-    private String discription;
+    private String description;
     private String barCode;
     private String brand;
     private Long brandId;

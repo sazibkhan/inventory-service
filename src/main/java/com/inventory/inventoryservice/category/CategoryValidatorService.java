@@ -16,10 +16,9 @@ public class CategoryValidatorService {
 
     public CategoryEntity ifFoundByIdReturnElseThrow(Long id) {
         Objects.requireNonNull(id);
-
         return categoryRepository.findById(id)
                 .orElseThrow(()-> new IllegalArgumentException(String
-                        .format("category not found with id [%s]",id)));
+                        .format("Category not found with id [%s]",id)));
 
     }
 }

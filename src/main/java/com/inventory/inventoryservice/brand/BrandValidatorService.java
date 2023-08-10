@@ -14,7 +14,6 @@ public class BrandValidatorService {
 
   public BrandEntity ifFoundByIdReturnElseThrow(Long id) {
     Objects.requireNonNull(id);
-
     return brandRepository.findById(id)
         .orElseThrow(()-> new IllegalArgumentException(String
             .format("Brand not found with id [%s]",id)));

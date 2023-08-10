@@ -6,7 +6,7 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "categoryName": "Napa-1",
+  "categoryName": "Category1",
   "enabled": true
 }
 

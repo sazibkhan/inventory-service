@@ -9,26 +9,37 @@ import com.inventory.inventoryservice.category.CategoryValidatorService;
 import com.inventory.inventoryservice.product.model.ProductDto;
 import com.inventory.inventoryservice.product.model.ProductEntity;
 import com.inventory.inventoryservice.product.model.ProductRest;
+import com.inventory.inventoryservice.product.model.ProductSearchDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class ProductService {
 
-    private  final ProductRepository productRepository;
+    private final ProductRepository productRepository;
+    private final ProductQueryService productQueryService;
     private final ProductValidatorService productValidatorService;
-    private final BrandValidatorService brandValidatorService;
-    private final CategoryValidatorService categoryValidatorService;
+
     public ProductRest saveProduct(ProductDto productDto) {
 
-        ProductEntity product = ProductTransform.toProductEntity(productDto);
-        var  brand = brandValidatorService.ifFoundByIdReturnElseThrow(productDto.getBrandId());
-       // var  category = categoryValidatorService.ifFoundByIdReturnElseThrow(productDto.getCategoryId());
-        product.setBrand(brand);
-      //  product.setCategory(category);
+        ProductEntity product = productValidatorService.validateAndReturnProductSave(productDto);
 
         productRepository.save(product);
         return ProductTransform.toProductRest(product);
     }
+
+  public Page<ProductRest> searchPage(ProductSearchDto searchDto) {
+
+      Page<ProductEntity> page = productQueryService.searchPage(searchDto);
+
+      List<ProductRest> productRestList = ProductTransform.toProductRestList(page.getContent());
+
+      return new PageImpl<>(productRestList, page.getPageable(), page.getTotalElements());
+
+  }
 }
