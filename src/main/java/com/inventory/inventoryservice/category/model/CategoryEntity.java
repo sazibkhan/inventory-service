@@ -1,9 +1,11 @@
 package com.inventory.inventoryservice.category.model;
 
+import com.inventory.inventoryservice.product.model.ProductEntity;
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -32,4 +34,7 @@ public class CategoryEntity {
 
     @Column(name = "updated_by")
     private  Long updatedBy;
+
+    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
+    private List<ProductEntity> productList;
 }

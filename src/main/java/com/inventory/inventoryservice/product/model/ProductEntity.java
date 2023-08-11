@@ -3,6 +3,7 @@ package com.inventory.inventoryservice.product.model;
 import com.inventory.inventoryservice.brand.model.BrandEntity;
 import com.inventory.inventoryservice.category.model.CategoryEntity;
 import lombok.*;
+import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -27,14 +28,14 @@ public class ProductEntity {
     private String barCode;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "brand_id", foreignKey = @ForeignKey(name = "products_brand_fk"))
+    @JoinColumn(name = "brand_id", foreignKey = @ForeignKey(name = "products_brand_id_fk"))
     private BrandEntity brand;
 
     @Column(name = "brand_id", insertable = false, updatable = false)
     private Long brandId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id", foreignKey = @ForeignKey(name = "products_category_fk"))
+    @JoinColumn(name = "category_id", foreignKey = @ForeignKey(name = "products_category_id_fk"))
     private CategoryEntity category;
 
     @Column(name = "category_id", insertable = false, updatable = false)

@@ -1,9 +1,12 @@
 package com.inventory.inventoryservice.brand.model;
 
+import com.inventory.inventoryservice.product.model.ProductEntity;
 import lombok.*;
+import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -31,5 +34,9 @@ public class BrandEntity {
     private LocalDateTime updatedAt;
 
     @Column(name = "updated_by")
-    private  Long updatedBy;
+    private Long updatedBy;
+
+    @OneToMany(mappedBy = "brand", fetch = FetchType.LAZY)
+    private List<ProductEntity> productList;
+
 }
