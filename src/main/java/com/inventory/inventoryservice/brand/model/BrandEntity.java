@@ -2,7 +2,6 @@ package com.inventory.inventoryservice.brand.model;
 
 import com.inventory.inventoryservice.product.model.ProductEntity;
 import lombok.*;
-import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

@@ -22,12 +22,12 @@ public class ProductTransform {
     public static ProductRest toProductRest(ProductEntity product) {
         var rest = new ProductRest();
         BeanUtils.copyProperties(product, rest);
-        if(Objects.nonNull(product.getBrand())) {
-            rest.setBrandName(product.getBrand().getBrandName());
-        }
-//        Optional.ofNullable(product.getBrand()).ifPresent(brand-> {
-//            rest.setBrandName(brand.getBrandName());
-//        });
+//        if(Objects.nonNull(product.getBrand())) {
+//            rest.setBrandName(product.getBrand().getBrandName());
+//        }
+        Optional.ofNullable(product.getBrand()).ifPresent(brand-> {
+            rest.setBrandName(brand.getBrandName());
+        });
 //        Optional.ofNullable(product.getCategory()).ifPresent(category-> {
 //            rest.setCategoryName(category.getCategoryName());
 //        });
