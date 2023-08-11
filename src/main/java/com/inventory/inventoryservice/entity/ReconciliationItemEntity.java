@@ -1,20 +1,15 @@
 package com.inventory.inventoryservice.entity;
 
 import com.inventory.inventoryservice.product.model.ProductEntity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Data
-@Builder
+@Getter
+@Setter
 @Table(name = "reconciliation_items")
-@AllArgsConstructor
-@NoArgsConstructor
 public class ReconciliationItemEntity {
 
     @Id

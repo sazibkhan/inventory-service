@@ -1,19 +1,14 @@
 package com.inventory.inventoryservice.supplier.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Data
-@Builder
+@Getter
+@Setter
 @Table(name = "suppliers")
-@AllArgsConstructor
-@NoArgsConstructor
 public class SupplierEntity {
 
     @Id

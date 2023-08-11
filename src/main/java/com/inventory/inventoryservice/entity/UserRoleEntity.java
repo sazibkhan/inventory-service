@@ -1,14 +1,16 @@
 package com.inventory.inventoryservice.entity;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "auth_users_role")
-@Data
 public class UserRoleEntity {
 
     @Id

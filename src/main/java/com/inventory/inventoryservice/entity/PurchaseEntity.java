@@ -6,14 +6,10 @@ import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-
+@Entity
 @Setter
 @Getter
-@Builder
-@Entity
 @Table(name = "purchases")
-@AllArgsConstructor
-@NoArgsConstructor
 public class PurchaseEntity {
 
     @Id

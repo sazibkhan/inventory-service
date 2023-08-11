@@ -1,20 +1,15 @@
 package com.inventory.inventoryservice.stock.model;
 
 import com.inventory.inventoryservice.product.model.ProductEntity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Data
-@Builder
+@Getter
+@Setter
 @Table(name = "stocks")
-@AllArgsConstructor
-@NoArgsConstructor
 public class StockEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

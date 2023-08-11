@@ -1,6 +1,8 @@
 package com.inventory.inventoryservice.entity;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -10,8 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "auth_users")
-@Data
 public class UserEntity {
 
     @Id
