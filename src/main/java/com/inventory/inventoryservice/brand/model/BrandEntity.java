@@ -6,10 +6,9 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name = "brands")
-@AllArgsConstructor
-@NoArgsConstructor
 public class BrandEntity {
 
     @Id

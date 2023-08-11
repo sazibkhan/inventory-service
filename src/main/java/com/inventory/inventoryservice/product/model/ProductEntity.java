@@ -2,20 +2,15 @@ package com.inventory.inventoryservice.product.model;
 
 import com.inventory.inventoryservice.brand.model.BrandEntity;
 import com.inventory.inventoryservice.category.model.CategoryEntity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Data
-@Builder
+@Getter
+@Setter
 @Table(name = "products")
-@AllArgsConstructor
-@NoArgsConstructor
 public class ProductEntity {
 
     @Id

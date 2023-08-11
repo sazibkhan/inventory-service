@@ -8,10 +8,7 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
-@Builder
 @Table(name = "customers")
-@AllArgsConstructor
-@NoArgsConstructor
 public class CustomerEntity {
 
     @Id

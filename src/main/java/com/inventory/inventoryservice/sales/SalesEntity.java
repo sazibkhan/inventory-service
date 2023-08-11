@@ -1,20 +1,15 @@
-package com.inventory.inventoryservice.entity;
+package com.inventory.inventoryservice.sales;
 
 import com.inventory.inventoryservice.customer.model.CustomerEntity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Data
-@Builder
+@Getter
+@Setter
 @Table(name = "sales")
-@AllArgsConstructor
-@NoArgsConstructor
 public class SalesEntity {
 
     @Id
@@ -24,18 +19,15 @@ public class SalesEntity {
     @Column(name="sales_date")
     private LocalDateTime salesDate;
 
-    @ManyToOne
-    @JoinColumn(
-            name = "customer_id",
-            foreignKey = @ForeignKey(
-                    name = "sales_customer_id_fk"))
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "customer_id", foreignKey = @ForeignKey(name = "sales_customer_id_fk"))
     private CustomerEntity customer;
 
     @Column(name = "customer_id", insertable = false, updatable = false)
     private Long customerId;
 
     @Column(name = "enabled")
-    private boolean enabled;
+    private Boolean enabled;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;

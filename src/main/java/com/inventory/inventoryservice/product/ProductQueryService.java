@@ -41,7 +41,5 @@ public class ProductQueryService {
         .fetch();
 
     return new PageImpl<>(productList, pageable, query.fetchCount());
-
-
   }
 }
