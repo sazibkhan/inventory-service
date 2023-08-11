@@ -33,8 +33,8 @@ public class ProductQueryService {
     JPAQuery<ProductEntity> query = new JPAQuery<>(entityManager);
 
     List<ProductEntity> productList = query.from(qProductEntity)
-        .leftJoin(qProductEntity.brand, qBrandEntity).fetchJoin()
-        .leftJoin(qProductEntity.category, qCategoryEntity).fetchJoin()
+//        .leftJoin(qProductEntity.brand, qBrandEntity).fetchJoin()
+//        .leftJoin(qProductEntity.category, qCategoryEntity).fetchJoin()
         .where(ProductPredicate.search(searchDto))
         .orderBy(qProductEntity.productName.asc())
         .limit(pageable.getPageSize()).offset(pageable.getOffset())
