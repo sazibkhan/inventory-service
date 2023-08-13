@@ -1,7 +1,7 @@
 package com.inventory.inventoryservice.sales;
 
 import com.inventory.inventoryservice.product.model.ProductEntity;
-import com.inventory.inventoryservice.sales.SalesEntity;
+import com.inventory.inventoryservice.sales.model.SalesEntity;
 import lombok.*;
 
 import javax.persistence.*;
@@ -47,7 +47,7 @@ public class SalesItemEntity {
     private Double discountAmount;
 
     @Column(name = "enabled")
-    private boolean enabled;
+    private Boolean enabled;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
