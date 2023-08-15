@@ -6,8 +6,8 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "brandName": "Brand1",
-  "enabled": true
+  "brandName": "Brand2",
+  "enabled": false
 }
 
 ### BrandController::updateBrand
@@ -27,5 +27,26 @@ Accept: application/json
 
 {
   "brandName": "Square2",
+  "enabled": true
+}
+
+### BrandController::searchPage
+POST http://localhost:8099/api/v1/brands/search-page
+Content-Type: application/json
+Accept: application/json
+
+{
+  "brandName": "Brand2",
+  "enabled": true
+}
+
+
+### BrandController::searchList
+POST http://localhost:8099/api/v1/brands/search-list
+Content-Type: application/json
+Accept: application/json
+
+{
+  "brandName": "Brand2",
   "enabled": true
 }
