@@ -7,6 +7,7 @@ import com.inventory.inventoryservice.product.ProductPredicate;
 import com.inventory.inventoryservice.product.model.ProductEntity;
 import com.inventory.inventoryservice.product.model.ProductSearchDto;
 import com.inventory.inventoryservice.product.model.QProductEntity;
+import com.inventory.inventoryservice.sales.model.QSalesEntity;
 import com.inventory.inventoryservice.sales.model.SalesEntity;
 import com.inventory.inventoryservice.sales.model.SalesSearchDto;
 import com.querydsl.jpa.impl.JPAQuery;
