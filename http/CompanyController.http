@@ -30,3 +30,33 @@ Accept: application/json
 DELETE http://localhost:8099/api/v1/companys/1
 Content-Type: application/json
 Accept: application/json
+
+
+
+
+### CompanyController::searchPage
+POST http://localhost:8099/api/v1/companys/search-page
+Content-Type: application/json
+Accept: application/json
+
+{
+  "companyName": "Square-1",
+  "email": "s@gmail.com",
+  "mobile": "01717226385",
+  "address": "Dhaka",
+  "enabled": true
+}
+
+
+### CompanyController::searchList
+POST http://localhost:8099/api/v1/companys/search-list
+Content-Type: application/json
+Accept: application/json
+
+{
+  "companyName": "Square-1",
+  "email": "s@gmail.com",
+  "mobile": "01717226385",
+  "address": "Dhaka",
+  "enabled": true
+}

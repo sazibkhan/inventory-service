@@ -12,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin
 @RestController
 @RequestMapping(path = "api/v1/categorys")
@@ -22,9 +24,18 @@ public class CategoryController {
 
     @PostMapping
     public ResponseEntity<CategoryRest> saveCategory(@RequestBody CategoryDto categoryDto) {
-
             CategoryRest categoryRest = categoryService.saveCategory(categoryDto);
             return ResponseEntity.status(HttpStatus.OK).body(categoryRest);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<CategoryRest>> getAllCategory(){
+        return new ResponseEntity(categoryService.getAllCategory(),HttpStatus.OK) ;
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<CategoryRest>getCategoryById(@PathVariable Long id){
+        return new ResponseEntity(categoryService.getCategoryById(id),HttpStatus.OK);
     }
 
     @PutMapping("/{id}")

@@ -2,8 +2,10 @@ package com.inventory.inventoryservice.company;
 
 import com.inventory.inventoryservice.brand.model.BrandDto;
 import com.inventory.inventoryservice.brand.model.BrandRest;
+import com.inventory.inventoryservice.brand.model.BrandSearchDto;
 import com.inventory.inventoryservice.company.model.CompanyDto;
 import com.inventory.inventoryservice.company.model.CompanyRest;
+import com.inventory.inventoryservice.company.model.CompanySearchDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -50,5 +52,19 @@ public class CompanyController {
     }
 
 
+
+    @PostMapping("/search-page")
+    public ResponseEntity<?> searchPage(@RequestBody CompanySearchDto searchDto) {
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(companyService.searchPage(searchDto));
+    }
+
+    @PostMapping("/search-list")
+    public ResponseEntity<?> searchList(@RequestBody CompanySearchDto searchDto) {
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(companyService.searchList(searchDto));
+    }
 
 }

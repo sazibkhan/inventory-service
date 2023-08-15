@@ -1,14 +1,24 @@
-
-
 ### CategoryController::saveCategory
 POST http://localhost:8099/api/v1/categorys
 Content-Type: application/json
 Accept: application/json
 
 {
-  "categoryName": "Category1",
+  "categoryName": "Category2",
   "enabled": true
 }
+
+
+### CategoryController::getAllCategory
+GET http://localhost:8099/api/v1/categorys
+Content-Type: application/json
+Accept: application/json
+
+### CategoryController::getCategoryById
+GET http://localhost:8099/api/v1/categorys/1
+Content-Type: application/json
+Accept: application/json
+
 
 ### CategoryController::updateCategory
 PUT http://localhost:8099/api/v1/categorys/1
