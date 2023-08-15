@@ -29,3 +29,27 @@ Accept: application/json
   "categoryName": "Square2",
   "enabled": true
 }
+
+
+
+
+### CategoryController::searchPage
+POST http://localhost:8099/api/v1/categorys/search-page
+Content-Type: application/json
+Accept: application/json
+
+{
+  "categoryName": "Category1",
+  "enabled": true
+}
+
+
+### CategoryController::searchList
+POST http://localhost:8099/api/v1/categorys/search-list
+Content-Type: application/json
+Accept: application/json
+
+{
+  "categoryName": "Category1",
+  "enabled": true
+}

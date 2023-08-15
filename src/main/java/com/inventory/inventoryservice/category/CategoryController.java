@@ -3,8 +3,10 @@ package com.inventory.inventoryservice.category;
 import com.inventory.inventoryservice.brand.BrandService;
 import com.inventory.inventoryservice.brand.model.BrandDto;
 import com.inventory.inventoryservice.brand.model.BrandRest;
+import com.inventory.inventoryservice.brand.model.BrandSearchDto;
 import com.inventory.inventoryservice.category.model.CategoryDto;
 import com.inventory.inventoryservice.category.model.CategoryRest;
+import com.inventory.inventoryservice.category.model.CategorySearchDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,34 +22,38 @@ public class CategoryController {
 
     @PostMapping
     public ResponseEntity<CategoryRest> saveCategory(@RequestBody CategoryDto categoryDto) {
-        try {
+
             CategoryRest categoryRest = categoryService.saveCategory(categoryDto);
             return ResponseEntity.status(HttpStatus.OK).body(categoryRest);
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException("Error!!");
-        }
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<CategoryRest> updateCategory(@PathVariable Long id, @RequestBody CategoryDto categoryDto) {
-        try {
             CategoryRest categoryRest  = categoryService.updateCategory(id, categoryDto);
             return ResponseEntity.status(HttpStatus.OK).body(categoryRest);
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException("Error!!");
-        }
+
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteCategory(@PathVariable Long id) {
-        try {
             categoryService.deleteCategory(id);
             return ResponseEntity.status(HttpStatus.OK).body("Deleted Successfully.");
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException("Error!!");
-        }
     }
+
+    @PostMapping("/search-page")
+    public ResponseEntity<?> searchPage(@RequestBody CategorySearchDto searchDto) {
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(categoryService.searchPage(searchDto));
+    }
+
+    @PostMapping("/search-list")
+    public ResponseEntity<?> searchList(@RequestBody CategorySearchDto searchDto) {
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(categoryService.searchList(searchDto));
+    }
+
+
+
 }

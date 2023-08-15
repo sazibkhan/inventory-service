@@ -26,7 +26,7 @@ public class CategoryTransform {
         return rest;
     }
 
-    public static List<CategoryRest> toBrandRestList(List<CategoryEntity> list) {
+    public static List<CategoryRest> toCategoryRestList(List<CategoryEntity> list) {
         return list.parallelStream()
                 .map(CategoryTransform::toCategoryRest)
                 .collect(Collectors.toList());
