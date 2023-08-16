@@ -35,3 +35,34 @@ DELETE http://localhost:8099/api/v1/customers/1
 Content-Type: application/json
 Accept: application/json
 
+
+
+
+### CustomerController::searchPage
+POST http://localhost:8099/api/v1/customers/search-page
+Content-Type: application/json
+Accept: application/json
+
+{
+  "customerName":"Sazib Khan",
+  "phoneNumber":"01717226385",
+  "customerType":"Nice",
+  "email":"Square",
+  "customerImage":"Picture",
+  "enabled": true
+}
+
+
+### CustomerController::searchList
+POST http://localhost:8099/api/v1/customers/search-list
+Content-Type: application/json
+Accept: application/json
+
+{
+  "customerName":"Sazib Khan",
+  "phoneNumber":"01717226385",
+  "customerType":"Nice",
+  "email":"Square",
+  "customerImage":"Picture",
+  "enabled": true
+}

@@ -58,7 +58,6 @@ public class CompanyService {
     public Page<CompanyRest> searchPage(CompanySearchDto searchDto) {
 
         Page<CompanyEntity> page =  companyQueryService.searchPage(searchDto);
-
         List<CompanyRest> resultList = CompanyTransform.toCompanyRestList(page.getContent());
 
         return new PageImpl<>(resultList, page.getPageable(), page.getTotalElements());
@@ -67,11 +66,6 @@ public class CompanyService {
     public List<CompanyRest> searchList(CompanySearchDto searchDto) {
         return CompanyTransform.toCompanyRestList(companyQueryService.searchList(searchDto));
     }
-
-
-
-
-
 
 
 

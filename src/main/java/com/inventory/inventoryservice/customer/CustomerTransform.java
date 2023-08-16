@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 
 public class CustomerTransform {
 
-
     public static CustomerEntity toCustomerEntity(CustomerDto customerDto){
         var customer = new CustomerEntity();
         BeanUtils.copyProperties(customerDto, customer);
