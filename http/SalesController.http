@@ -1,0 +1,21 @@
+### SalesController::saveSales
+POST http://localhost:8099/api/v1/sales
+Content-Type: application/json
+Accept: application/json
+
+{
+  "salesDate":"Mango",
+  "customer":"WOW Product",
+  "customerId":1,
+  "enabled": true
+}
+
+### SalesController::saveSales
+POST http://localhost:8099/api/v1/sales/search-page
+Content-Type: application/json
+Accept: application/json
+
+{
+
+}
+

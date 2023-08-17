@@ -20,16 +20,11 @@ public class SalesController {
 
     private final SalesService salesService;
 
-
     @PostMapping
-    public ResponseEntity<SalesRest> saveProduct(@RequestBody SalesDto salesDto) {
-        try {
+    public ResponseEntity<SalesRest> saveSales(@RequestBody SalesDto salesDto) {
+
             SalesRest salesRest = salesService.saveSales(salesDto);
             return ResponseEntity.status(HttpStatus.OK).body(salesRest);
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException("Error!!");
-        }
     }
 
     @PostMapping("/search-page")

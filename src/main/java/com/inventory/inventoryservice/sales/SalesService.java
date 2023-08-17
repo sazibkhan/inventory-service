@@ -30,7 +30,7 @@ public class SalesService {
 
     public SalesRest saveSales(SalesDto salesDto) {
 
-        SalesEntity sales = salesValidatorService.validateAndReturnCustomerSave(salesDto);
+        SalesEntity sales = salesValidatorService.validateAndReturnSalesSave(salesDto);
         salesRepository.save(sales);
         return SalesTransform.toSalesRest(sales);
     }

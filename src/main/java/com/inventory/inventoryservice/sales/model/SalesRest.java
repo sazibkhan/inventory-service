@@ -15,5 +15,6 @@ public class SalesRest {
     private LocalDateTime salesDate;
     private CustomerEntity customer;
     private Long customerId;
+    private String customerName;
     private Boolean enabled;
 }

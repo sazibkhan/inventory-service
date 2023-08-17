@@ -18,6 +18,17 @@ public class CustomerPredicate {
         if(StringUtils.isNotEmpty(searchDto.getCustomerName())) {
             builder.and(qCUSTOMER.customerName.eq(searchDto.getCustomerName()));
         }
+        if (StringUtils.isNotEmpty(searchDto.getCustomerType())){
+            builder.and(qCUSTOMER.customerType.eq(searchDto.getCustomerType()));
+        }
+        if(StringUtils.isNotEmpty(searchDto.getPhoneNumber())){
+            builder.and(qCUSTOMER.phoneNumber.eq(searchDto.getPhoneNumber()));
+        }
+        if(StringUtils.isNotEmpty(searchDto.getEmail())){
+            builder.and(qCUSTOMER.email.eq(searchDto.getEmail()));
+        }
+
+
 
         if(ObjectUtils.isNotEmpty(searchDto.getEnabled())) {
             builder.and(qCUSTOMER.enabled.eq(searchDto.getEnabled()));

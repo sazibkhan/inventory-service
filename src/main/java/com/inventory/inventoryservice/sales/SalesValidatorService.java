@@ -2,6 +2,9 @@ package com.inventory.inventoryservice.sales;
 
 
 import com.inventory.inventoryservice.customer.CustomerValidatorService;
+import com.inventory.inventoryservice.product.ProductTransform;
+import com.inventory.inventoryservice.product.model.ProductDto;
+import com.inventory.inventoryservice.product.model.ProductEntity;
 import com.inventory.inventoryservice.sales.model.SalesDto;
 import com.inventory.inventoryservice.sales.model.SalesEntity;
 import lombok.RequiredArgsConstructor;
@@ -23,10 +26,9 @@ public class SalesValidatorService {
         return salesRepository.findById(id)
                 .orElseThrow(()-> new IllegalArgumentException(String
                         .format("Sales not found with id [%s]",id)));
-
     }
 
-    public SalesEntity validateAndReturnCustomerSave(SalesDto salesDto) {
+    public SalesEntity validateAndReturnSalesSave(SalesDto salesDto) {
         var entity = SalesTransform.toSalesEntity(salesDto);
         if(ObjectUtils.isNotEmpty(salesDto.getCustomerId())) {
             entity.setCustomer(customerValidatorService

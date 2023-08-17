@@ -24,9 +24,11 @@ public class SalesTransform {
     public static SalesRest toSalesRest(SalesEntity sales) {
         var rest = new SalesRest();
         BeanUtils.copyProperties(sales, rest);
-//        Optional.ofNullable(sales.getCustomer()).ifPresent(customer-> {
-//            rest.setCustomer(customer.getCustomerName());
-//        });
+
+        Optional.ofNullable(sales.getCustomer()).ifPresent(customer-> {
+            rest.setCustomerName(customer.getCustomerName());
+        });
+
         return rest;
     }
 
