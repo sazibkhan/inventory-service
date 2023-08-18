@@ -25,12 +25,8 @@ public class StockController {
 
     @PostMapping
     public ResponseEntity<StockRest> saveStock(@RequestBody StockDto stockDto) {
-        try {
             StockRest stockRest = stockService.saveStock(stockDto);
             return ResponseEntity.status(HttpStatus.OK).body(stockRest);
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException("Error!!");
-        }
+
     }
 }

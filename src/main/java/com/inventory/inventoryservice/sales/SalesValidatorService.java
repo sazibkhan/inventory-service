@@ -29,7 +29,9 @@ public class SalesValidatorService {
     }
 
     public SalesEntity validateAndReturnSalesSave(SalesDto salesDto) {
+
         var entity = SalesTransform.toSalesEntity(salesDto);
+
         if(ObjectUtils.isNotEmpty(salesDto.getCustomerId())) {
             entity.setCustomer(customerValidatorService
                     .ifFoundByIdReturnElseThrow(salesDto.getCustomerId()));

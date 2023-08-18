@@ -15,11 +15,8 @@ public class StockEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(
-            name = "product_id",
-            foreignKey = @ForeignKey(
-                    name = "stocks_product_id_fk"))
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id", foreignKey = @ForeignKey(name = "stocks_product_id_fk"))
     private ProductEntity product;
 
     @Column(name = "product_id", insertable = false, updatable = false)
