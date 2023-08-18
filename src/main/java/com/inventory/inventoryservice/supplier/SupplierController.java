@@ -20,13 +20,9 @@ public class SupplierController {
     private final SupplierService supplierService;
     @PostMapping
     public ResponseEntity<SupplierRest> saveCompany(@RequestBody SupplierDto supplierDto) {
-        try {
-            SupplierRest supplierRest = supplierService.saveSupplier(supplierDto);
-            return ResponseEntity.status(HttpStatus.OK).body(supplierRest);
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException("Error!!");
-        }
+
+        SupplierRest supplierRest = supplierService.saveSupplier(supplierDto);
+        return ResponseEntity.status(HttpStatus.OK).body(supplierRest);
     }
 
 

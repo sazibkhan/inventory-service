@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 public class CompanyController {
 
     private final  CompanyService companyService;
+
     @PostMapping
     public ResponseEntity<CompanyRest> saveCompany(@RequestBody CompanyDto companyDto) {
         try {
