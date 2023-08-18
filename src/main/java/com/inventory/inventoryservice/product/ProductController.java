@@ -2,6 +2,7 @@ package com.inventory.inventoryservice.product;
 
 import com.inventory.inventoryservice.brand.model.BrandDto;
 import com.inventory.inventoryservice.brand.model.BrandRest;
+import com.inventory.inventoryservice.brand.model.BrandSearchDto;
 import com.inventory.inventoryservice.product.model.ProductDto;
 import com.inventory.inventoryservice.product.model.ProductEntity;
 import com.inventory.inventoryservice.product.model.ProductRest;
@@ -22,13 +23,9 @@ public class ProductController {
 
     @PostMapping
     public ResponseEntity<ProductRest> saveProduct(@RequestBody ProductDto productDto) {
-        try {
+
             ProductRest productRest = productService.saveProduct(productDto);
             return ResponseEntity.status(HttpStatus.OK).body(productRest);
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException("Error!!");
-        }
     }
 
     @PostMapping("/search-page")
@@ -36,4 +33,15 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.OK)
             .body(productService.searchPage(searchDto));
     }
+
+    @PostMapping("/search-list")
+    public ResponseEntity<?> searchList(@RequestBody ProductSearchDto searchDto) {
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(productService.searchList(searchDto));
+    }
+
+
+
+
 }

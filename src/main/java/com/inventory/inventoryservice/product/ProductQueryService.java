@@ -1,10 +1,16 @@
 package com.inventory.inventoryservice.product;
 
+import com.inventory.inventoryservice.brand.BrandPredicate;
+import com.inventory.inventoryservice.brand.BrandRepository;
+import com.inventory.inventoryservice.brand.model.BrandEntity;
+import com.inventory.inventoryservice.brand.model.BrandSearchDto;
 import com.inventory.inventoryservice.brand.model.QBrandEntity;
 import com.inventory.inventoryservice.category.model.QCategoryEntity;
 import com.inventory.inventoryservice.product.model.ProductEntity;
 import com.inventory.inventoryservice.product.model.ProductSearchDto;
 import com.inventory.inventoryservice.product.model.QProductEntity;
+import com.inventory.inventoryservice.utils.IterableUtils;
+import com.querydsl.core.types.Predicate;
 import com.querydsl.jpa.impl.JPAQuery;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -21,6 +27,7 @@ import java.util.List;
 public class ProductQueryService {
 
   private final EntityManager entityManager;
+  private final ProductRepository productRepository;
 
   public Page<ProductEntity> searchPage(ProductSearchDto searchDto) {
 
@@ -42,4 +49,13 @@ public class ProductQueryService {
 
     return new PageImpl<>(productList, pageable, query.fetchCount());
   }
+
+
+  public List<ProductEntity> searchList(ProductSearchDto searchDto) {
+
+    Predicate predicate = ProductPredicate.search(searchDto);
+    return IterableUtils.toList(productRepository.findAll(predicate));
+  }
+
+
 }

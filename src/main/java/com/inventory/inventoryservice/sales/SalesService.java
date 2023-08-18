@@ -1,6 +1,9 @@
 package com.inventory.inventoryservice.sales;
 
+import com.inventory.inventoryservice.product.ProductTransform;
 import com.inventory.inventoryservice.product.ProductValidatorService;
+import com.inventory.inventoryservice.product.model.ProductRest;
+import com.inventory.inventoryservice.product.model.ProductSearchDto;
 import com.inventory.inventoryservice.sales.model.SalesDto;
 import com.inventory.inventoryservice.sales.model.SalesEntity;
 import com.inventory.inventoryservice.sales.model.SalesRest;
@@ -49,6 +52,10 @@ public class SalesService {
 
         return new PageImpl<>(salesRestList, page.getPageable(), page.getTotalElements());
 
+    }
+
+    public List<SalesRest> searchList(SalesSearchDto searchDto) {
+        return SalesTransform.toSalesRestList(salesQueryService.searchList(searchDto));
     }
 
 

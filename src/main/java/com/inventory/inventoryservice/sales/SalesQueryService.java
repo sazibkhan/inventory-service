@@ -10,6 +10,8 @@ import com.inventory.inventoryservice.product.model.QProductEntity;
 import com.inventory.inventoryservice.sales.model.QSalesEntity;
 import com.inventory.inventoryservice.sales.model.SalesEntity;
 import com.inventory.inventoryservice.sales.model.SalesSearchDto;
+import com.inventory.inventoryservice.utils.IterableUtils;
+import com.querydsl.core.types.Predicate;
 import com.querydsl.jpa.impl.JPAQuery;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -26,6 +28,7 @@ import java.util.List;
 public class SalesQueryService {
 
     private final EntityManager entityManager;
+    private final SalesRepository salesRepository;
 
     public Page<SalesEntity> searchPage(SalesSearchDto searchDto) {
 
@@ -43,5 +46,12 @@ public class SalesQueryService {
                 .fetch();
 
         return new PageImpl<>(salesList, pageable, query.fetchCount());
+    }
+
+
+    public List<SalesEntity> searchList(SalesSearchDto searchDto) {
+
+        Predicate predicate = SalesPredicate.search(searchDto);
+        return IterableUtils.toList(salesRepository.findAll(predicate));
     }
 }

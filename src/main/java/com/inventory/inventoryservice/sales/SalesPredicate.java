@@ -18,9 +18,11 @@ public class SalesPredicate {
         if(ObjectUtils.isNotEmpty(searchDto.getId())) {
             builder.and(qSales.id.eq(searchDto.getId()));
         }
+
         if(ObjectUtils.isNotEmpty(searchDto.getSalesDate())) {
             builder.and(qSales.salesDate.eq(searchDto.getSalesDate()));
         }
+
         if(ObjectUtils.isNotEmpty(searchDto.getCustomerId())) {
             builder.and(qSales.customer.id.eq(searchDto.getCustomerId()));
         }

@@ -25,3 +25,12 @@ Accept: application/json
   "salesDate":"2023-08-19"
 }
 
+
+### SalesController::saveSales
+POST http://localhost:8099/api/v1/sales/search-list
+Content-Type: application/json
+Accept: application/json
+
+{
+  "salesDate":"2023-08-19"
+}

@@ -1,5 +1,6 @@
 package com.inventory.inventoryservice.sales;
 
+import com.inventory.inventoryservice.product.model.ProductSearchDto;
 import com.inventory.inventoryservice.sales.model.SalesDto;
 import com.inventory.inventoryservice.sales.model.SalesRest;
 import com.inventory.inventoryservice.sales.model.SalesSearchDto;
@@ -28,5 +29,13 @@ public class SalesController {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(salesService.searchPage(searchDto));
     }
+
+    @PostMapping("/search-list")
+    public ResponseEntity<?> searchList(@RequestBody SalesSearchDto searchDto) {
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(salesService.searchList(searchDto));
+    }
+
 
 }

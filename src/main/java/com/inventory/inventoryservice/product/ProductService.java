@@ -5,6 +5,7 @@ import com.inventory.inventoryservice.brand.BrandValidatorService;
 import com.inventory.inventoryservice.brand.model.BrandDto;
 import com.inventory.inventoryservice.brand.model.BrandEntity;
 import com.inventory.inventoryservice.brand.model.BrandRest;
+import com.inventory.inventoryservice.brand.model.BrandSearchDto;
 import com.inventory.inventoryservice.category.CategoryValidatorService;
 import com.inventory.inventoryservice.product.model.ProductDto;
 import com.inventory.inventoryservice.product.model.ProductEntity;
@@ -42,4 +43,11 @@ public class ProductService {
       return new PageImpl<>(productRestList, page.getPageable(), page.getTotalElements());
 
   }
+
+
+    public List<ProductRest> searchList(ProductSearchDto searchDto) {
+        return ProductTransform.toProductRestList(productQueryService.searchList(searchDto));
+    }
+
+
 }
