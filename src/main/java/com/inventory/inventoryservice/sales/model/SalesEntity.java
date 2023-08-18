@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 
@@ -19,7 +20,7 @@ public class SalesEntity {
     private Long id;
 
     @Column(name="sales_date")
-    private LocalDateTime salesDate;
+    private LocalDate salesDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id", foreignKey = @ForeignKey(name = "sales_customer_id_fk"))

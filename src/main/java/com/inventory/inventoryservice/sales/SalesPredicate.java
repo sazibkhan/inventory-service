@@ -18,15 +18,16 @@ public class SalesPredicate {
         if(ObjectUtils.isNotEmpty(searchDto.getId())) {
             builder.and(qSales.id.eq(searchDto.getId()));
         }
-        if(StringUtils.isNotEmpty(searchDto.getCustomer().getCustomerName())) {
-            builder.and(qSales.customer.eq(searchDto.getCustomer()));
+        if(ObjectUtils.isNotEmpty(searchDto.getSalesDate())) {
+            builder.and(qSales.salesDate.eq(searchDto.getSalesDate()));
         }
-        if(StringUtils.isNotEmpty(searchDto.getCustomer().getCustomerType())) {
-            builder.and(qSales.customer.eq(searchDto.getCustomer()));
+        if(ObjectUtils.isNotEmpty(searchDto.getCustomerId())) {
+            builder.and(qSales.customer.id.eq(searchDto.getCustomerId()));
         }
-        if(StringUtils.isNotEmpty(searchDto.getCustomer().getCustomerType())) {
-            builder.and(qSales.customer.eq(searchDto.getCustomer()));
+        if(StringUtils.isNotEmpty(searchDto.getCustomerName())) {
+            builder.and(qSales.customer.customerName.eq(searchDto.getCustomerName()));
         }
+
 
         return builder;
     }

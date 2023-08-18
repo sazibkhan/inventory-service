@@ -4,10 +4,16 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "salesDate":"Mango",
-  "customer":"WOW Product",
-  "customerId":1,
-  "enabled": true
+  "salesDate":"2023-08-19",
+  "customerId": 1,
+  "enabled": true,
+  "items": [
+    {
+      "productId": 1,
+      "purchasePrice": 12.0,
+      "salesPrice": 15.0
+    }
+  ]
 }
 
 ### SalesController::saveSales
@@ -16,6 +22,6 @@ Content-Type: application/json
 Accept: application/json
 
 {
-
+  "salesDate":"2023-08-19"
 }
 

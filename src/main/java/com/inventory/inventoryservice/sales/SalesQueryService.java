@@ -32,13 +32,11 @@ public class SalesQueryService {
         QSalesEntity qSalesEntity = QSalesEntity.salesEntity;
         QCustomerEntity qCustomerEntity = QCustomerEntity.customerEntity;
 
-
         Pageable pageable = PageRequest.of(searchDto.getPage(), searchDto.getSize());
         JPAQuery<SalesEntity> query = new JPAQuery<>(entityManager);
 
         List<SalesEntity> salesList = query.from(qSalesEntity)
                 .leftJoin(qSalesEntity.customer, qCustomerEntity).fetchJoin()
-
                 .where(SalesPredicate.search(searchDto))
                 .orderBy(qSalesEntity.salesDate.asc())
                 .limit(pageable.getPageSize()).offset(pageable.getOffset())

@@ -17,25 +17,19 @@ public class SalesItemEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(
-            name = "sales_id",
-            foreignKey = @ForeignKey(
-                    name = "sales_items_sales_id_fk"))
-    private SalesEntity sales ;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "sales_id", foreignKey = @ForeignKey(name = "sales_items_sales_id_fk"))
+    private SalesEntity sales;
 
     @Column(name = "sales_id", insertable = false, updatable = false)
-    private Long   purchaseId;
+    private Long salesId;
 
-    @ManyToOne
-    @JoinColumn(
-            name = "product_id",
-            foreignKey = @ForeignKey(
-                    name = "sales_items_product_id_fk"))
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id", foreignKey = @ForeignKey(name = "sales_items_product_id_fk"))
     private ProductEntity product;
 
     @Column(name = "product_id", insertable = false, updatable = false)
-    private Long   productId;
+    private Long productId;
 
     @Column(name = "purchase_price")
     private Double purchasePrice;

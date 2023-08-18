@@ -1,10 +1,10 @@
 package com.inventory.inventoryservice.sales.model;
 
-import com.inventory.inventoryservice.customer.model.CustomerEntity;
 import lombok.*;
 
-import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.util.List;
+
 @Getter
 @Setter
 @Builder
@@ -12,10 +12,10 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class SalesDto {
 
-    private LocalDateTime salesDate;
-    private CustomerEntity customer;
+    private LocalDate salesDate;
     private Long customerId;
     private Boolean enabled;
+    private List<SalesItemDto> items;
 
 
 }
