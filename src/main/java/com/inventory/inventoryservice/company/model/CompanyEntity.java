@@ -16,6 +16,7 @@ public class CompanyEntity {
     private Long id;
 
 
+
     @Column(name = "company_name")
     private String companyName;
 
