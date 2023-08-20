@@ -1,5 +1,6 @@
 package com.inventory.inventoryservice.sales;
 
+
 import com.inventory.inventoryservice.sales.model.QSalesEntity;
 import com.inventory.inventoryservice.sales.model.SalesSearchDto;
 import com.querydsl.core.BooleanBuilder;

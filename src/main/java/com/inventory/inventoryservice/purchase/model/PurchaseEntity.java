@@ -1,9 +1,11 @@
-package com.inventory.inventoryservice.entity;
+package com.inventory.inventoryservice.purchase.model;
 
 import com.inventory.inventoryservice.supplier.model.SupplierEntity;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -17,7 +19,7 @@ public class PurchaseEntity {
     private Long id;
 
     @Column(name="purchase_date")
-    private LocalDateTime purchaseDate;
+    private LocalDate purchaseDate;
 
     @ManyToOne
     @JoinColumn(
@@ -31,7 +33,7 @@ public class PurchaseEntity {
     private Long supplierId;
 
     @Column(name = "enabled")
-    private boolean enabled;
+    private Boolean enabled;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;

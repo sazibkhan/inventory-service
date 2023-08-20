@@ -1,6 +1,7 @@
 package com.inventory.inventoryservice.entity;
 
 import com.inventory.inventoryservice.product.model.ProductEntity;
+import com.inventory.inventoryservice.purchase.model.PurchaseEntity;
 import lombok.*;
 
 import javax.persistence.*;

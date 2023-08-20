@@ -1,0 +1,34 @@
+
+### PurchaseController::savePurchase
+POST http://localhost:8099/api/v1/purchases
+Content-Type: application/json
+Accept: application/json
+
+{
+  "purchaseDate":"2023-08-19",
+  "supplierId": 1,
+  "enabled": true
+}
+
+
+
+
+
+### PurchaseController::savePurchase
+POST http://localhost:8099/api/v1/purchases/search-page
+Content-Type: application/json
+Accept: application/json
+
+{
+  "salesDate":"2023-08-19"
+}
+
+
+### PurchaseController::savePurchase
+POST http://localhost:8099/api/v1/purchases/search-list
+Content-Type: application/json
+Accept: application/json
+
+{
+  "salesDate":"2023-08-19"
+}

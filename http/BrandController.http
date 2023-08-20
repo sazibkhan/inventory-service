@@ -6,7 +6,7 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "brandName": "Brand2",
+  "brandName": "Brand3",
   "enabled": false
 }
 
@@ -36,8 +36,8 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "brandName": "Brand2",
-  "enabled": true
+  "brandName": "Brand3",
+  "enabled": false
 }
 
 
@@ -47,6 +47,6 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "brandName": "Brand2",
-  "enabled": true
+  "brandName": "Brand3",
+  "enabled": false
 }
