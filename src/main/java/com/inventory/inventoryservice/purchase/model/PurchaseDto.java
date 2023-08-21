@@ -4,6 +4,7 @@ import lombok.*;
 
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -17,5 +18,6 @@ public class PurchaseDto {
     private String supplier;
     private Long supplierId;
     private Boolean enabled;
+    private List<PurchaseItemDto> items;
 
 }

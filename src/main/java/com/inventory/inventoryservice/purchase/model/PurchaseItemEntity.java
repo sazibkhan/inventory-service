@@ -1,8 +1,8 @@
-package com.inventory.inventoryservice.entity;
+package com.inventory.inventoryservice.purchase.model;
 
 import com.inventory.inventoryservice.product.model.ProductEntity;
-import com.inventory.inventoryservice.purchase.model.PurchaseEntity;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -44,7 +44,7 @@ public class PurchaseItemEntity {
     private Double  salesPrice;
 
     @Column(name = "enabled")
-    private boolean enabled;
+    private Boolean enabled;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;

@@ -5,10 +5,18 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "purchaseDate":"2023-08-19",
+  "purchaseDate":"2023-08-21",
   "supplierId": 1,
-  "enabled": true
+  "enabled": true,
+  "items": [
+    {
+      "productId": 2,
+      "purchasePrice": 12.0,
+      "salesPrice": 15.0
+    }
+  ]
 }
+
 
 
 
@@ -20,7 +28,7 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "salesDate":"2023-08-19"
+  "salesDate":"2023-08-21"
 }
 
 
@@ -30,5 +38,5 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "salesDate":"2023-08-19"
+  "salesDate":"2023-08-21"
 }
