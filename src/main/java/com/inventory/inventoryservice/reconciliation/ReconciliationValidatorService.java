@@ -1,7 +1,6 @@
 package com.inventory.inventoryservice.reconciliation;
 
-import com.inventory.inventoryservice.brand.model.BrandEntity;
-import com.inventory.inventoryservice.entity.ReconciliationItemEntity;
+
 import com.inventory.inventoryservice.reconciliation.model.ReconciliationEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
