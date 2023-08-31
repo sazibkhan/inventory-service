@@ -1,9 +1,6 @@
 package com.inventory.inventoryservice.sales;
 
-import com.inventory.inventoryservice.product.ProductTransform;
 import com.inventory.inventoryservice.product.ProductValidatorService;
-import com.inventory.inventoryservice.product.model.ProductRest;
-import com.inventory.inventoryservice.product.model.ProductSearchDto;
 import com.inventory.inventoryservice.sales.model.SalesDto;
 import com.inventory.inventoryservice.sales.model.SalesEntity;
 import com.inventory.inventoryservice.sales.model.SalesRest;
