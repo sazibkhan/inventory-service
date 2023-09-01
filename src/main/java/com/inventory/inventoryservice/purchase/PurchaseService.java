@@ -1,13 +1,7 @@
 package com.inventory.inventoryservice.purchase;
 
-import com.inventory.inventoryservice.product.ProductValidatorService;
 import com.inventory.inventoryservice.purchase.model.*;
-import com.inventory.inventoryservice.sales.SalesItemEntity;
-import com.inventory.inventoryservice.sales.SalesItemTransform;
-import com.inventory.inventoryservice.sales.SalesTransform;
-import com.inventory.inventoryservice.sales.model.SalesEntity;
-import com.inventory.inventoryservice.sales.model.SalesRest;
-import com.inventory.inventoryservice.sales.model.SalesSearchDto;
+import com.inventory.inventoryservice.stock.StockService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -20,47 +14,43 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PurchaseService {
 
-    private final PurchaseRepository purchaseRepository;
-    private final PurchaseItemRepository purchaseItemRepository;
-    private final PurchaseQueryService purchaseQueryService;
-    private final PurchaseValidatorService purchaseValidatorService;
-    private final ProductValidatorService productValidatorService;
+  private final PurchaseRepository purchaseRepository;
+  private final PurchaseItemRepository purchaseItemRepository;
+  private final PurchaseQueryService purchaseQueryService;
+  private final PurchaseValidatorService purchaseValidatorService;
+  private final StockService stockService;
 
-    @Transactional
-    public PurchaseRest savePurchase(PurchaseDto purchaseDto){
-        PurchaseEntity purchase=purchaseValidatorService.validateAndReturnPurchaseSave(purchaseDto);
-        purchaseRepository.save(purchase);
+  @Transactional
+  public PurchaseRest savePurchase(PurchaseDto purchaseDto) {
 
+    PurchaseEntity purchase = purchaseValidatorService.validateAndReturnPurchaseSave(purchaseDto);
 
-     purchaseDto.getItems().forEach(purchaseItenDto->{
-         PurchaseItemEntity purchaseItem=PurchaseItemTransform.toPurchaseItemEntity(purchaseItenDto);
-         purchaseItem.setPurchase(purchase);
-         purchaseItem.setProduct(productValidatorService
-                 .ifFoundByIdReturnElseThrow(purchaseItenDto.getProductId()));
-         purchaseItemRepository.save(purchaseItem);
-     });
-    return  PurchaseTransform.toPurchaseRest(purchase);
+    purchaseRepository.save(purchase);
 
-    }
+    List<PurchaseItemEntity> purchaseItemList = purchaseValidatorService
+        .validateAndReturnPurchaseItemList(purchaseDto, purchase);
+
+    purchaseItemRepository.saveAll(purchaseItemList);
+
+    stockService.increaseStock(PurchaseItemTransform.toStockDto(purchaseItemList));
 
 
+    return PurchaseTransform.toPurchaseRest(purchase);
 
-    public Page<PurchaseRest> searchPage(PurchaseSearchDto searchDto) {
-
-        Page<PurchaseEntity> page = purchaseQueryService.searchPage(searchDto);
-        List<PurchaseRest> purchaseRestList = PurchaseTransform.toPurchaseRestList(page.getContent());
-
-        return new PageImpl<>(purchaseRestList, page.getPageable(), page.getTotalElements());
-    }
-    public List<PurchaseRest> searchList(PurchaseSearchDto searchDto) {
-        return PurchaseTransform.toPurchaseRestList(purchaseQueryService.searchList(searchDto));
-    }
+  }
 
 
+  public Page<PurchaseRest> searchPage(PurchaseSearchDto searchDto) {
 
+    Page<PurchaseEntity> page = purchaseQueryService.searchPage(searchDto);
+    List<PurchaseRest> purchaseRestList = PurchaseTransform.toPurchaseRestList(page.getContent());
 
+    return new PageImpl<>(purchaseRestList, page.getPageable(), page.getTotalElements());
+  }
 
-
+  public List<PurchaseRest> searchList(PurchaseSearchDto searchDto) {
+    return PurchaseTransform.toPurchaseRestList(purchaseQueryService.searchList(searchDto));
+  }
 
 
 }

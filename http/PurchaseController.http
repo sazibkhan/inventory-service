@@ -10,9 +10,19 @@ Accept: application/json
   "enabled": true,
   "items": [
     {
-      "productId": 2,
-      "purchasePrice": 12.0,
+      "productId": 1,
+      "purchasePrice": 10.0,
       "salesPrice": 15.0
+    },
+    {
+      "productId": 2,
+      "purchasePrice": 20.0,
+      "salesPrice": 30.0
+    },
+    {
+      "productId": 3,
+      "purchasePrice": 40.0,
+      "salesPrice": 45.0
     }
   ]
 }

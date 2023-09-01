@@ -37,6 +37,8 @@ public class PurchaseItemEntity {
     @Column(name = "product_id", insertable = false, updatable = false)
     private Long   productId;
 
+    private Integer quantity;
+
     @Column(name="purchase_price")
     private Double purchasePrice;
 
