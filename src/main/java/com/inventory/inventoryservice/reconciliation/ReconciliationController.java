@@ -16,28 +16,19 @@ import org.springframework.web.bind.annotation.*;
 public class ReconciliationController {
 
     private final ReconciliationService reconciliationService;
+
     @PostMapping
     public ResponseEntity<ReconciliationRest> saveReconciliation(@RequestBody ReconciliationDto reconciliationDto) {
-        try {
-            ReconciliationRest reconciliationRest = reconciliationService.saveReconciliation(reconciliationDto);
-            return ResponseEntity.status(HttpStatus.OK).body(reconciliationRest);
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException("Error!!");
-        }
+        ReconciliationRest reconciliationRest = reconciliationService.saveReconciliation(reconciliationDto);
+        return ResponseEntity.status(HttpStatus.OK).body(reconciliationRest);
     }
 
 
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteReconciliation(@PathVariable Long id) {
-        try {
-            reconciliationService.deleteReconciliation(id);
-            return ResponseEntity.status(HttpStatus.OK).body("Deleted Successfully.");
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException("Error!!");
-        }
+        reconciliationService.deleteReconciliation(id);
+        return ResponseEntity.status(HttpStatus.OK).body("Deleted Successfully.");
     }
 
 
