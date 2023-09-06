@@ -1,8 +1,5 @@
 package com.inventory.inventoryservice.company;
 
-import com.inventory.inventoryservice.brand.model.BrandDto;
-import com.inventory.inventoryservice.brand.model.BrandRest;
-import com.inventory.inventoryservice.brand.model.BrandSearchDto;
 import com.inventory.inventoryservice.company.model.CompanyDto;
 import com.inventory.inventoryservice.company.model.CompanyRest;
 import com.inventory.inventoryservice.company.model.CompanySearchDto;
@@ -17,44 +14,42 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class CompanyController {
 
-    private final  CompanyService companyService;
+  private final CompanyService companyService;
 
-    @PostMapping
-    public ResponseEntity<CompanyRest> saveCompany(@RequestBody CompanyDto companyDto) {
+  @PostMapping
+  public ResponseEntity<CompanyRest> saveCompany(@RequestBody CompanyDto companyDto) {
 
-            CompanyRest companyRest = companyService.saveCompany(companyDto);
-            return ResponseEntity.status(HttpStatus.OK).body(companyRest);
-    }
+    CompanyRest companyRest = companyService.saveCompany(companyDto);
+    return ResponseEntity.status(HttpStatus.OK).body(companyRest);
+  }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<CompanyRest> updateCompany(@PathVariable Long id, @RequestBody CompanyDto companyDto) {
+  @PutMapping("/{id}")
+  public ResponseEntity<CompanyRest> updateCompany(@PathVariable Long id, @RequestBody CompanyDto companyDto) {
 
-            CompanyRest companyRest = companyService.updateCompany(id, companyDto);
-            return ResponseEntity.status(HttpStatus.OK).body(companyRest);
+    CompanyRest companyRest = companyService.updateCompany(id, companyDto);
+    return ResponseEntity.status(HttpStatus.OK).body(companyRest);
 
-    }
+  }
+  @DeleteMapping("/{id}")
+  public ResponseEntity<String> deleteCompany(@PathVariable Long id) {
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteCompany(@PathVariable Long id) {
-            companyService.deleteCompany(id);
-            return ResponseEntity.status(HttpStatus.OK).body("Deleted Successfully.");
+    companyService.deleteCompany(id);
+    return ResponseEntity.status(HttpStatus.OK).body("Deleted Successfully.");
 
-    }
+  }
 
+  @PostMapping("/search-page")
+  public ResponseEntity<?> searchPage(@RequestBody CompanySearchDto searchDto) {
 
+    return ResponseEntity.status(HttpStatus.OK)
+        .body(companyService.searchPage(searchDto));
+  }
 
-    @PostMapping("/search-page")
-    public ResponseEntity<?> searchPage(@RequestBody CompanySearchDto searchDto) {
+  @PostMapping("/search-list")
+  public ResponseEntity<?> searchList(@RequestBody CompanySearchDto searchDto) {
 
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(companyService.searchPage(searchDto));
-    }
-
-    @PostMapping("/search-list")
-    public ResponseEntity<?> searchList(@RequestBody CompanySearchDto searchDto) {
-
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(companyService.searchList(searchDto));
-    }
+    return ResponseEntity.status(HttpStatus.OK)
+        .body(companyService.searchList(searchDto));
+  }
 
 }
