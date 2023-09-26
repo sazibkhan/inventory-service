@@ -1,12 +1,15 @@
 package com.inventory.inventoryservice.sales.model;
 
 import com.inventory.inventoryservice.customer.model.CustomerEntity;
+import com.inventory.inventoryservice.product.model.ProductEntity;
+import com.inventory.inventoryservice.sales.SalesItemEntity;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Entity
@@ -43,4 +46,9 @@ public class SalesEntity {
 
     @Column(name = "updated_by")
     private  Long updatedBy;
+
+    @OneToMany(mappedBy = "sales", fetch = FetchType.LAZY)
+    private List<SalesItemEntity> items;
+
+
 }

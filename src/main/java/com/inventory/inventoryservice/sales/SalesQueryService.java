@@ -48,6 +48,28 @@ public class SalesQueryService {
         return new PageImpl<>(salesList, pageable, query.fetchCount());
     }
 
+    public Page<SalesEntity> searchPageWithDetail(SalesSearchDto searchDto) {
+
+        QSalesEntity qSalesEntity = QSalesEntity.salesEntity;
+        QCustomerEntity qCustomerEntity = QCustomerEntity.customerEntity;
+        QSalesItemEntity qSalesItemEntity = QSalesItemEntity.salesItemEntity;
+
+        Pageable pageable = PageRequest.of(searchDto.getPage(), searchDto.getSize());
+        JPAQuery<SalesEntity> query = new JPAQuery<>(entityManager);
+
+        List<SalesEntity> salesList = query.from(qSalesEntity)
+            .leftJoin(qSalesEntity.customer, qCustomerEntity).fetchJoin()
+            .leftJoin(qSalesEntity.items, qSalesItemEntity).fetchJoin()
+            .where(SalesPredicate.search(searchDto))
+            .orderBy(qSalesEntity.salesDate.asc())
+            .limit(pageable.getPageSize()).offset(pageable.getOffset())
+            .fetch();
+
+        return new PageImpl<>(salesList, pageable, query.fetchCount());
+    }
+
+
+
 
     public List<SalesEntity> searchList(SalesSearchDto searchDto) {
 
