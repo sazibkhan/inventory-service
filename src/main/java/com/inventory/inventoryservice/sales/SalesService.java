@@ -45,8 +45,6 @@ public class SalesService {
 
         Page<SalesEntity> page = salesQueryService.searchPage(searchDto);
 
-        Page<SalesEntity> page2 = salesQueryService.searchPageWithDetail(searchDto);
-
         List<SalesRest> salesRestList = SalesTransform.toSalesRestList(page.getContent());
 
         return new PageImpl<>(salesRestList, page.getPageable(), page.getTotalElements());
