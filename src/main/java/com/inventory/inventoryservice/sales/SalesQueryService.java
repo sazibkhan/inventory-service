@@ -1,12 +1,6 @@
 package com.inventory.inventoryservice.sales;
 
-import com.inventory.inventoryservice.brand.model.QBrandEntity;
-import com.inventory.inventoryservice.category.model.QCategoryEntity;
 import com.inventory.inventoryservice.customer.model.QCustomerEntity;
-import com.inventory.inventoryservice.product.ProductPredicate;
-import com.inventory.inventoryservice.product.model.ProductEntity;
-import com.inventory.inventoryservice.product.model.ProductSearchDto;
-import com.inventory.inventoryservice.product.model.QProductEntity;
 import com.inventory.inventoryservice.sales.model.QSalesEntity;
 import com.inventory.inventoryservice.sales.model.SalesEntity;
 import com.inventory.inventoryservice.sales.model.SalesSearchDto;
