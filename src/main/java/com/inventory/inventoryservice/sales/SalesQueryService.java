@@ -68,12 +68,36 @@ public class SalesQueryService {
         return new PageImpl<>(salesList, pageable, query.fetchCount());
     }
 
-
-
-
     public List<SalesEntity> searchList(SalesSearchDto searchDto) {
 
         Predicate predicate = SalesPredicate.search(searchDto);
         return IterableUtils.toList(salesRepository.findAll(predicate));
+    }
+
+    public List<SalesEntity> searchListWithDetail(SalesSearchDto searchDto) {
+
+        QSalesEntity qSalesEntity = QSalesEntity.salesEntity;
+        QCustomerEntity qCustomerEntity = QCustomerEntity.customerEntity;
+        QSalesItemEntity qSalesItemEntity = QSalesItemEntity.salesItemEntity;
+
+        return new JPAQuery<SalesEntity>(entityManager).from(qSalesEntity)
+            .leftJoin(qSalesEntity.customer, qCustomerEntity).fetchJoin()
+            .leftJoin(qSalesEntity.items, qSalesItemEntity).fetchJoin()
+            .where(SalesPredicate.search(searchDto))
+            .orderBy(qSalesEntity.salesDate.asc())
+            .fetch();
+    }
+
+    public List<SalesEntity> getSalesWithDetailById(Long id) {
+
+        QSalesEntity qSalesEntity = QSalesEntity.salesEntity;
+        QCustomerEntity qCustomerEntity = QCustomerEntity.customerEntity;
+        QSalesItemEntity qSalesItemEntity = QSalesItemEntity.salesItemEntity;
+
+        return new JPAQuery<SalesEntity>(entityManager).from(qSalesEntity)
+            .leftJoin(qSalesEntity.customer, qCustomerEntity).fetchJoin()
+            .leftJoin(qSalesEntity.items, qSalesItemEntity).fetchJoin()
+            .where(qSalesEntity.id.eq(id))
+            .fetch();
     }
 }
