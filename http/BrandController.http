@@ -30,6 +30,10 @@ Accept: application/json
   "enabled": true
 }
 
+###
+GET http://localhost:8099/api/v1/brands?name=mahadi&age=87
+Accept: application/json
+
 ### BrandController::searchPage
 POST http://localhost:8099/api/v1/brands/search-page
 Content-Type: application/json

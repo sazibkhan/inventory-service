@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @CrossOrigin
 @RestController
 @RequestMapping(path = "api/v1/brands")
@@ -36,6 +38,13 @@ public class BrandController {
 
     brandService.deleteBrand(id);
     return ResponseEntity.status(HttpStatus.OK).body("Deleted Successfully.");
+  }
+
+  @GetMapping
+  public ResponseEntity<?> params(@RequestParam Map<String, String> params) {
+    params.forEach((key, value) -> System.out.printf("key: %s, value: %s%n", key, value));
+
+    return ResponseEntity.ok("");
   }
 
   @PostMapping("/search-page")
