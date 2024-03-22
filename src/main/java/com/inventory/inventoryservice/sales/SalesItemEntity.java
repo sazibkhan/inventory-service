@@ -31,6 +31,9 @@ public class SalesItemEntity {
     @Column(name = "product_id", insertable = false, updatable = false)
     private Long productId;
 
+    @Column(name = "quantity")
+    private Double quantity;
+
     @Column(name = "purchase_price")
     private Double purchasePrice;
 

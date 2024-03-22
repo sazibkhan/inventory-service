@@ -1,9 +1,5 @@
 package com.inventory.inventoryservice.sales;
 
-import com.inventory.inventoryservice.product.ProductTransform;
-import com.inventory.inventoryservice.product.model.ProductDto;
-import com.inventory.inventoryservice.product.model.ProductEntity;
-import com.inventory.inventoryservice.product.model.ProductRest;
 import com.inventory.inventoryservice.sales.model.SalesDto;
 import com.inventory.inventoryservice.sales.model.SalesEntity;
 import com.inventory.inventoryservice.sales.model.SalesRest;
@@ -11,7 +7,6 @@ import org.hibernate.Hibernate;
 import org.springframework.beans.BeanUtils;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class SalesTransform {
