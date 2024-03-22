@@ -1,6 +1,5 @@
 package com.inventory.inventoryservice.sales;
 
-import com.inventory.inventoryservice.product.model.ProductSearchDto;
 import com.inventory.inventoryservice.sales.model.SalesDto;
 import com.inventory.inventoryservice.sales.model.SalesRest;
 import com.inventory.inventoryservice.sales.model.SalesSearchDto;
@@ -23,6 +22,8 @@ public class SalesController {
             SalesRest salesRest = salesService.saveSales(salesDto);
             return ResponseEntity.status(HttpStatus.OK).body(salesRest);
     }
+
+    //todo: delete sales > add stock
 
     @PostMapping("/search-page")
     public ResponseEntity<?> searchPage(@RequestBody SalesSearchDto searchDto) {
