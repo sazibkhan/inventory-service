@@ -39,11 +39,6 @@ public class StockService {
           stockRepository.save(stock);
         });
 
-
-        // if Product exists then update the stock i.e: 100+10=110
-
-        // if Product not found then save new stock with i.e: 20=20
-
     }
 
 
@@ -52,9 +47,12 @@ public class StockService {
 
     public void decreaseStock(List<StockDto> items) {
 
-        // if Product exists then update the stock i.e: 100-10=110
-
-        // if Product not found then throw exception
+      items.forEach(item-> {
+        Optional<StockEntity> stockEntityOptional = stockRepository.findByProductId(item.getProductId());
+        StockEntity stock = stockEntityOptional.orElseThrow();
+        stock.setCurrentStock(stock.getCurrentStock() - item.getCurrentStock());
+        stockRepository.save(stock);
+      });
 
     }
 

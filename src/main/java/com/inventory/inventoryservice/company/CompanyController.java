@@ -30,6 +30,7 @@ public class CompanyController {
     return ResponseEntity.status(HttpStatus.OK).body(companyRest);
 
   }
+
   @DeleteMapping("/{id}")
   public ResponseEntity<String> deleteCompany(@PathVariable Long id) {
 

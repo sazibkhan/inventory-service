@@ -25,6 +25,14 @@ public class PurchaseController {
         return ResponseEntity.status(HttpStatus.OK).body(purchaseRest);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deletePurchase(@PathVariable Long id) {
+
+        purchaseService.delete(id);
+        return ResponseEntity.status(HttpStatus.OK).body("Deleted Successfully.");
+
+    }
+
     @PostMapping("/search-page")
     public ResponseEntity<?> searchPage(@RequestBody PurchaseSearchDto searchDto) {
         return ResponseEntity.status(HttpStatus.OK)

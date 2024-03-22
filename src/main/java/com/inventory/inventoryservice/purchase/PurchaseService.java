@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -36,6 +37,22 @@ public class PurchaseService {
 
 
     return PurchaseTransform.toPurchaseRest(purchase);
+  }
+
+  @Transactional
+  public void delete(Long id) {
+
+    // 1. delete data from purchase_items
+    // 2. delete data from purchases
+    // 3. update stocks
+
+    List<PurchaseItemEntity> items = purchaseItemRepository.findAllByPurchaseId(id);
+    purchaseItemRepository.deleteAll(items);
+
+    PurchaseEntity purchase = purchaseValidatorService.ifFoundByIdReturnElseThrow(id);
+    purchaseRepository.delete(purchase);
+
+    stockService.decreaseStock(PurchaseItemTransform.toStockDto(items));
 
   }
 
@@ -51,6 +68,4 @@ public class PurchaseService {
   public List<PurchaseRest> searchList(PurchaseSearchDto searchDto) {
     return PurchaseTransform.toPurchaseRestList(purchaseQueryService.searchList(searchDto));
   }
-
-
 }
