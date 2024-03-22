@@ -9,6 +9,6 @@ import lombok.*;
 public class StockDto {
 
     private Long productId;
-    private Integer currentStock;
+    private Double currentStock;
 
 }

@@ -50,6 +50,7 @@ public class PurchaseValidatorService {
                 purchaseItem.setPurchase(purchase);
                 purchaseItem.setProduct(productValidatorService
                     .ifFoundByIdReturnElseThrow(itm.getProductId()));
+                purchaseItem.setQuantity(itm.getQuantity().doubleValue());
                 return purchaseItem;
             }).collect(Collectors.toList());
 

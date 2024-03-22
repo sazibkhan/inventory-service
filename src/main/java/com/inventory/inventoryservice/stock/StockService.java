@@ -1,5 +1,6 @@
 package com.inventory.inventoryservice.stock;
 
+import com.inventory.inventoryservice.product.ProductValidatorService;
 import com.inventory.inventoryservice.stock.model.StockDto;
 import com.inventory.inventoryservice.stock.model.StockEntity;
 import com.inventory.inventoryservice.stock.model.StockRest;
@@ -10,15 +11,34 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class StockService {
 
     private final StockQueryService stockQueryService;
+    private final StockRepository stockRepository;
+    private final ProductValidatorService productValidatorService;
 
     //increase stock
 
     public void increaseStock(List<StockDto> items) {
+
+        items.forEach(item-> {
+            Optional<StockEntity> stockEntityOptional = stockRepository.findByProductId(item.getProductId());
+          StockEntity stock;
+          if(stockEntityOptional.isPresent()) {
+            stock = stockEntityOptional.get();
+            stock.setCurrentStock(stock.getCurrentStock()+item.getCurrentStock());
+          } else {
+            stock = new StockEntity();
+                stock.setProduct(productValidatorService.ifFoundByIdReturnElseThrow(item.getProductId()));
+                stock.setCurrentStock(item.getCurrentStock());
+          }
+          stockRepository.save(stock);
+        });
+
 
         // if Product exists then update the stock i.e: 100+10=110
 

@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @CrossOrigin
 @RestController
 @RequestMapping(path = "api/v1/purchases")
@@ -17,7 +19,7 @@ public class PurchaseController {
     private final PurchaseService purchaseService;
 
     @PostMapping
-    public ResponseEntity<PurchaseRest> savePurchase(@RequestBody PurchaseDto purchaseDto) {
+    public ResponseEntity<PurchaseRest> savePurchase(@RequestBody @Valid PurchaseDto purchaseDto) {
 
         PurchaseRest purchaseRest = purchaseService.savePurchase(purchaseDto);
         return ResponseEntity.status(HttpStatus.OK).body(purchaseRest);

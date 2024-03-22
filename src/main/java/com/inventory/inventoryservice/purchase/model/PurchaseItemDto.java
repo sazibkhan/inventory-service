@@ -2,14 +2,21 @@ package com.inventory.inventoryservice.purchase.model;
 
 import lombok.Getter;
 import lombok.Setter;
+
+import javax.validation.constraints.NotNull;
+
 @Getter
 @Setter
 public class PurchaseItemDto {
 
-    private Long   productId;
-    private Integer quantity;
-    private Double purchasePrice;
-    private Double salesPrice;
+  @NotNull
+  private Long productId;
+  @NotNull
+  private Integer quantity;
+  @NotNull
+  private Double purchasePrice;
+  @NotNull
+  private Double salesPrice;
 
 
 }
