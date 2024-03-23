@@ -17,59 +17,46 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class StockService {
 
-    private final StockQueryService stockQueryService;
-    private final StockRepository stockRepository;
-    private final ProductValidatorService productValidatorService;
+  private final StockQueryService stockQueryService;
+  private final StockRepository stockRepository;
+  private final ProductValidatorService productValidatorService;
 
-    //increase stock
+  public void increaseStock(List<StockDto> items) {
+    items.forEach(item -> {
+      Optional<StockEntity> stockEntityOptional = stockRepository.findByProductId(item.getProductId());
+      StockEntity stock;
+      if(stockEntityOptional.isPresent()) {
+        stock = stockEntityOptional.get();
+        stock.setCurrentStock(stock.getCurrentStock() + item.getCurrentStock());
+      } else {
+        stock = new StockEntity();
+        stock.setProduct(productValidatorService.ifFoundByIdReturnElseThrow(item.getProductId()));
+        stock.setCurrentStock(item.getCurrentStock());
+      }
+      stockRepository.save(stock);
+    });
+  }
 
-    public void increaseStock(List<StockDto> items) {
+  public void decreaseStock(List<StockDto> items) {
 
-        items.forEach(item-> {
-            Optional<StockEntity> stockEntityOptional = stockRepository.findByProductId(item.getProductId());
-          StockEntity stock;
-          if(stockEntityOptional.isPresent()) {
-            stock = stockEntityOptional.get();
-            stock.setCurrentStock(stock.getCurrentStock()+item.getCurrentStock());
-          } else {
-            stock = new StockEntity();
-                stock.setProduct(productValidatorService.ifFoundByIdReturnElseThrow(item.getProductId()));
-                stock.setCurrentStock(item.getCurrentStock());
-          }
-          stockRepository.save(stock);
-        });
+    //todo: need to check whether stock is available or not. if not available throw
+    items.forEach(item -> {
+      Optional<StockEntity> stockEntityOptional = stockRepository.findByProductId(item.getProductId());
+      StockEntity stock = stockEntityOptional.orElseThrow();
+      stock.setCurrentStock(stock.getCurrentStock() - item.getCurrentStock());
+      stockRepository.save(stock);
+    });
+  }
 
-    }
+  public Page<StockRest> searchPage(StockSearchDto searchDto) {
+    Page<StockEntity> page = stockQueryService.searchPage(searchDto);
+    List<StockRest> stockRestList = StockTransform.toStockRestList(page.getContent());
+    return new PageImpl<>(stockRestList, page.getPageable(), page.getTotalElements());
+  }
 
-
-
-    // decrease stock
-
-    public void decreaseStock(List<StockDto> items) {
-
-      items.forEach(item-> {
-        Optional<StockEntity> stockEntityOptional = stockRepository.findByProductId(item.getProductId());
-        StockEntity stock = stockEntityOptional.orElseThrow();
-        stock.setCurrentStock(stock.getCurrentStock() - item.getCurrentStock());
-        stockRepository.save(stock);
-      });
-
-    }
-
-
-    public Page<StockRest> searchPage(StockSearchDto searchDto) {
-
-        Page<StockEntity> page = stockQueryService.searchPage(searchDto);
-
-        List<StockRest> stockRestList = StockTransform.toStockRestList(page.getContent());
-
-        return new PageImpl<>(stockRestList, page.getPageable(), page.getTotalElements());
-
-    }
-
-    public List<StockRest> searchList(StockSearchDto searchDto) {
-        return StockTransform.toStockRestList(stockQueryService.searchList(searchDto));
-    }
+  public List<StockRest> searchList(StockSearchDto searchDto) {
+    return StockTransform.toStockRestList(stockQueryService.searchList(searchDto));
+  }
 
 
 }
