@@ -1,7 +1,5 @@
 package com.inventory.inventoryservice.reconciliation;
 
-import com.inventory.inventoryservice.brand.model.BrandDto;
-import com.inventory.inventoryservice.brand.model.BrandRest;
 import com.inventory.inventoryservice.reconciliation.model.ReconciliationDto;
 import com.inventory.inventoryservice.reconciliation.model.ReconciliationRest;
 import lombok.RequiredArgsConstructor;

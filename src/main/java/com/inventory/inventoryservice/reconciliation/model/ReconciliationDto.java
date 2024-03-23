@@ -3,6 +3,8 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
+
 @Getter
 @Setter
 @Builder
@@ -16,5 +18,7 @@ public class ReconciliationDto {
     private LocalDateTime createdAt;
     private Long createdBy;
     private LocalDateTime updatedAt;
-    private  Long updatedBy;
+    private Long updatedBy;
+    private List<ReconciliationItemDto> items;
+
 }
