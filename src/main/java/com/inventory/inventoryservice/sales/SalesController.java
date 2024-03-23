@@ -24,6 +24,11 @@ public class SalesController {
     }
 
     //todo: delete sales > add stock
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> delete(@PathVariable Long id) {
+        salesService.delete(id);
+        return ResponseEntity.status(HttpStatus.OK).body("Deleted Successfully.");
+    }
 
     @PostMapping("/search-page")
     public ResponseEntity<?> searchPage(@RequestBody SalesSearchDto searchDto) {

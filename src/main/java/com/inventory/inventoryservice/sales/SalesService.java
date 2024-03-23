@@ -48,7 +48,7 @@ public class SalesService {
 
   //todo: implement delete method
   @Transactional
-  public void deleteSalesItem(Long id) {
+  public void delete(Long id) {
     // 1. Delete data from sales_items
   List<SalesItemEntity> items=salesItemRepository.findAllBySalesId(id);
     salesItemRepository.deleteAll(items);
