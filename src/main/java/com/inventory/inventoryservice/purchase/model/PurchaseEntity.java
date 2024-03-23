@@ -21,7 +21,7 @@ public class PurchaseEntity {
     @Column(name="purchase_date")
     private LocalDate purchaseDate;
 
-    @ManyToOne
+    @ManyToOne (fetch=FetchType.LAZY)
     @JoinColumn(
             name = "supplier_id",
             foreignKey = @ForeignKey(

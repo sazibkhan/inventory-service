@@ -17,17 +17,14 @@ public class PurchaseItemEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(
-            name = "purchase_id",
-            foreignKey = @ForeignKey(
-                    name = "purchase_items_purchase_id_fk"))
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name = "purchase_id", foreignKey = @ForeignKey(name = "purchase_items_purchase_id_fk"))
     private PurchaseEntity purchase;
 
     @Column(name = "purchase_id", insertable = false, updatable = false)
     private Long purchaseId;
 
-    @ManyToOne
+    @ManyToOne (fetch=FetchType.LAZY)
     @JoinColumn(
             name = "product_id",
             foreignKey = @ForeignKey(

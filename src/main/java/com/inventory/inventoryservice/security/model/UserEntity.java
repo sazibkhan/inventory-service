@@ -1,6 +1,5 @@
-package com.inventory.inventoryservice.entity;
+package com.inventory.inventoryservice.security.model;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -45,5 +44,5 @@ public class UserEntity {
     private List<UserRoleEntity> roles = new ArrayList<>();
 
     @NotNull
-    private Character enabled;
+    private Boolean enabled;
 }

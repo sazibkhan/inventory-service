@@ -1,5 +1,6 @@
-package com.inventory.inventoryservice.entity;
+package com.inventory.inventoryservice.security.model;
 
+import com.inventory.inventoryservice.security.model.UserEntity;
 import lombok.Getter;
 import lombok.Setter;
 
