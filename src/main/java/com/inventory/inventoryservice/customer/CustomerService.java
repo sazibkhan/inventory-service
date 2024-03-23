@@ -1,9 +1,4 @@
 package com.inventory.inventoryservice.customer;
-import com.inventory.inventoryservice.company.CompanyTransform;
-import com.inventory.inventoryservice.company.model.CompanyDto;
-import com.inventory.inventoryservice.company.model.CompanyEntity;
-import com.inventory.inventoryservice.company.model.CompanyRest;
-import com.inventory.inventoryservice.company.model.CompanySearchDto;
 import com.inventory.inventoryservice.customer.model.CustomerDto;
 import com.inventory.inventoryservice.customer.model.CustomerEntity;
 import com.inventory.inventoryservice.customer.model.CustomerRest;
@@ -22,6 +17,7 @@ public class CustomerService {
     private final CustomerRepository customerRepository;
     private final  CustomerValidatorService customerValidatorService;
     private final CustomerQueryService customerQueryService;
+
     public CustomerRest saveCustomer(CustomerDto customerDto){
         CustomerEntity customer=CustomerTransform.toCustomerEntity(customerDto);
         customerRepository.save(customer);
@@ -45,7 +41,6 @@ public class CustomerService {
         CustomerEntity customer=customerValidatorService.ifFoundByIdReturnElseThrow(id);
         customerRepository.deleteById(customer.getId());
     }
-
 
     public Page<CustomerRest> searchPage(CustomerSearchDto searchDto) {
 
