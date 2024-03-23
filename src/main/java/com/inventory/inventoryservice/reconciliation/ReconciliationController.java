@@ -23,8 +23,6 @@ public class ReconciliationController {
         return ResponseEntity.status(HttpStatus.OK).body(reconciliationRest);
     }
 
-
-
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteReconciliation(@PathVariable Long id) {
         reconciliationService.deleteReconciliation(id);

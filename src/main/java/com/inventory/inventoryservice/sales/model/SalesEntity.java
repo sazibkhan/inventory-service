@@ -1,8 +1,6 @@
 package com.inventory.inventoryservice.sales.model;
 
 import com.inventory.inventoryservice.customer.model.CustomerEntity;
-import com.inventory.inventoryservice.product.model.ProductEntity;
-import com.inventory.inventoryservice.sales.SalesItemEntity;
 import lombok.Getter;
 import lombok.Setter;
 

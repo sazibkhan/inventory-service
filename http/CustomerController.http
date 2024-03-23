@@ -8,8 +8,8 @@ Accept: application/json
 {
   "customerName":"Sazib Khan",
   "phoneNumber":"01717226385",
-  "customerType":"Nice",
-  "email":"Square",
+  "customerType":"premium ",
+  "email":"sazib@gmail.com",
   "customerImage":"Picture",
   "enabled": true
 }
@@ -24,7 +24,7 @@ Accept: application/json
 {
   "customerName":"Sazib Khan",
   "phoneNumber":"01717226385",
-  "customerType":"Nice",
+  "customerType":"Gold",
   "email":"Square",
   "customerImage":"Picture",
   "enabled": true

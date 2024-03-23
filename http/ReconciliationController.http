@@ -1,0 +1,10 @@
+### ReconciliationController::saveReconciliation
+POST http://localhost:8099/api/v1/reconciliations
+Content-Type: application/json
+Accept: application/json
+
+{
+  "reconciliationDate":"2024-03-22",
+   "status": true,
+   "enabled": false
+}

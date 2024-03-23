@@ -1,10 +1,8 @@
 package com.inventory.inventoryservice.sales;
 
 import com.inventory.inventoryservice.product.ProductValidatorService;
-import com.inventory.inventoryservice.sales.model.SalesDto;
-import com.inventory.inventoryservice.sales.model.SalesEntity;
-import com.inventory.inventoryservice.sales.model.SalesRest;
-import com.inventory.inventoryservice.sales.model.SalesSearchDto;
+import com.inventory.inventoryservice.sales.model.*;
+import com.inventory.inventoryservice.stock.StockService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -23,7 +21,7 @@ public class SalesService {
   private final SalesQueryService salesQueryService;
   private final SalesValidatorService salesValidatorService;
   private final ProductValidatorService productValidatorService;
-
+  private final StockService stockService;
   @Transactional
   public SalesRest saveSales(SalesDto salesDto) {
 
@@ -38,12 +36,32 @@ public class SalesService {
       salesItemRepository.save(salesItem);
     });
 
+    List<SalesItemEntity> salesItemList = salesValidatorService.validateAndReturnSalesItemList(salesDto,sales);
+    salesItemRepository.saveAll(salesItemList);
+
+
     //todo: decrease stock
+    stockService.decreaseStock(SalesItemTransform.toStockDto(salesItemList));
 
     return SalesTransform.toSalesRest(sales);
   }
 
   //todo: implement delete method
+  @Transactional
+  public void deleteSalesItem(Long id) {
+    // 1. Delete data from sales_items
+  List<SalesItemEntity> items=salesItemRepository.findAllBySalesId(id);
+    salesItemRepository.deleteAll(items);
+
+    // 2. Delete data from sales
+    SalesEntity sales=salesValidatorService.ifFoundByIdReturnElseThrow(id);
+    salesRepository.delete(sales);
+
+    // 3. update stocks
+    stockService.decreaseStock(SalesItemTransform.toStockDto(items));
+
+  }
+
 
   public Page<SalesRest> searchPage(SalesSearchDto searchDto) {
 

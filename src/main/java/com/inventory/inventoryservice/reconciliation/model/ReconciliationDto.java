@@ -1,6 +1,7 @@
 package com.inventory.inventoryservice.reconciliation.model;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 @Getter
 @Setter
@@ -9,7 +10,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class ReconciliationDto {
 
-    private LocalDateTime reconciliationDate;
+    private LocalDate reconciliationDate;
     private String  status;
     private boolean enabled;
     private LocalDateTime createdAt;

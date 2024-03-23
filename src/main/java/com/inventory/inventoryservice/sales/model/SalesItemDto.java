@@ -8,7 +8,7 @@ import lombok.Setter;
 public class SalesItemDto {
 
   private Long productId;
-  private Integer quantity;
+  private Double quantity;
   private Double purchasePrice;
   private Double salesPrice;
 }

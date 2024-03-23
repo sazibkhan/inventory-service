@@ -12,7 +12,7 @@ public class PurchaseItemDto {
   @NotNull
   private Long productId;
   @NotNull
-  private Integer quantity;
+  private Double quantity;
   @NotNull
   private Double purchasePrice;
   @NotNull

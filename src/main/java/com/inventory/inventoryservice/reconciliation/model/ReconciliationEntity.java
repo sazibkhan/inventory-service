@@ -3,6 +3,7 @@ package com.inventory.inventoryservice.reconciliation.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -16,7 +17,7 @@ public class ReconciliationEntity {
     private Long id;
 
     @Column(name="reconciliation_date")
-    private LocalDateTime reconciliationDate;
+    private LocalDate reconciliationDate;
 
     @Column(name="status")
     private String  status;
