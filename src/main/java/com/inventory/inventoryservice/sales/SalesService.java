@@ -28,14 +28,6 @@ public class SalesService {
     SalesEntity sales = salesValidatorService.validateAndReturnSalesSave(salesDto);
     salesRepository.save(sales);
 
-    salesDto.getItems().forEach(salesItemDto -> {
-      SalesItemEntity salesItem = SalesItemTransform.toSalesItemEntity(salesItemDto);
-      salesItem.setSales(sales);
-      salesItem.setProduct(productValidatorService
-        .ifFoundByIdReturnElseThrow(salesItemDto.getProductId()));
-      salesItemRepository.save(salesItem);
-    });
-
     List<SalesItemEntity> salesItemList = salesValidatorService.validateAndReturnSalesItemList(salesDto,sales);
     salesItemRepository.saveAll(salesItemList);
 
@@ -58,7 +50,7 @@ public class SalesService {
     salesRepository.delete(sales);
 
     // 3. update stocks
-    stockService.decreaseStock(SalesItemTransform.toStockDto(items));
+    stockService.increaseStock(SalesItemTransform.toStockDto(items));
 
   }
 
