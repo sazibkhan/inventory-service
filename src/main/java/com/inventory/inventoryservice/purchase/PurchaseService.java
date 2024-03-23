@@ -3,15 +3,18 @@ package com.inventory.inventoryservice.purchase;
 import com.inventory.inventoryservice.purchase.model.*;
 import com.inventory.inventoryservice.stock.StockService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class PurchaseService {
 
   private final PurchaseRepository purchaseRepository;
@@ -26,14 +29,20 @@ public class PurchaseService {
     PurchaseEntity purchase = purchaseValidatorService.validateAndReturnPurchaseSave(purchaseDto);
 
     purchaseRepository.save(purchase);
+    log.info("Purchase saved successfully with id [{}]", purchase.getId());
 
     List<PurchaseItemEntity> purchaseItemList = purchaseValidatorService
         .validateAndReturnPurchaseItemList(purchaseDto, purchase);
 
     purchaseItemRepository.saveAll(purchaseItemList);
 
+    log.info("Purchase detail successfully with id [{}]", purchase.getId());
+
     stockService.increaseStock(PurchaseItemTransform.toStockDto(purchaseItemList));
 
+    log.info("Stock successfully updated for items [{}]",
+      purchaseItemList.stream().map(itm-> ""+itm.getProductId())
+        .collect(Collectors.joining(",")));
 
     return PurchaseTransform.toPurchaseRest(purchase);
   }
