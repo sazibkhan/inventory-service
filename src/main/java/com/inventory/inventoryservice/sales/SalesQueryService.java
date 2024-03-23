@@ -2,6 +2,7 @@ package com.inventory.inventoryservice.sales;
 
 import com.inventory.inventoryservice.customer.model.QCustomerEntity;
 import com.inventory.inventoryservice.sales.model.QSalesEntity;
+import com.inventory.inventoryservice.sales.model.QSalesItemEntity;
 import com.inventory.inventoryservice.sales.model.SalesEntity;
 import com.inventory.inventoryservice.sales.model.SalesSearchDto;
 import com.inventory.inventoryservice.utils.IterableUtils;
