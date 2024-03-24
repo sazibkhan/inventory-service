@@ -1,0 +1,51 @@
+### UserController::saveUser
+POST http://localhost:8099/api/v1/users
+Content-Type: application/json
+Accept: application/json
+{
+  "fullName":"Sazib Khan",
+  "username": "sazib@gmail.com",
+  "password":"Sazib@321",
+  "authority":"auth",
+  "enabled": true
+}
+
+### UserController::updateUser
+PUT  http://localhost:8099/api/v1/users/1
+Content-Type: application/json
+Accept: application/json
+{
+  "fullName":"Sazib Khan",
+  "username": "sazib@gmail.com",
+  "password":"abc12",
+  "authority":"auth",
+  "enabled": true
+}
+
+
+
+
+### UserController::searchPage
+POST http://localhost:8099/api/v1/users/search-page
+Content-Type: application/json
+Accept: application/json
+{
+  "fullName":"Sazib Khan",
+  "username": "sazib@gmail.com",
+  "password":"abc12",
+  "authority":"auth",
+  "enabled": true
+}
+
+
+### UserController::searchList
+POST http://localhost:8099/api/v1/users/search-list
+Content-Type: application/json
+Accept: application/json
+{
+  "fullName":"Sazib Khan",
+  "username": "sazib@gmail.com",
+  "password":"abc12",
+  "authority":"auth",
+  "enabled": true
+}

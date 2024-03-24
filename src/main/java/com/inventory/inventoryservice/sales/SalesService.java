@@ -30,11 +30,8 @@ public class SalesService {
 
     List<SalesItemEntity> salesItemList = salesValidatorService.validateAndReturnSalesItemList(salesDto,sales);
     salesItemRepository.saveAll(salesItemList);
-
-
     //todo: decrease stock
     stockService.decreaseStock(SalesItemTransform.toStockDto(salesItemList));
-
     return SalesTransform.toSalesRest(sales);
   }
 

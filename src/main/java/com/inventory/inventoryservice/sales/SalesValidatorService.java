@@ -50,9 +50,6 @@ public class SalesValidatorService {
                     salesItem.setQuantity(itm.getQuantity().doubleValue());
                     return salesItem;
                 }).collect(Collectors.toList());
-
-
-
     }
 
 
