@@ -1,6 +1,7 @@
 package com.inventory.inventoryservice.reconciliation.model;
 
 import com.inventory.inventoryservice.product.model.ProductEntity;
+import com.inventory.inventoryservice.purchase.model.PurchaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,9 +25,17 @@ public class ReconciliationItemEntity {
     @Column(name = "product_id", insertable = false, updatable = false)
     private Long  productId;
 
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name = "reconciliation_id", foreignKey = @ForeignKey(name = "reconciliation_items_reconciliation_id_fk"))
+    private ReconciliationEntity reconciliation;
+
+    @Column(name = "reconciliation_id", insertable = false, updatable = false)
+    private Long reconciliationId;
+
     @Column(name = "reconciliation_type")
     @Enumerated(EnumType.STRING)
     private ReconciliationType reconciliationType;
+
 
     @Column(name="quantity")
     private Double quantity;

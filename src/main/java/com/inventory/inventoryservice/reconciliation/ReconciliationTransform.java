@@ -16,7 +16,6 @@ import java.util.stream.Collectors;
 public class ReconciliationTransform {
 
     public static ReconciliationEntity toReconciliationEntity(ReconciliationDto reconciliationDto) {
-
         var reconciliation = new ReconciliationEntity();
         BeanUtils.copyProperties(reconciliationDto, reconciliation);
         return reconciliation;
