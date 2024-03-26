@@ -16,6 +16,25 @@ Accept: application/json
   ]
 }
 
+### SalesController::updateSales
+POST http://localhost:8099/api/v1/sales
+Content-Type: application/json
+Accept: application/json
+{
+  "salesDate":"2023-08-19",
+  "customerId": 1,
+  "enabled": true,
+  "items": [
+    {
+      "productId": 1,
+      "purchasePrice": 12.0,
+      "salesPrice": 15.0
+    }
+  ]
+}
+
+
+
 ### SalesController::delete
 DELETE http://localhost:8099/api/v1/sales/1
 Content-Type: application/json
