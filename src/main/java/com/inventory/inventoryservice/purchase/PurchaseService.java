@@ -4,6 +4,7 @@ import com.inventory.inventoryservice.purchase.model.*;
 import com.inventory.inventoryservice.stock.StockService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Service;
@@ -43,6 +44,33 @@ public class PurchaseService {
     log.info("Stock successfully updated for items [{}]",
       purchaseItemList.stream().map(itm-> ""+itm.getProductId())
         .collect(Collectors.joining(",")));
+
+    return PurchaseTransform.toPurchaseRest(purchase);
+  }
+
+  @Transactional
+  public PurchaseRest updatePurchase(Long id, PurchaseDto purchaseDto) {
+    // remove previous record from `purchase_items` table
+    // add new items in `purchase_items` table
+    // update `purchases` table
+    // update stock (increase decrease, then increase)
+
+    List<PurchaseItemEntity> items = purchaseItemRepository.findAllByPurchaseId(id);
+    purchaseItemRepository.deleteAll(items);
+
+    stockService.decreaseStock(PurchaseItemTransform.toStockDto(items));
+
+    PurchaseEntity purchase = purchaseValidatorService.ifFoundByIdReturnElseThrow(id);
+    BeanUtils.copyProperties(purchaseDto,purchase);
+    purchase.setId(id);
+    purchaseRepository.save(purchase);
+
+    List<PurchaseItemEntity> purchaseItemList = purchaseValidatorService
+      .validateAndReturnPurchaseItemList(purchaseDto, purchase);
+
+    purchaseItemRepository.saveAll(purchaseItemList);
+
+    stockService.increaseStock(PurchaseItemTransform.toStockDto(purchaseItemList));
 
     return PurchaseTransform.toPurchaseRest(purchase);
   }

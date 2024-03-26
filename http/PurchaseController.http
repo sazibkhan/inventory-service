@@ -5,30 +5,62 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "purchaseDate":"2023-08-21",
+  "purchaseDate":"2023-08-26",
   "supplierId": 1,
   "enabled": true,
   "items": [
     {
       "productId": 1,
-      "quantity": 12,
+      "quantity": 20,
       "purchasePrice": 10.0,
       "salesPrice": 15.0
     },
     {
       "productId": 2,
-      "quantity": 12,
+      "quantity": 30,
       "purchasePrice": 20.0,
       "salesPrice": 30.0
     },
     {
       "productId": 3,
-      "quantity": 13,
+      "quantity": 40,
       "purchasePrice": 40.0,
       "salesPrice": 45.0
     }
   ]
 }
+
+### PurchaseController::updatePurchase
+PUT http://localhost:8099/api/v1/purchases/10
+Content-Type: application/json
+Accept: application/json
+
+{
+  "purchaseDate":"2023-08-22",
+  "supplierId": 1,
+  "enabled": true,
+  "items": [
+    {
+      "productId": 1,
+      "quantity": 50,
+      "purchasePrice": 10.0,
+      "salesPrice": 15.0
+    },
+    {
+      "productId": 2,
+      "quantity": 60,
+      "purchasePrice": 20.0,
+      "salesPrice": 30.0
+    },
+    {
+      "productId": 3,
+      "quantity": 70,
+      "purchasePrice": 40.0,
+      "salesPrice": 45.0
+    }
+  ]
+}
+
 
 ### CompanyController::deleteCompany
 DELETE http://localhost:8099/api/v1/purchases/5
