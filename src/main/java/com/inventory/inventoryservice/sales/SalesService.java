@@ -5,9 +5,13 @@ import com.inventory.inventoryservice.category.model.CategoryDto;
 import com.inventory.inventoryservice.category.model.CategoryEntity;
 import com.inventory.inventoryservice.category.model.CategoryRest;
 import com.inventory.inventoryservice.product.ProductValidatorService;
+import com.inventory.inventoryservice.purchase.PurchaseItemTransform;
+import com.inventory.inventoryservice.purchase.model.PurchaseEntity;
+import com.inventory.inventoryservice.purchase.model.PurchaseItemEntity;
 import com.inventory.inventoryservice.sales.model.*;
 import com.inventory.inventoryservice.stock.StockService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Service;
@@ -38,17 +42,20 @@ public class SalesService {
   }
   @Transactional
   public SalesRest updateSales(Long id, SalesDto salesDto) {
-    List<SalesItemEntity> items=salesItemRepository.findAllBySalesId(id);
+    List<SalesItemEntity> items = salesItemRepository.findAllBySalesId(id);
+    salesItemRepository.deleteAll(items);
+
+    stockService.increaseStock(SalesItemTransform.toStockDto(items));
+
     SalesEntity sales=salesValidatorService.ifFoundByIdReturnElseThrow(id);
-
-
-
-    List<SalesItemEntity> salesItemList = salesValidatorService.validateAndReturnSalesItemList(salesDto,sales);
-    sales.setSalesDate(salesDto.getSalesDate());
+    BeanUtils.copyProperties(salesDto,sales);
+    sales.setId(id);
     salesRepository.save(sales);
 
-    sales.setItems(salesItemList);
+    List<SalesItemEntity> salesItemList = salesValidatorService.validateAndReturnSalesItemList(salesDto,sales);
     salesItemRepository.saveAll(salesItemList);
+
+    stockService.decreaseStock(SalesItemTransform.toStockDto(salesItemList));
 
     return SalesTransform.toSalesRest(sales);
   }
