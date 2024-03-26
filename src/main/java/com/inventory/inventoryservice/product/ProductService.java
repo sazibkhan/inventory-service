@@ -34,6 +34,16 @@ public class ProductService {
         return ProductTransform.toProductRest(product);
     }
 
+
+
+
+
+
+
+
+
+
+
   public Page<ProductRest> searchPage(ProductSearchDto searchDto) {
 
       Page<ProductEntity> page = productQueryService.searchPage(searchDto);
