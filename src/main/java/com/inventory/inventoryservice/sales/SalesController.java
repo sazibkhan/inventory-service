@@ -1,5 +1,7 @@
 package com.inventory.inventoryservice.sales;
 
+import com.inventory.inventoryservice.reconciliation.model.ReconciliationDto;
+import com.inventory.inventoryservice.reconciliation.model.ReconciliationRest;
 import com.inventory.inventoryservice.sales.model.SalesDto;
 import com.inventory.inventoryservice.sales.model.SalesRest;
 import com.inventory.inventoryservice.sales.model.SalesSearchDto;
@@ -15,21 +17,24 @@ import org.springframework.web.bind.annotation.*;
 public class SalesController {
 
     private final SalesService salesService;
-
     @PostMapping
     public ResponseEntity<SalesRest> saveSales(@RequestBody SalesDto salesDto) {
-
             SalesRest salesRest = salesService.saveSales(salesDto);
             return ResponseEntity.status(HttpStatus.OK).body(salesRest);
     }
 
-    //todo: delete sales > add stock
+    //update Sales
+    @PutMapping("/{id}")
+    public ResponseEntity<SalesRest> updateSales(@PathVariable Long id, @RequestBody  SalesDto salesDto) {
+        SalesRest salesRest = salesService.updateSales(id, salesDto);
+        return ResponseEntity.status(HttpStatus.OK).body(salesRest);
+    }
+    //Delete sales > add stock
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id) {
         salesService.delete(id);
         return ResponseEntity.status(HttpStatus.OK).body("Deleted Successfully.");
     }
-
     @PostMapping("/search-page")
     public ResponseEntity<?> searchPage(@RequestBody SalesSearchDto searchDto) {
         return ResponseEntity.status(HttpStatus.OK)
