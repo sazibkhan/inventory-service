@@ -15,12 +15,38 @@ Accept: application/json
   "enabled": true
 }
 
-### ProductController::saveProduct
+### ProductController::updateProduct
+PUT http://localhost:8099/api/v1/products/1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "productName":"Mango",
+  "description":"WOW Product",
+  "barCode":"inv-00123",
+  "brandId": 1,
+  "categoryId": 1,
+  "purchasePrice": 100,
+  "salesPrice": 150,
+  "discountAmount": 10,
+  "enabled": true
+}
+
+### ProductController::deleteProduct
+DELETE http://localhost:8099/api/v1/products/1
+Content-Type: application/json
+Accept: application/json
+
+
+
+
+
+### ProductController::search-page
 POST http://localhost:8099/api/v1/products/search-page
 Content-Type: application/json
 Accept: application/json
 
 {
-
+  "productName":"Mango"
 }
 
