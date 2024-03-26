@@ -18,13 +18,6 @@ public class ReconciliationItemEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne (fetch=FetchType.LAZY)
-    @JoinColumn(name = "product_id", foreignKey = @ForeignKey(name = "reconciliation_items_product_id_fk"))
-    private ProductEntity product;
-
-    @Column(name = "product_id", insertable = false, updatable = false)
-    private Long  productId;
-
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "reconciliation_id", foreignKey = @ForeignKey(name = "reconciliation_items_reconciliation_id_fk"))
     private ReconciliationEntity reconciliation;
@@ -32,10 +25,16 @@ public class ReconciliationItemEntity {
     @Column(name = "reconciliation_id", insertable = false, updatable = false)
     private Long reconciliationId;
 
+    @ManyToOne (fetch=FetchType.LAZY)
+    @JoinColumn(name = "product_id", foreignKey = @ForeignKey(name = "reconciliation_items_product_id_fk"))
+    private ProductEntity product;
+
+    @Column(name = "product_id", insertable = false, updatable = false)
+    private Long  productId;
+
     @Column(name = "reconciliation_type")
     @Enumerated(EnumType.STRING)
     private ReconciliationType reconciliationType;
-
 
     @Column(name="quantity")
     private Double quantity;

@@ -16,25 +16,26 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class ReconciliationValidatorService {
 
-    private final ReconciliationRepository reconciliationRepository;
-    private final ProductValidatorService productValidatorService;
-    public ReconciliationEntity ifFoundByIdReturnElseThrow(Long id) {
-        Objects.requireNonNull(id);
-        return reconciliationRepository.findById(id)
-                .orElseThrow(()-> new IllegalArgumentException(String
-                        .format("Reconciliation not found with id [%s]",id)));
-    }
+  private final ReconciliationRepository reconciliationRepository;
+  private final ProductValidatorService productValidatorService;
 
+  public ReconciliationEntity ifFoundByIdReturnElseThrow(Long id) {
+    Objects.requireNonNull(id);
+    return reconciliationRepository.findById(id)
+      .orElseThrow(() -> new IllegalArgumentException(String
+        .format("Reconciliation not found with id [%s]", id)));
+  }
 
-    public List<ReconciliationItemEntity> validateAndReturnReconciliationItemList(ReconciliationDto reconciliationDto, ReconciliationEntity reconciliation) {
-        return reconciliationDto.getItems().stream()
-                .map(itm-> {
-                    ReconciliationItemEntity reconciliationItem = ReconciliationItemTransform.toReconciliationItemEntity(itm);
-                    reconciliationItem.setReconciliation(reconciliation);
-                    reconciliationItem.setProduct(productValidatorService
-                            .ifFoundByIdReturnElseThrow(itm.getProductId()));
-                    reconciliationItem.setQuantity(itm.getQuantity().doubleValue());
-                    return reconciliationItem;
-                }).collect(Collectors.toList());
-    }
+  public List<ReconciliationItemEntity> validateAndReturnReconciliationItemList(ReconciliationDto reconciliationDto, ReconciliationEntity reconciliation) {
+    return reconciliationDto.getItems().stream()
+      .map(itm -> {
+        ReconciliationItemEntity reconciliationItem = ReconciliationItemTransform.toReconciliationItemEntity(itm);
+        reconciliationItem.setReconciliation(reconciliation);
+        reconciliationItem.setProduct(productValidatorService
+          .ifFoundByIdReturnElseThrow(itm.getProductId()));
+        reconciliationItem.setQuantity(itm.getQuantity());
+        reconciliationItem.setEnabled(Boolean.TRUE);
+        return reconciliationItem;
+      }).collect(Collectors.toList());
+  }
 }

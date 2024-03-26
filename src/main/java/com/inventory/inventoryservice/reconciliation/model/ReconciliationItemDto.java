@@ -11,6 +11,8 @@ public class ReconciliationItemDto {
     @NotNull
     private Long productId;
     @NotNull
+    private ReconciliationType reconciliationType;
+    @NotNull
     private Double quantity;
 
 }

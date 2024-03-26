@@ -1,7 +1,5 @@
 package com.inventory.inventoryservice.reconciliation;
 
-import com.inventory.inventoryservice.purchase.PurchaseItemTransform;
-import com.inventory.inventoryservice.purchase.model.PurchaseItemEntity;
 import com.inventory.inventoryservice.reconciliation.model.*;
 import com.inventory.inventoryservice.stock.StockService;
 import lombok.RequiredArgsConstructor;
@@ -21,22 +19,23 @@ public class ReconciliationService {
   public ReconciliationRest saveReconciliation(ReconciliationDto reconciliationDto) {
 
     ReconciliationEntity reconciliation = ReconciliationTransform.toReconciliationEntity(reconciliationDto);
+    reconciliation.setReconciliationStatus(ReconciliationStatusEnum.Pending);
+    reconciliation.setEnabled(Boolean.TRUE);
     reconciliationRepository.save(reconciliation);
 
-    //Save date in reconciliation_items table
     List<ReconciliationItemEntity> reconciliationItemList = reconciliationValidatorService
-            .validateAndReturnReconciliationItemList(reconciliationDto,reconciliation);
+      .validateAndReturnReconciliationItemList(reconciliationDto, reconciliation);
     reconciliationItemRepository.saveAll(reconciliationItemList);
 
-    // conditionally increase or decrease stock
     stockService.increaseStock(ReconciliationItemTransform.toStockDto(reconciliationItemList));
 
     return ReconciliationTransform.toReconciliationRest(reconciliation);
   }
 
   public void deleteReconciliation(Long id) {
-    List<ReconciliationItemEntity> items=reconciliationItemRepository.findAllByReconciliationId(id);
+    List<ReconciliationItemEntity> items = reconciliationItemRepository.findAllByReconciliationId(id);
     reconciliationItemRepository.deleteAll(items);
+
     ReconciliationEntity reconciliation = reconciliationValidatorService.ifFoundByIdReturnElseThrow(id);
     reconciliationRepository.delete(reconciliation);
     // conditionally increase or decrease stock

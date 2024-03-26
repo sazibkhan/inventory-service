@@ -4,21 +4,17 @@ Content-Type: application/json
 Accept: application/json
 
 {
-   "reconciliationDate":"2024-03-24",
-   "status": true,
-   "enabled": false,
+  "reconciliationDate": "2024-03-24",
   "items": [
     {
       "productId": 1,
-       "quantity":10.0,
-      "purchasePrice": 12.0,
-      "salesPrice": 15.0
+      "reconciliationType": "WRITE_OFF",
+      "quantity": 10.0
     },
-     {
+    {
       "productId": 2,
-       "quantity":10.0,
-      "purchasePrice": 12.0,
-      "salesPrice": 15.0
+      "reconciliationType": "WRITE_ON",
+      "quantity": 10.0
     }
   ]
 }

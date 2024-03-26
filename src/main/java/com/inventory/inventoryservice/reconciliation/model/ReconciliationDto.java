@@ -13,12 +13,6 @@ import java.util.List;
 public class ReconciliationDto {
 
     private LocalDate reconciliationDate;
-    private String  status;
-    private boolean enabled;
-    private LocalDateTime createdAt;
-    private Long createdBy;
-    private LocalDateTime updatedAt;
-    private Long updatedBy;
     private List<ReconciliationItemDto> items;
 
 }

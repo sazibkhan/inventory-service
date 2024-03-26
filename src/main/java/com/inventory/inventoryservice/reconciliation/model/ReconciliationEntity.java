@@ -19,11 +19,12 @@ public class ReconciliationEntity {
     @Column(name="reconciliation_date")
     private LocalDate reconciliationDate;
 
-    @Column(name="status")
-    private String  status;
+    @Column(name="reconciliation_status")
+    @Enumerated(EnumType.STRING)
+    private ReconciliationStatusEnum reconciliationStatus; // Pending, Approved, Rejected
 
     @Column(name = "enabled")
-    private boolean enabled;
+    private Boolean enabled;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
