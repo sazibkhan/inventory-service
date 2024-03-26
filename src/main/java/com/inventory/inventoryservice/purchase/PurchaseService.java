@@ -57,7 +57,6 @@ public class PurchaseService {
 
     List<PurchaseItemEntity> items = purchaseItemRepository.findAllByPurchaseId(id);
     purchaseItemRepository.deleteAll(items);
-
     stockService.decreaseStock(PurchaseItemTransform.toStockDto(items));
 
     PurchaseEntity purchase = purchaseValidatorService.ifFoundByIdReturnElseThrow(id);
@@ -67,7 +66,6 @@ public class PurchaseService {
 
     List<PurchaseItemEntity> purchaseItemList = purchaseValidatorService
       .validateAndReturnPurchaseItemList(purchaseDto, purchase);
-
     purchaseItemRepository.saveAll(purchaseItemList);
 
     stockService.increaseStock(PurchaseItemTransform.toStockDto(purchaseItemList));
