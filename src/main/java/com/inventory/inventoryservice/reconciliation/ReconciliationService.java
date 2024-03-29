@@ -3,7 +3,6 @@ package com.inventory.inventoryservice.reconciliation;
 import com.inventory.inventoryservice.reconciliation.model.*;
 import com.inventory.inventoryservice.stock.StockService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,7 +30,6 @@ public class ReconciliationService {
     List<ReconciliationItemEntity> reconciliationItemList = reconciliationValidatorService
       .validateAndReturnReconciliationItemList(reconciliationDto, reconciliation);
     reconciliationItemRepository.saveAll(reconciliationItemList);
-
 
     return ReconciliationTransform.toReconciliationRest(reconciliation);
   }

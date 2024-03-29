@@ -1,9 +1,5 @@
 package com.inventory.inventoryservice.category;
 
-import com.inventory.inventoryservice.brand.BrandService;
-import com.inventory.inventoryservice.brand.model.BrandDto;
-import com.inventory.inventoryservice.brand.model.BrandRest;
-import com.inventory.inventoryservice.brand.model.BrandSearchDto;
 import com.inventory.inventoryservice.category.model.CategoryDto;
 import com.inventory.inventoryservice.category.model.CategoryRest;
 import com.inventory.inventoryservice.category.model.CategorySearchDto;
@@ -20,51 +16,47 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CategoryController {
 
-    private final  CategoryService categoryService;
+  private final CategoryService categoryService;
 
-    @PostMapping
-    public ResponseEntity<CategoryRest> saveCategory(@RequestBody CategoryDto categoryDto) {
-            CategoryRest categoryRest = categoryService.saveCategory(categoryDto);
-            return ResponseEntity.status(HttpStatus.OK).body(categoryRest);
-    }
+  @PostMapping
+  public ResponseEntity<CategoryRest> saveCategory(@RequestBody CategoryDto categoryDto) {
+    CategoryRest categoryRest = categoryService.saveCategory(categoryDto);
+    return ResponseEntity.status(HttpStatus.OK).body(categoryRest);
+  }
 
-    @GetMapping
-    public ResponseEntity<List<CategoryRest>> getAllCategory(){
-        return new ResponseEntity(categoryService.getAllCategory(),HttpStatus.OK) ;
-    }
+  @GetMapping
+  public ResponseEntity<List<CategoryRest>> getAllCategory() {
+    return ResponseEntity.status(HttpStatus.OK).body(categoryService.getAllCategory());
+  }
 
-    @GetMapping("{id}")
-    public ResponseEntity<CategoryRest>getCategoryById(@PathVariable Long id){
-        return new ResponseEntity(categoryService.getCategoryById(id),HttpStatus.OK);
-    }
+  @GetMapping("{id}")
+  public ResponseEntity<CategoryRest> getCategoryById(@PathVariable Long id) {
+    return ResponseEntity.status(HttpStatus.OK).body(categoryService.getCategoryById(id));
+  }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<CategoryRest> updateCategory(@PathVariable Long id, @RequestBody CategoryDto categoryDto) {
-            CategoryRest categoryRest  = categoryService.updateCategory(id, categoryDto);
-            return ResponseEntity.status(HttpStatus.OK).body(categoryRest);
+  @PutMapping("/{id}")
+  public ResponseEntity<CategoryRest> updateCategory(@PathVariable Long id,
+                                                     @RequestBody CategoryDto categoryDto) {
+    CategoryRest categoryRest = categoryService.updateCategory(id, categoryDto);
+    return ResponseEntity.status(HttpStatus.OK).body(categoryRest);
+  }
 
-    }
+  @DeleteMapping("/{id}")
+  public ResponseEntity<String> deleteCategory(@PathVariable Long id) {
+    categoryService.deleteCategory(id);
+    return ResponseEntity.status(HttpStatus.OK).body("Deleted Successfully.");
+  }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteCategory(@PathVariable Long id) {
-            categoryService.deleteCategory(id);
-            return ResponseEntity.status(HttpStatus.OK).body("Deleted Successfully.");
-    }
+  @PostMapping("/search-page")
+  public ResponseEntity<?> searchPage(@RequestBody CategorySearchDto searchDto) {
+    return ResponseEntity.status(HttpStatus.OK)
+      .body(categoryService.searchPage(searchDto));
+  }
 
-    @PostMapping("/search-page")
-    public ResponseEntity<?> searchPage(@RequestBody CategorySearchDto searchDto) {
-
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(categoryService.searchPage(searchDto));
-    }
-
-    @PostMapping("/search-list")
-    public ResponseEntity<?> searchList(@RequestBody CategorySearchDto searchDto) {
-
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(categoryService.searchList(searchDto));
-    }
-
-
+  @PostMapping("/search-list")
+  public ResponseEntity<?> searchList(@RequestBody CategorySearchDto searchDto) {
+    return ResponseEntity.status(HttpStatus.OK)
+      .body(categoryService.searchList(searchDto));
+  }
 
 }

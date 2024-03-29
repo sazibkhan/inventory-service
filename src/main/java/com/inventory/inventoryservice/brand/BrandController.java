@@ -21,21 +21,18 @@ public class BrandController {
 
   @PostMapping
   public ResponseEntity<BrandRest> saveBrand(@RequestBody BrandDto brandDto) {
-
     BrandRest brandRest = brandService.saveBrand(brandDto);
     return ResponseEntity.status(HttpStatus.OK).body(brandRest);
   }
 
   @PutMapping("/{id}")
   public ResponseEntity<BrandRest> updateBrand(@PathVariable Long id, @RequestBody BrandDto brandDto) {
-
     BrandRest brandRest = brandService.updateBrand(id, brandDto);
     return ResponseEntity.status(HttpStatus.OK).body(brandRest);
   }
 
   @DeleteMapping("/{id}")
   public ResponseEntity<String> deleteBrand(@PathVariable Long id) {
-
     brandService.deleteBrand(id);
     return ResponseEntity.status(HttpStatus.OK).body("Deleted Successfully.");
   }
@@ -43,22 +40,19 @@ public class BrandController {
   @GetMapping
   public ResponseEntity<?> params(@RequestParam Map<String, String> params) {
     params.forEach((key, value) -> System.out.printf("key: %s, value: %s%n", key, value));
-
     return ResponseEntity.ok("");
   }
 
   @PostMapping("/search-page")
   public ResponseEntity<?> searchPage(@RequestBody BrandSearchDto searchDto) {
-
     return ResponseEntity.status(HttpStatus.OK)
-        .body(brandService.searchPage(searchDto));
+      .body(brandService.searchPage(searchDto));
   }
 
   @PostMapping("/search-list")
   public ResponseEntity<?> searchList(@RequestBody BrandSearchDto searchDto) {
-
     return ResponseEntity.status(HttpStatus.OK)
-        .body(brandService.searchList(searchDto));
+      .body(brandService.searchList(searchDto));
   }
 
 }
