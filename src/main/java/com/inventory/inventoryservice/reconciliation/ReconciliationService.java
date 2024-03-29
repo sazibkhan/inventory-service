@@ -75,8 +75,7 @@ public class ReconciliationService {
 
     ReconciliationEntity reconciliation = reconciliationValidatorService.ifFoundByIdReturnElseThrow(id);
     reconciliationRepository.delete(reconciliation);
-    // conditionally increase or decrease stock
-    stockService.decreaseStock(ReconciliationItemTransform.toStockDto(items));
+
 
   }
 
