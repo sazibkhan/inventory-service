@@ -14,41 +14,37 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class CustomerController {
 
-    private  final CustomerService customerService;
+  private final CustomerService customerService;
 
-    @PostMapping
-    public ResponseEntity<CustomerRest> saveCustomer(@RequestBody CustomerDto customerDto) {
-            CustomerRest customerRest = customerService.saveCustomer(customerDto);
-            return ResponseEntity.status(HttpStatus.OK).body(customerRest);
-    }
+  @PostMapping
+  public ResponseEntity<CustomerRest> saveCustomer(@RequestBody CustomerDto customerDto) {
+    CustomerRest customerRest = customerService.saveCustomer(customerDto);
+    return ResponseEntity.status(HttpStatus.OK).body(customerRest);
+  }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<CustomerRest> updateCustomer(@PathVariable Long id, @RequestBody CustomerDto customerDt) {
+  @PutMapping("/{id}")
+  public ResponseEntity<CustomerRest> updateCustomer(@PathVariable Long id,
+                                                     @RequestBody CustomerDto customerDt) {
+    CustomerRest customerRest = customerService.updateCustomer(id, customerDt);
+    return ResponseEntity.status(HttpStatus.OK).body(customerRest);
+  }
 
-            CustomerRest customerRest = customerService.updateCustomer(id, customerDt);
-            return ResponseEntity.status(HttpStatus.OK).body(customerRest);
+  @DeleteMapping("/{id}")
+  public ResponseEntity<String> deleteCustomer(@PathVariable Long id) {
+    customerService.deleteCustomer(id);
+    return ResponseEntity.status(HttpStatus.OK).body("Deleted Successfully.");
+  }
 
-    }
+  @PostMapping("/search-page")
+  public ResponseEntity<?> searchPage(@RequestBody CustomerSearchDto searchDto) {
+    return ResponseEntity.status(HttpStatus.OK)
+      .body(customerService.searchPage(searchDto));
+  }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteCustomer(@PathVariable Long id) {
-            customerService.deleteCustomer(id);
-            return ResponseEntity.status(HttpStatus.OK).body("Deleted Successfully.");
-    }
-
-    @PostMapping("/search-page")
-    public ResponseEntity<?> searchPage(@RequestBody CustomerSearchDto searchDto) {
-
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(customerService.searchPage(searchDto));
-    }
-
-    @PostMapping("/search-list")
-    public ResponseEntity<?> searchList(@RequestBody CustomerSearchDto searchDto) {
-
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(customerService.searchList(searchDto));
-    }
-
+  @PostMapping("/search-list")
+  public ResponseEntity<?> searchList(@RequestBody CustomerSearchDto searchDto) {
+    return ResponseEntity.status(HttpStatus.OK)
+      .body(customerService.searchList(searchDto));
+  }
 
 }

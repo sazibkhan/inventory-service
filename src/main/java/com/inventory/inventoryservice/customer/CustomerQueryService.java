@@ -1,9 +1,5 @@
 package com.inventory.inventoryservice.customer;
 
-import com.inventory.inventoryservice.company.CompanyPredicate;
-import com.inventory.inventoryservice.company.CompanyRepository;
-import com.inventory.inventoryservice.company.model.CompanyEntity;
-import com.inventory.inventoryservice.company.model.CompanySearchDto;
 import com.inventory.inventoryservice.customer.model.CustomerEntity;
 import com.inventory.inventoryservice.customer.model.CustomerSearchDto;
 import com.inventory.inventoryservice.utils.IterableUtils;
@@ -20,26 +16,21 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CustomerQueryService {
 
-    private final CustomerRepository customerRepository;
+  private final CustomerRepository customerRepository;
 
-    public Page<CustomerEntity> searchPage(CustomerSearchDto searchDto) {
+  public Page<CustomerEntity> searchPage(CustomerSearchDto searchDto) {
 
-        Pageable pageable = PageRequest.of(searchDto.getPage(), searchDto.getSize());
-        Predicate predicate = CustomerPredicate.search(searchDto);
+    Pageable pageable = PageRequest.of(searchDto.getPage(), searchDto.getSize());
+    Predicate predicate = CustomerPredicate.search(searchDto);
 
-        return customerRepository.findAll(predicate, pageable);
-    }
+    return customerRepository.findAll(predicate, pageable);
+  }
 
-    public List<CustomerEntity> searchList(CustomerSearchDto searchDto) {
+  public List<CustomerEntity> searchList(CustomerSearchDto searchDto) {
 
-        Predicate predicate = CustomerPredicate.search(searchDto);
-        return IterableUtils.toList(customerRepository.findAll(predicate));
-    }
-
-
-
-
-
+    Predicate predicate = CustomerPredicate.search(searchDto);
+    return IterableUtils.toList(customerRepository.findAll(predicate));
+  }
 
 
 }

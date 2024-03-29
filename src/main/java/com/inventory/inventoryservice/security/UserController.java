@@ -14,35 +14,32 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class UserController {
 
-    private final UserService userService;
+  private final UserService userService;
 
-    @PostMapping
-    public ResponseEntity<UserRest> saveUser(@RequestBody UserDto userDto) {
+  @PostMapping
+  public ResponseEntity<UserRest> saveUser(@RequestBody UserDto userDto) {
+    UserRest userRest = userService.saveUser(userDto);
+    return ResponseEntity.status(HttpStatus.OK).body(userRest);
+  }
 
-        UserRest userRest = userService.saveUser(userDto);
-        return ResponseEntity.status(HttpStatus.OK).body(userRest);
-    }
+  @PutMapping("/{id}")
+  public ResponseEntity<UserRest> updateUser(@PathVariable Long id,
+                                             @RequestBody UserDto userDto) {
+    UserRest userRest = userService.updateUser(id, userDto);
+    return ResponseEntity.status(HttpStatus.OK).body(userRest);
+  }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<UserRest> updateUser(@PathVariable Long id, @RequestBody UserDto userDto) {
-        UserRest userRest = userService.updateUser(id, userDto);
-        return ResponseEntity.status(HttpStatus.OK).body(userRest);
-    }
+  @PostMapping("/search-page")
+  public ResponseEntity<?> searchPage(@RequestBody UserSearchDto searchDto) {
+    return ResponseEntity.status(HttpStatus.OK)
+      .body(userService.searchPage(searchDto));
+  }
 
-
-    @PostMapping("/search-page")
-    public ResponseEntity<?> searchPage(@RequestBody UserSearchDto searchDto) {
-
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(userService.searchPage(searchDto));
-    }
-
-    @PostMapping("/search-list")
-    public ResponseEntity<?> searchList(@RequestBody UserSearchDto searchDto) {
-
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(userService.searchList(searchDto));
-    }
+  @PostMapping("/search-list")
+  public ResponseEntity<?> searchList(@RequestBody UserSearchDto searchDto) {
+    return ResponseEntity.status(HttpStatus.OK)
+      .body(userService.searchList(searchDto));
+  }
 
 
 }

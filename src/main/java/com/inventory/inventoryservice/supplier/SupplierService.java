@@ -1,9 +1,5 @@
 package com.inventory.inventoryservice.supplier;
 
-import com.inventory.inventoryservice.company.CompanyTransform;
-import com.inventory.inventoryservice.company.model.CompanyDto;
-import com.inventory.inventoryservice.company.model.CompanyEntity;
-import com.inventory.inventoryservice.company.model.CompanyRest;
 import com.inventory.inventoryservice.supplier.model.SupplierDto;
 import com.inventory.inventoryservice.supplier.model.SupplierEntity;
 import com.inventory.inventoryservice.supplier.model.SupplierRest;
@@ -13,14 +9,15 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class SupplierService {
-    private final SupplierRepository supplierRepository;
-    private final  SupplierValidatorService supplierValidatorService;
 
-    public SupplierRest saveSupplier(SupplierDto supplierDto) {
-        SupplierEntity supplierEntity= SupplierTransform.toSupplierEntity(supplierDto);
-        supplierRepository.save(supplierEntity);
+  private final SupplierRepository supplierRepository;
+  private final SupplierValidatorService supplierValidatorService;
 
-        return SupplierTransform.toSupplierRest(supplierEntity);
-    }
+  public SupplierRest saveSupplier(SupplierDto supplierDto) {
+    SupplierEntity supplierEntity = SupplierTransform.toSupplierEntity(supplierDto);
+    supplierRepository.save(supplierEntity);
+
+    return SupplierTransform.toSupplierRest(supplierEntity);
+  }
 
 }

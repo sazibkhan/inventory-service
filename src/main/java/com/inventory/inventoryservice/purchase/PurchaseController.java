@@ -16,42 +16,38 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class PurchaseController {
 
-    private final PurchaseService purchaseService;
+  private final PurchaseService purchaseService;
 
-    @PostMapping
-    public ResponseEntity<PurchaseRest> savePurchase(@RequestBody @Valid PurchaseDto purchaseDto) {
-        PurchaseRest purchaseRest = purchaseService.savePurchase(purchaseDto);
-        return ResponseEntity.status(HttpStatus.OK).body(purchaseRest);
-    }
+  @PostMapping
+  public ResponseEntity<PurchaseRest> savePurchase(@RequestBody @Valid PurchaseDto purchaseDto) {
+    PurchaseRest purchaseRest = purchaseService.savePurchase(purchaseDto);
+    return ResponseEntity.status(HttpStatus.OK).body(purchaseRest);
+  }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<PurchaseRest> updatePurchase(@PathVariable Long id,
-                                                       @RequestBody @Valid PurchaseDto purchaseDto) {
-        PurchaseRest purchaseRest = purchaseService.updatePurchase(id,purchaseDto);
-        return ResponseEntity.status(HttpStatus.OK).body(purchaseRest);
-    }
+  @PutMapping("/{id}")
+  public ResponseEntity<PurchaseRest> updatePurchase(@PathVariable Long id,
+                                                     @RequestBody @Valid PurchaseDto purchaseDto) {
+    PurchaseRest purchaseRest = purchaseService.updatePurchase(id, purchaseDto);
+    return ResponseEntity.status(HttpStatus.OK).body(purchaseRest);
+  }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> deletePurchase(@PathVariable Long id) {
-        purchaseService.delete(id);
-        return ResponseEntity.status(HttpStatus.OK).body("Deleted Successfully.");
-    }
+  @DeleteMapping("/{id}")
+  public ResponseEntity<String> deletePurchase(@PathVariable Long id) {
+    purchaseService.delete(id);
+    return ResponseEntity.status(HttpStatus.OK).body("Deleted Successfully.");
+  }
 
-    @PostMapping("/search-page")
-    public ResponseEntity<?> searchPage(@RequestBody PurchaseSearchDto searchDto) {
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(purchaseService.searchPage(searchDto));
-    }
+  @PostMapping("/search-page")
+  public ResponseEntity<?> searchPage(@RequestBody PurchaseSearchDto searchDto) {
+    return ResponseEntity.status(HttpStatus.OK)
+      .body(purchaseService.searchPage(searchDto));
+  }
 
-    @PostMapping("/search-list")
-    public ResponseEntity<?> searchList(@RequestBody PurchaseSearchDto searchDto) {
-
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(purchaseService.searchList(searchDto));
-    }
-
-
-
+  @PostMapping("/search-list")
+  public ResponseEntity<?> searchList(@RequestBody PurchaseSearchDto searchDto) {
+    return ResponseEntity.status(HttpStatus.OK)
+      .body(purchaseService.searchList(searchDto));
+  }
 
 
 }
