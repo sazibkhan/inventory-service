@@ -45,8 +45,8 @@ public class ReconciliationService {
 
     //todo: if already approved throw
 
-    var reconciliation = reconciliationValidatorService.ifFoundByIdReturnElseThrow(id);
-    var items = reconciliationItemRepository.findAllByReconciliationId(id);
+    ReconciliationEntity reconciliation = reconciliationValidatorService.ifFoundByIdReturnElseThrow(id);
+    List<ReconciliationItemEntity> items = reconciliationItemRepository.findAllByReconciliationId(id);
 
     reconciliation.setReconciliationStatus(request.getReconciliationStatus());
     reconciliation.setApprovedAt(LocalDateTime.now());
@@ -54,11 +54,11 @@ public class ReconciliationService {
 
     if(request.getReconciliationStatus().equals(ReconciliationStatusEnum.Approved)) {
       List<ReconciliationItemEntity> writeOffItems = items.stream()
-        .filter(itm-> itm.getReconciliationType().equals(ReconciliationType.WRITE_OFF))
+        .filter(itm -> itm.getReconciliationType().equals(ReconciliationType.WRITE_OFF))
         .collect(Collectors.toList());
 
       List<ReconciliationItemEntity> writeOnItems = items.stream()
-        .filter(itm-> itm.getReconciliationType().equals(ReconciliationType.WRITE_ON))
+        .filter(itm -> itm.getReconciliationType().equals(ReconciliationType.WRITE_ON))
         .collect(Collectors.toList());
 
       stockService.decreaseStock(ReconciliationTransform.toStockDto(writeOffItems));
@@ -66,8 +66,10 @@ public class ReconciliationService {
     }
   }
 
-
   public void deleteReconciliation(Long id) {
+    //todo: if already approved then update the stock
+    //todo: if not approved no need to update stock
+
     List<ReconciliationItemEntity> items = reconciliationItemRepository.findAllByReconciliationId(id);
     reconciliationItemRepository.deleteAll(items);
 
