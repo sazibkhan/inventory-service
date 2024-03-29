@@ -4,7 +4,7 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "reconciliationDate": "2024-03-24",
+  "reconciliationDate": "2024-03-29",
   "items": [
     {
       "productId": 1,
@@ -17,4 +17,13 @@ Accept: application/json
       "quantity": 10.0
     }
   ]
+}
+
+### ReconciliationController::approveReconciliation
+PUT http://localhost:8099/api/v1/reconciliations/approve/2
+Content-Type: application/json
+Accept: application/json
+
+{
+  "reconciliationStatus": "Approved"
 }

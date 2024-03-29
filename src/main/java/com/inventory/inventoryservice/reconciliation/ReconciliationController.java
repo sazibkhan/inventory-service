@@ -1,5 +1,6 @@
 package com.inventory.inventoryservice.reconciliation;
 
+import com.inventory.inventoryservice.reconciliation.model.ReconciliationApproveRequest;
 import com.inventory.inventoryservice.reconciliation.model.ReconciliationDto;
 import com.inventory.inventoryservice.reconciliation.model.ReconciliationRest;
 import com.inventory.inventoryservice.sales.model.SalesDto;
@@ -15,27 +16,26 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class ReconciliationController {
 
-    private final ReconciliationService reconciliationService;
+  private final ReconciliationService reconciliationService;
 
-    @PostMapping
-    public ResponseEntity<ReconciliationRest> saveReconciliation(@RequestBody ReconciliationDto reconciliationDto) {
-        ReconciliationRest reconciliationRest = reconciliationService.saveReconciliation(reconciliationDto);
-        return ResponseEntity.status(HttpStatus.OK).body(reconciliationRest);
-    }
+  @PostMapping
+  public ResponseEntity<ReconciliationRest> saveReconciliation(@RequestBody ReconciliationDto reconciliationDto) {
+    ReconciliationRest reconciliationRest = reconciliationService.saveReconciliation(reconciliationDto);
+    return ResponseEntity.status(HttpStatus.OK).body(reconciliationRest);
+  }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<ReconciliationRest> approveReconciliation(@PathVariable Long id) {
-        ReconciliationRest reconciliationRest = reconciliationService.approveReconciliation(id);
-        return ResponseEntity.status(HttpStatus.OK).body(reconciliationRest);
-    }
+  @PutMapping("/approve/{id}")
+  public ResponseEntity<String> approveReconciliation(@PathVariable Long id,
+                                                      @RequestBody ReconciliationApproveRequest request) {
+    reconciliationService.approveReconciliation(id, request);
+    return ResponseEntity.status(HttpStatus.OK).body("Reconciliation Approved Successfully");
+  }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteReconciliation(@PathVariable Long id) {
-        reconciliationService.deleteReconciliation(id);
-        return ResponseEntity.status(HttpStatus.OK).body("Deleted Successfully.");
-    }
-
-
+  @DeleteMapping("/{id}")
+  public ResponseEntity<String> deleteReconciliation(@PathVariable Long id) {
+    reconciliationService.deleteReconciliation(id);
+    return ResponseEntity.status(HttpStatus.OK).body("Deleted Successfully.");
+  }
 
 
 }

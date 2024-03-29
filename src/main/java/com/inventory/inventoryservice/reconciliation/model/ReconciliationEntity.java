@@ -23,6 +23,12 @@ public class ReconciliationEntity {
     @Enumerated(EnumType.STRING)
     private ReconciliationStatusEnum reconciliationStatus; // Pending, Approved, Rejected
 
+    @Column(name = "approved_at")
+    private LocalDateTime approvedAt;
+
+    @Column(name = "approved_by")
+    private Long approvedBy;
+
     @Column(name = "enabled")
     private Boolean enabled;
 

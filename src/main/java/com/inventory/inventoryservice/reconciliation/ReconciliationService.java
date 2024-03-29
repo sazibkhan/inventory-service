@@ -7,7 +7,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -17,6 +19,7 @@ public class ReconciliationService {
   private final ReconciliationItemRepository reconciliationItemRepository;
   private final ReconciliationValidatorService reconciliationValidatorService;
   private final StockService stockService;
+
   @Transactional
   public ReconciliationRest saveReconciliation(ReconciliationDto reconciliationDto) {
 
@@ -33,20 +36,35 @@ public class ReconciliationService {
     return ReconciliationTransform.toReconciliationRest(reconciliation);
   }
 
-  public ReconciliationRest approveReconciliation(Long id ){
+  @Transactional
+  public void approveReconciliation(Long id, ReconciliationApproveRequest request) {
+
+    // update the status of reconciliations
+    // filter the WRITE_OFF and decrease stock
+    // filter the WRITE_ON and increase stock
+
+    //todo: if already approved throw
+
     var reconciliation = reconciliationValidatorService.ifFoundByIdReturnElseThrow(id);
+    var items = reconciliationItemRepository.findAllByReconciliationId(id);
 
-    ReconciliationStatusEnum status =ReconciliationStatusEnum.Pending;
-    if(status!=null) {
-      status = ReconciliationStatusEnum.Pending;
-    }else {
-      status = ReconciliationStatusEnum.Approved;
+    reconciliation.setReconciliationStatus(request.getReconciliationStatus());
+    reconciliation.setApprovedAt(LocalDateTime.now());
+    reconciliationRepository.save(reconciliation);
+
+    if(request.getReconciliationStatus().equals(ReconciliationStatusEnum.Approved)) {
+      List<ReconciliationItemEntity> writeOffItems = items.stream()
+        .filter(itm-> itm.getReconciliationType().equals(ReconciliationType.WRITE_OFF))
+        .collect(Collectors.toList());
+
+      List<ReconciliationItemEntity> writeOnItems = items.stream()
+        .filter(itm-> itm.getReconciliationType().equals(ReconciliationType.WRITE_ON))
+        .collect(Collectors.toList());
+
+      stockService.decreaseStock(ReconciliationTransform.toStockDto(writeOffItems));
+      stockService.increaseStock(ReconciliationTransform.toStockDto(writeOnItems));
     }
-    return ReconciliationTransform.toReconciliationRest(reconciliation);
   }
-
-
-
 
 
   public void deleteReconciliation(Long id) {
@@ -59,12 +77,6 @@ public class ReconciliationService {
     stockService.decreaseStock(ReconciliationItemTransform.toStockDto(items));
 
   }
-
-
-
-
-
-
 
 
 }
