@@ -6,5 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ReconciliationApproveRequest {
+
   private ReconciliationStatusEnum reconciliationStatus;
+
 }
