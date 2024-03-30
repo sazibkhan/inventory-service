@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @CrossOrigin
@@ -23,6 +24,15 @@ public class BrandController {
   public ResponseEntity<BrandRest> saveBrand(@RequestBody BrandDto brandDto) {
     BrandRest brandRest = brandService.saveBrand(brandDto);
     return ResponseEntity.status(HttpStatus.OK).body(brandRest);
+  }
+
+//  @GetMapping
+//  public ResponseEntity<List<?>> getAllBrand() {
+//    return ResponseEntity.status(HttpStatus.OK).body(brandService.getAllBrand());
+//  }
+  @GetMapping("{id}")
+  public ResponseEntity<BrandRest> getBrandById(@PathVariable Long id) {
+    return ResponseEntity.status(HttpStatus.OK).body(brandService.getBrandById(id));
   }
 
   @PutMapping("/{id}")
