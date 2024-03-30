@@ -7,6 +7,5 @@ Accept: application/json
   "supplierName": "Square",
   "supplierAddress": "sazib@gmail.com",
   "phoneNumber": "Square",
-  "enabled": true
 }
 

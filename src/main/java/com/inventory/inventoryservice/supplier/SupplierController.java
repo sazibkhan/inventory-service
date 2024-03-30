@@ -1,6 +1,7 @@
 package com.inventory.inventoryservice.supplier;
 
 
+import com.inventory.inventoryservice.brand.model.BrandRest;
 import com.inventory.inventoryservice.supplier.model.SupplierDto;
 import com.inventory.inventoryservice.supplier.model.SupplierRest;
 import lombok.RequiredArgsConstructor;
@@ -15,14 +16,21 @@ import org.springframework.web.bind.annotation.*;
 public class SupplierController {
 
   private final SupplierService supplierService;
-
-  //todo: need to complete the CRUD of Supplier
-
   @PostMapping
-  public ResponseEntity<SupplierRest> saveCompany(@RequestBody SupplierDto supplierDto) {
+  public ResponseEntity<SupplierRest> saveSupplier(@RequestBody SupplierDto supplierDto) {
     SupplierRest supplierRest = supplierService.saveSupplier(supplierDto);
     return ResponseEntity.status(HttpStatus.OK).body(supplierRest);
   }
 
+  @PutMapping("/{id}")
+  public ResponseEntity<SupplierRest>updateSupplier(@PathVariable Long id, @RequestBody SupplierDto supplierDto){
+    SupplierRest supplierRest = supplierService.updateSupplier(id, supplierDto);
+    return ResponseEntity.status(HttpStatus.OK).body(supplierRest);
+  }
+  @DeleteMapping("/{id}")
+  public ResponseEntity<String> deleteSupplier(@PathVariable Long id) {
+    supplierService.deleteSupplier(id);
+    return ResponseEntity.status(HttpStatus.OK).body("Deleted Successfully.");
+  }
 
 }
