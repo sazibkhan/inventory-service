@@ -11,6 +11,7 @@ import javax.persistence.Column;
 @NoArgsConstructor
 public class CustomerRest {
 
+
     private String customerName;
     private String phoneNumber;
     private String customerType;

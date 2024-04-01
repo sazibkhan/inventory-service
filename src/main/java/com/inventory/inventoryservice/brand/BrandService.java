@@ -28,14 +28,14 @@ public class BrandService {
     return BrandTransform.toBrandRest(brand);
   }
 
-//  public List<BrandRest> getAllBrand() {
-//    return brandRepository.findAll().stream()
-//            .map(itm -> {
-//              var res = new BrandRest();
-//              BeanUtils.copyProperties(itm, res);
-//              return res;
-//            }).collect(Collectors.toList());
-//  }
+  public List<BrandRest> getAllBrand() {
+    return brandRepository.findAll().stream()
+            .map(itm -> {
+              var res = new BrandRest();
+              BeanUtils.copyProperties(itm, res);
+              return res;
+            }).collect(Collectors.toList());
+  }
 
   public BrandRest getBrandById(Long id) {
     BrandEntity brand = brandValidatorService.ifFoundByIdReturnElseThrow(id);

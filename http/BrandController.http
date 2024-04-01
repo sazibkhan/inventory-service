@@ -1,14 +1,12 @@
-
-
 ### BrandController::saveBrand
 POST http://localhost:8099/api/v1/brands
 Content-Type: application/json
 Accept: application/json
 
 {
-  "brandName": "Brand3",
-  "enabled": false
+  "brandName": "Brand3"
 }
+
 
 ### BrandController::updateBrand
 PUT http://localhost:8099/api/v1/brands/1
@@ -17,22 +15,34 @@ Accept: application/json
 
 {
   "brandName": "Square2",
-  "enabled": true
+  "enabled": false
 }
+
+
+### BrandController::getAllBrand
+GET http://localhost:8099/api/v1/brands/list
+Content-Type: application/json
+Accept: application/json
+
+
+
+### BrandController::getBrandById
+GET http://localhost:8099/api/v1/brands/1
+Content-Type: application/json
+Accept: application/json
+
 
 ### BrandController::deleteBrand
 DELETE http://localhost:8099/api/v1/brands/1
 Content-Type: application/json
 Accept: application/json
 
-{
-  "brandName": "Square2",
-  "enabled": true
-}
+
 
 ###
 GET http://localhost:8099/api/v1/brands?name=mahadi&age=87
 Accept: application/json
+
 
 ### BrandController::searchPage
 POST http://localhost:8099/api/v1/brands/search-page

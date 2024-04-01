@@ -1,5 +1,6 @@
 package com.inventory.inventoryservice.customer;
 
+import com.inventory.inventoryservice.brand.model.BrandRest;
 import com.inventory.inventoryservice.customer.model.CustomerDto;
 import com.inventory.inventoryservice.customer.model.CustomerRest;
 import com.inventory.inventoryservice.customer.model.CustomerSearchDto;
@@ -20,6 +21,11 @@ public class CustomerController {
   public ResponseEntity<CustomerRest> saveCustomer(@RequestBody CustomerDto customerDto) {
     CustomerRest customerRest = customerService.saveCustomer(customerDto);
     return ResponseEntity.status(HttpStatus.OK).body(customerRest);
+  }
+
+  @GetMapping("{id}")
+  public ResponseEntity<CustomerRest> getCustomerById(@PathVariable Long id) {
+    return ResponseEntity.status(HttpStatus.OK).body(customerService.getCustomerById(id));
   }
 
   @PutMapping("/{id}")

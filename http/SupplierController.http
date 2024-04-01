@@ -6,6 +6,23 @@ Accept: application/json
 {
   "supplierName": "Square",
   "supplierAddress": "sazib@gmail.com",
-  "phoneNumber": "Square",
+  "phoneNumber": "01717226385"
 }
+
+### SupplierController::updateSupplier
+PUT http://localhost:8099/api/v1/suppliers/10
+Content-Type: application/json
+Accept: application/json
+
+{
+  "supplierName": "Napa",
+  "supplierAddress": "sazib@gmail.com",
+  "phoneNumber": "01717226385"
+}
+
+
+### SupplierController::deleteSupplier
+DELETE http://localhost:8099/api/v1/suppliers/9
+Content-Type: application/json
+Accept: application/json
 

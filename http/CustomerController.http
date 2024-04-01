@@ -1,5 +1,3 @@
-
-
 ### CustomerController::saveCustomer
 POST http://localhost:8099/api/v1/customers
 Content-Type: application/json
@@ -7,17 +5,16 @@ Accept: application/json
 
 {
   "customerName":"Sazib Khan",
-  "phoneNumber":"01717226385",
+  "phoneNumber":"01717-226385",
   "customerType":"premium ",
   "email":"sazib@gmail.com",
-  "customerImage":"Picture",
-  "enabled": true
+  "customerImage":"Picture"
 }
 
 
 
 ### CustomerController::updateCustomer
-PUT http://localhost:8099/api/v1/customers/1
+PUT http://localhost:8099/api/v1/customers/2
 Content-Type: application/json
 Accept: application/json
 
@@ -29,9 +26,13 @@ Accept: application/json
   "customerImage":"Picture",
   "enabled": true
 }
+### CustomerController::getCustomerById
+GET http://localhost:8099/api/v1/customers/1
+Content-Type: application/json
+Accept: application/json
 
 ### CustomerController::deleteCustomer
-DELETE http://localhost:8099/api/v1/customers/1
+DELETE http://localhost:8099/api/v1/customers/2
 Content-Type: application/json
 Accept: application/json
 

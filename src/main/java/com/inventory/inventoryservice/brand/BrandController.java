@@ -26,10 +26,10 @@ public class BrandController {
     return ResponseEntity.status(HttpStatus.OK).body(brandRest);
   }
 
-//  @GetMapping
-//  public ResponseEntity<List<?>> getAllBrand() {
-//    return ResponseEntity.status(HttpStatus.OK).body(brandService.getAllBrand());
-//  }
+  @GetMapping("/list")
+  public ResponseEntity<List<?>> getAllBrand() {
+    return ResponseEntity.status(HttpStatus.OK).body(brandService.getAllBrand());
+  }
   @GetMapping("{id}")
   public ResponseEntity<BrandRest> getBrandById(@PathVariable Long id) {
     return ResponseEntity.status(HttpStatus.OK).body(brandService.getBrandById(id));
