@@ -11,19 +11,19 @@ Accept: application/json
   "items": [
     {
       "productId": 1,
-      "quantity": 20,
+      "quantity": 25,
       "purchasePrice": 10.0,
       "salesPrice": 15.0
     },
     {
       "productId": 2,
-      "quantity": 30,
+      "quantity": 35,
       "purchasePrice": 20.0,
       "salesPrice": 30.0
     },
     {
       "productId": 3,
-      "quantity": 40,
+      "quantity": 45,
       "purchasePrice": 40.0,
       "salesPrice": 45.0
     }

@@ -33,6 +33,7 @@ public class ProductService {
     private final CategoryValidatorService categoryValidatorService;
     public ProductRest saveProduct(ProductDto productDto) {
         ProductEntity product = productValidatorService.validateAndReturnProductSave(productDto);
+        product.setEnabled(Boolean.TRUE );
         productRepository.save(product);
         return ProductTransform.toProductRest(product);
     }

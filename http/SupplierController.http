@@ -15,9 +15,10 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "supplierName": "Napa",
+  "supplierName": "Square",
   "supplierAddress": "sazib@gmail.com",
-  "phoneNumber": "01717226385"
+  "phoneNumber": "01717226385",
+  "enabled": true
 }
 
 
@@ -26,3 +27,31 @@ DELETE http://localhost:8099/api/v1/suppliers/9
 Content-Type: application/json
 Accept: application/json
 
+
+
+
+
+### SupplierController::searchPage
+POST http://localhost:8099/api/v1/suppliers/search-page
+Content-Type: application/json
+Accept: application/json
+
+{
+  "supplierName": "Square",
+  "supplierAddress": "sazib@gmail.com",
+  "phoneNumber": "01717226385",
+  "enabled": true
+}
+
+
+### SupplierController::searchList
+POST http://localhost:8099/api/v1/suppliers/search-list
+Content-Type: application/json
+Accept: application/json
+
+{
+  "supplierName": "Square",
+  "supplierAddress": "sazib@gmail.com",
+  "phoneNumber": "Square",
+  "enabled": true
+}

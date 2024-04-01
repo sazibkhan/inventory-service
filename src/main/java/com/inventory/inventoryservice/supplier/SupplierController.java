@@ -2,8 +2,10 @@ package com.inventory.inventoryservice.supplier;
 
 
 import com.inventory.inventoryservice.brand.model.BrandRest;
+import com.inventory.inventoryservice.brand.model.BrandSearchDto;
 import com.inventory.inventoryservice.supplier.model.SupplierDto;
 import com.inventory.inventoryservice.supplier.model.SupplierRest;
+import com.inventory.inventoryservice.supplier.model.SupplierSearchDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,5 +34,21 @@ public class SupplierController {
     supplierService.deleteSupplier(id);
     return ResponseEntity.status(HttpStatus.OK).body("Deleted Successfully.");
   }
+
+
+
+
+  @PostMapping("/search-page")
+  public ResponseEntity<?> searchPage(@RequestBody SupplierSearchDto searchDto) {
+    return ResponseEntity.status(HttpStatus.OK)
+            .body(supplierService.searchPage(searchDto));
+  }
+
+  @PostMapping("/search-list")
+  public ResponseEntity<?> searchList(@RequestBody SupplierSearchDto searchDto) {
+    return ResponseEntity.status(HttpStatus.OK)
+            .body(supplierService.searchList(searchDto));
+  }
+
 
 }

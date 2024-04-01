@@ -11,5 +11,5 @@ public class SupplierRest {
     private String supplierName;
     private String supplierAddress;
     private String phoneNumber;
-    private boolean enabled;
+    private Boolean enabled;
 }

@@ -29,7 +29,7 @@ public class SupplierEntity {
   private SupplierTypeEnum supplierType;
 
   @Column(name = "enabled")
-  private boolean enabled;
+  private Boolean enabled;
 
   @Column(name = "created_at")
   private LocalDateTime createdAt;

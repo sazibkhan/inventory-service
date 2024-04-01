@@ -11,8 +11,8 @@ Accept: application/json
   "categoryId": 1,
   "purchasePrice": 100,
   "salesPrice": 150,
-  "discountAmount": 10,
-  "enabled": true
+  "discountAmount": 10
+
 }
 
 ### ProductController::updateProduct

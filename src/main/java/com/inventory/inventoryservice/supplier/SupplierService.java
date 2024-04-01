@@ -4,10 +4,7 @@ import com.inventory.inventoryservice.brand.BrandTransform;
 import com.inventory.inventoryservice.brand.model.BrandEntity;
 import com.inventory.inventoryservice.brand.model.BrandRest;
 import com.inventory.inventoryservice.brand.model.BrandSearchDto;
-import com.inventory.inventoryservice.supplier.model.SupplierDto;
-import com.inventory.inventoryservice.supplier.model.SupplierEntity;
-import com.inventory.inventoryservice.supplier.model.SupplierRest;
-import com.inventory.inventoryservice.supplier.model.SupplierTypeEnum;
+import com.inventory.inventoryservice.supplier.model.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -24,6 +21,7 @@ public class SupplierService {
 
   private final SupplierRepository supplierRepository;
   private final SupplierValidatorService supplierValidatorService;
+  private final SupplierQueryService supplierQueryService;
 
   public SupplierRest saveSupplier(SupplierDto supplierDto) {
     SupplierEntity supplierEntity = SupplierTransform.toSupplierEntity(supplierDto);
@@ -53,6 +51,19 @@ public class SupplierService {
   }
 
 
+
+
+  public Page<SupplierRest> searchPage(SupplierSearchDto searchDto) {
+
+    Page<SupplierEntity> page =  supplierQueryService.searchPage(searchDto);
+    List<SupplierRest> resultList = SupplierTransform.toSupplierRestList(page.getContent());
+
+    return new PageImpl<>(resultList, page.getPageable(), page.getTotalElements());
+  }
+  public List<SupplierRest> searchList(SupplierSearchDto searchDto) {
+    return SupplierTransform.toSupplierRestList(supplierQueryService.searchList(searchDto));
+
+  }
 
 
 
