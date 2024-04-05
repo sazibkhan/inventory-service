@@ -11,19 +11,21 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class UserQueryService {
 
-    private final  UserRepository userRepository;
-    public Page<UserEntity> searchPage(UserSearchDto searchDto) {
-        Pageable pageable=  PageRequest.of(searchDto.getPage(), searchDto.getSize());
-        Predicate predicate = UserPredicate.search(searchDto);
-        return  userRepository.findAll(predicate, pageable);
-    }
+  private final UserRepository userRepository;
 
-    public List<UserEntity> searchList(UserSearchDto searchDto) {
-        Predicate predicate = UserPredicate.search(searchDto);
-        return IterableUtils.toList(userRepository.findAll(predicate));
-    }
+  public Page<UserEntity> searchPage(UserSearchDto searchDto) {
+    Pageable pageable = PageRequest.of(searchDto.getPage(), searchDto.getSize());
+    Predicate predicate = UserPredicate.search(searchDto);
+    return userRepository.findAll(predicate, pageable);
+  }
+
+  public List<UserEntity> searchList(UserSearchDto searchDto) {
+    Predicate predicate = UserPredicate.search(searchDto);
+    return IterableUtils.toList(userRepository.findAll(predicate));
+  }
 }
