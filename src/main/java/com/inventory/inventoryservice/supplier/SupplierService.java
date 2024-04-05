@@ -1,16 +1,10 @@
 package com.inventory.inventoryservice.supplier;
 
-import com.inventory.inventoryservice.brand.BrandTransform;
-import com.inventory.inventoryservice.brand.model.BrandEntity;
-import com.inventory.inventoryservice.brand.model.BrandRest;
-import com.inventory.inventoryservice.brand.model.BrandSearchDto;
 import com.inventory.inventoryservice.supplier.model.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -24,13 +18,11 @@ public class SupplierService {
   private final SupplierQueryService supplierQueryService;
 
   public SupplierRest saveSupplier(SupplierDto supplierDto) {
-    SupplierEntity supplierEntity = SupplierTransform.toSupplierEntity(supplierDto);
-    supplierEntity.setSupplierType(SupplierTypeEnum.Company);
-    supplierEntity.setEnabled(Boolean.TRUE);
-    supplierEntity.setCreatedAt(LocalDateTime.now());
-
-    supplierRepository.save(supplierEntity);
-    return SupplierTransform.toSupplierRest(supplierEntity);
+    SupplierEntity supplier = SupplierTransform.toSupplierEntity(supplierDto);
+    supplier.setEnabled(Boolean.TRUE);
+    supplier.setCreatedAt(LocalDateTime.now());
+    supplierRepository.save(supplier);
+    return SupplierTransform.toSupplierRest(supplier);
   }
 
   public SupplierRest updateSupplier(Long id, SupplierDto supplierDto){
@@ -50,21 +42,14 @@ public class SupplierService {
     supplierRepository.deleteById(supplier.getId());
   }
 
-
-
-
   public Page<SupplierRest> searchPage(SupplierSearchDto searchDto) {
-
     Page<SupplierEntity> page =  supplierQueryService.searchPage(searchDto);
     List<SupplierRest> resultList = SupplierTransform.toSupplierRestList(page.getContent());
-
     return new PageImpl<>(resultList, page.getPageable(), page.getTotalElements());
   }
+
   public List<SupplierRest> searchList(SupplierSearchDto searchDto) {
     return SupplierTransform.toSupplierRestList(supplierQueryService.searchList(searchDto));
-
   }
-
-
 
 }

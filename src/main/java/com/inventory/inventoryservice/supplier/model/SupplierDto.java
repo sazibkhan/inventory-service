@@ -10,6 +10,7 @@ import lombok.*;
 public class SupplierDto {
 
     private String supplierName;
+    private SupplierTypeEnum supplierType;
     private String supplierAddress;
     private String phoneNumber;
     private Boolean enabled;

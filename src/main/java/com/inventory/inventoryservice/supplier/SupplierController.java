@@ -1,8 +1,6 @@
 package com.inventory.inventoryservice.supplier;
 
 
-import com.inventory.inventoryservice.brand.model.BrandRest;
-import com.inventory.inventoryservice.brand.model.BrandSearchDto;
 import com.inventory.inventoryservice.supplier.model.SupplierDto;
 import com.inventory.inventoryservice.supplier.model.SupplierRest;
 import com.inventory.inventoryservice.supplier.model.SupplierSearchDto;
@@ -18,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 public class SupplierController {
 
   private final SupplierService supplierService;
+
   @PostMapping
   public ResponseEntity<SupplierRest> saveSupplier(@RequestBody SupplierDto supplierDto) {
     SupplierRest supplierRest = supplierService.saveSupplier(supplierDto);
@@ -29,14 +28,12 @@ public class SupplierController {
     SupplierRest supplierRest = supplierService.updateSupplier(id, supplierDto);
     return ResponseEntity.status(HttpStatus.OK).body(supplierRest);
   }
+
   @DeleteMapping("/{id}")
   public ResponseEntity<String> deleteSupplier(@PathVariable Long id) {
     supplierService.deleteSupplier(id);
     return ResponseEntity.status(HttpStatus.OK).body("Deleted Successfully.");
   }
-
-
-
 
   @PostMapping("/search-page")
   public ResponseEntity<?> searchPage(@RequestBody SupplierSearchDto searchDto) {
@@ -49,6 +46,5 @@ public class SupplierController {
     return ResponseEntity.status(HttpStatus.OK)
             .body(supplierService.searchList(searchDto));
   }
-
 
 }

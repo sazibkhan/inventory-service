@@ -12,7 +12,6 @@ public class SupplierTransform {
 
   public static SupplierEntity toSupplierEntity(SupplierDto supplierDto) {
     var supplier = new SupplierEntity();
-
     BeanUtils.copyProperties(supplierDto, supplier);
     return supplier;
   }
