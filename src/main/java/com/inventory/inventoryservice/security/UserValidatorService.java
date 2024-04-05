@@ -10,14 +10,14 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class UserValidatorService {
 
-    private final UserRepository userRepository;
+  private final UserRepository userRepository;
 
-    public UserEntity ifFoundByIdReturnElseThrow(Long id){
-        Objects.requireNonNull(id);
-        return userRepository.findById(id)
-                .orElseThrow(()->new IllegalArgumentException(String
-                        .format("User not found with id [%s]",id)));
-    }
+  public UserEntity ifFoundByIdReturnElseThrow(Long id) {
+    Objects.requireNonNull(id);
+    return userRepository.findById(id)
+      .orElseThrow(() -> new IllegalArgumentException(String
+        .format("User not found with id [%s]", id)));
+  }
 
 
 }

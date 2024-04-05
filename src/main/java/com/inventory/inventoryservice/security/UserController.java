@@ -29,6 +29,8 @@ public class UserController {
     return ResponseEntity.status(HttpStatus.OK).body(userRest);
   }
 
+  //todo: delete mapping
+
   @PostMapping("/search-page")
   public ResponseEntity<?> searchPage(@RequestBody UserSearchDto searchDto) {
     return ResponseEntity.status(HttpStatus.OK)
@@ -40,6 +42,5 @@ public class UserController {
     return ResponseEntity.status(HttpStatus.OK)
       .body(userService.searchList(searchDto));
   }
-
 
 }

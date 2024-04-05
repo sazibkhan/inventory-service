@@ -5,7 +5,6 @@ import com.inventory.inventoryservice.security.model.UserEntity;
 import com.inventory.inventoryservice.security.model.UserRest;
 import com.inventory.inventoryservice.security.model.UserSearchDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Service;
@@ -16,38 +15,34 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserService {
 
-    private final UserRepository userRepository;
-    private final UserValidatorService userValidatorService;
-    private final UserQueryService userQueryService;
-    public UserRest saveUser(UserDto userDto) {
-        UserEntity user = UserTransform.toUserEntity(userDto);
-        userRepository.save(user);
-        return UserTransform.toUserRest(user);
-    }
+  private final UserRepository userRepository;
+  private final UserValidatorService userValidatorService;
+  private final UserQueryService userQueryService;
 
+  public UserRest saveUser(UserDto userDto) {
+    UserEntity user = UserTransform.toUserEntity(userDto);
+    userRepository.save(user);
+    return UserTransform.toUserRest(user);
+  }
 
+  public UserRest updateUser(Long id, UserDto userDto) {
 
-    public UserRest updateUser(Long id, UserDto userDto) {
+    UserEntity user = userValidatorService.ifFoundByIdReturnElseThrow(id);
+    user.setFullName(userDto.getFullName());
+    user.setUsername(userDto.getUsername());
+    user.setPassword(userDto.getPassword());
+    userRepository.save(user);
+    return UserTransform.toUserRest(user);
+  }
 
-        UserEntity user = userValidatorService.ifFoundByIdReturnElseThrow(id);
-        user.setFullName(userDto.getFullName());
-        user.setUsername(userDto.getUsername());
-        user.setPassword(userDto.getPassword());
-        userRepository.save(user);
-        return UserTransform.toUserRest(user);
-    }
+  public Page<UserRest> searchPage(UserSearchDto searchDto) {
+    Page<UserEntity> page = userQueryService.searchPage(searchDto);
+    List<UserRest> resultList = UserTransform.toUserRestList(page.getContent());
+    return new PageImpl<>(resultList, page.getPageable(), page.getTotalElements());
+  }
 
-
-
-
-    public Page<UserRest> searchPage(UserSearchDto searchDto) {
-        Page<UserEntity> page =  userQueryService.searchPage(searchDto);
-        List<UserRest> resultList = UserTransform.toUserRestList(page.getContent());
-        return new PageImpl<>(resultList, page.getPageable(), page.getTotalElements());
-    }
-
-    public List<UserRest> searchList(UserSearchDto searchDto) {
-        return UserTransform.toUserRestList(userQueryService.searchList(searchDto));
-    }
+  public List<UserRest> searchList(UserSearchDto searchDto) {
+    return UserTransform.toUserRestList(userQueryService.searchList(searchDto));
+  }
 
 }

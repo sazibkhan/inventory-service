@@ -23,7 +23,6 @@ public class UserQueryService {
     }
 
     public List<UserEntity> searchList(UserSearchDto searchDto) {
-
         Predicate predicate = UserPredicate.search(searchDto);
         return IterableUtils.toList(userRepository.findAll(predicate));
     }
