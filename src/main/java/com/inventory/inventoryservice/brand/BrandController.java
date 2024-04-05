@@ -4,13 +4,9 @@ import com.inventory.inventoryservice.brand.model.BrandDto;
 import com.inventory.inventoryservice.brand.model.BrandRest;
 import com.inventory.inventoryservice.brand.model.BrandSearchDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Map;
 
 @CrossOrigin
 @RestController
@@ -26,10 +22,6 @@ public class BrandController {
     return ResponseEntity.status(HttpStatus.OK).body(brandRest);
   }
 
-  @GetMapping("/list")
-  public ResponseEntity<List<?>> getAllBrand() {
-    return ResponseEntity.status(HttpStatus.OK).body(brandService.getAllBrand());
-  }
   @GetMapping("{id}")
   public ResponseEntity<BrandRest> getBrandById(@PathVariable Long id) {
     return ResponseEntity.status(HttpStatus.OK).body(brandService.getBrandById(id));
@@ -45,12 +37,6 @@ public class BrandController {
   public ResponseEntity<String> deleteBrand(@PathVariable Long id) {
     brandService.deleteBrand(id);
     return ResponseEntity.status(HttpStatus.OK).body("Deleted Successfully.");
-  }
-
-  @GetMapping
-  public ResponseEntity<?> params(@RequestParam Map<String, String> params) {
-    params.forEach((key, value) -> System.out.printf("key: %s, value: %s%n", key, value));
-    return ResponseEntity.ok("");
   }
 
   @PostMapping("/search-page")

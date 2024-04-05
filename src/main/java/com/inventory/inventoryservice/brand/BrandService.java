@@ -11,7 +11,6 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -23,24 +22,15 @@ public class BrandService {
 
   public BrandRest saveBrand(BrandDto brandDto) {
     BrandEntity brand = BrandTransform.toBrandEntity(brandDto);
-    brand.setEnabled(Boolean.TRUE );
+    brand.setEnabled(Boolean.TRUE);
     brandRepository.save(brand);
     return BrandTransform.toBrandRest(brand);
   }
 
-  public List<BrandRest> getAllBrand() {
-    return brandRepository.findAll().stream()
-            .map(itm -> {
-              var res = new BrandRest();
-              BeanUtils.copyProperties(itm, res);
-              return res;
-            }).collect(Collectors.toList());
-  }
-
   public BrandRest getBrandById(Long id) {
     BrandEntity brand = brandValidatorService.ifFoundByIdReturnElseThrow(id);
-    var response =new BrandRest();
-    BeanUtils.copyProperties(brand,response);
+    var response = new BrandRest();
+    BeanUtils.copyProperties(brand, response);
     return response;
   }
 
@@ -53,24 +43,18 @@ public class BrandService {
   }
 
   public void deleteBrand(Long id) {
-
     BrandEntity brand = brandValidatorService.ifFoundByIdReturnElseThrow(id);
     brandRepository.deleteById(brand.getId());
   }
 
   public Page<BrandRest> searchPage(BrandSearchDto searchDto) {
-
-    Page<BrandEntity> page =  brandQueryService.searchPage(searchDto);
-
+    Page<BrandEntity> page = brandQueryService.searchPage(searchDto);
     List<BrandRest> resultList = BrandTransform.toBrandRestList(page.getContent());
-
     return new PageImpl<>(resultList, page.getPageable(), page.getTotalElements());
   }
 
   public List<BrandRest> searchList(BrandSearchDto searchDto) {
     return BrandTransform.toBrandRestList(brandQueryService.searchList(searchDto));
   }
-
-
 
 }
