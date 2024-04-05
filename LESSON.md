@@ -16,3 +16,7 @@
 - Approve API for reconciliation
 - Collect all the WRITE_OFF items in a List and apply sales logic decrease
 - Collect all the WRITE_ON items in a List and apply purchase login increase
+
+05-April-2024
+- Remove createdAt, createdBy, updatedAt, updatedBy from all entities and dto if exists
+- Check if any missing CRUD functionality
