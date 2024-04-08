@@ -22,7 +22,10 @@ Accept: application/json
   "enabled": true
 }
 
-
+### UserController::deleteUser
+DELETE  http://localhost:8099/api/v1/users/1
+Content-Type: application/json
+Accept: application/json
 
 
 ### UserController::searchPage

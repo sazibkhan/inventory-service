@@ -29,7 +29,11 @@ public class UserController {
     return ResponseEntity.status(HttpStatus.OK).body(userRest);
   }
 
-  //todo: delete mapping
+  @DeleteMapping("/{id}")
+  public  ResponseEntity<String>deleteUser(@PathVariable Long id){
+    userService.deleteUser(id);
+    return ResponseEntity.status(HttpStatus.OK).body("Deleted Successfully.");
+  }
 
   @PostMapping("/search-page")
   public ResponseEntity<?> searchPage(@RequestBody UserSearchDto searchDto) {

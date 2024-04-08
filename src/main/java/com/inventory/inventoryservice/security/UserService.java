@@ -26,14 +26,21 @@ public class UserService {
   }
 
   public UserRest updateUser(Long id, UserDto userDto) {
-
     UserEntity user = userValidatorService.ifFoundByIdReturnElseThrow(id);
     user.setFullName(userDto.getFullName());
     user.setUsername(userDto.getUsername());
     user.setPassword(userDto.getPassword());
     userRepository.save(user);
+
     return UserTransform.toUserRest(user);
   }
+
+  public void deleteUser(Long id){
+    UserEntity  user= userValidatorService.ifFoundByIdReturnElseThrow(id);
+    userRepository.deleteById(user.getId());
+  }
+
+
 
   public Page<UserRest> searchPage(UserSearchDto searchDto) {
     Page<UserEntity> page = userQueryService.searchPage(searchDto);
