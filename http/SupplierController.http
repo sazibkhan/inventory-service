@@ -2,7 +2,6 @@
 POST http://localhost:8099/api/v1/suppliers
 Content-Type: application/json
 Accept: application/json
-
 {
   "supplierName": "Square",
   "supplierAddress": "sazib@gmail.com",
@@ -21,21 +20,16 @@ Accept: application/json
   "enabled": true
 }
 
-
 ### SupplierController::deleteSupplier
 DELETE http://localhost:8099/api/v1/suppliers/9
 Content-Type: application/json
 Accept: application/json
 
 
-
-
-
 ### SupplierController::searchPage
 POST http://localhost:8099/api/v1/suppliers/search-page
 Content-Type: application/json
 Accept: application/json
-
 {
   "supplierName": "Square",
   "supplierAddress": "sazib@gmail.com",
@@ -43,12 +37,10 @@ Accept: application/json
   "enabled": true
 }
 
-
 ### SupplierController::searchList
 POST http://localhost:8099/api/v1/suppliers/search-list
 Content-Type: application/json
 Accept: application/json
-
 {
   "supplierName": "Square",
   "supplierAddress": "sazib@gmail.com",

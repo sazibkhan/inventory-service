@@ -56,16 +56,6 @@ public class ProductEntity {
     @Column(name = "enabled")
     private boolean enabled;
 
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
 
-    @Column(name = "created_by")
-    private Long createdBy;
-
-    @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
-
-    @Column(name = "updated_by")
-    private  Long updatedBy;
 
 }

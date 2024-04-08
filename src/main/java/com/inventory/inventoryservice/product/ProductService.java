@@ -31,6 +31,8 @@ public class ProductService {
     private final ProductValidatorService productValidatorService;
     private final BrandValidatorService brandValidatorService;
     private final CategoryValidatorService categoryValidatorService;
+
+
     public ProductRest saveProduct(ProductDto productDto) {
         ProductEntity product = productValidatorService.validateAndReturnProductSave(productDto);
         product.setEnabled(Boolean.TRUE );
@@ -50,13 +52,11 @@ public class ProductService {
             productRepository.save(productEntity);
         return ProductTransform.toProductRest(productEntity);
     }
+
     public void deleteProduct(Long id) {
         var productEntity = productValidatorService.ifFoundByIdReturnElseThrow(id);
         productRepository.deleteById(productEntity.getId());
     }
-
-
-
 
 
 
@@ -66,7 +66,8 @@ public class ProductService {
       List<ProductRest> productRestList = ProductTransform.toProductRestList(page.getContent());
       return new PageImpl<>(productRestList, page.getPageable(), page.getTotalElements());
   }
-    public List<ProductRest> searchList(ProductSearchDto searchDto) {
+
+  public List<ProductRest> searchList(ProductSearchDto searchDto) {
         return ProductTransform.toProductRestList(productQueryService.searchList(searchDto));
     }
 

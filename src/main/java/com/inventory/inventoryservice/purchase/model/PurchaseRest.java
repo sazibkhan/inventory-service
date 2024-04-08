@@ -14,9 +14,6 @@ public class PurchaseRest {
     private String supplier;
     private Long supplierId;
     private Boolean enabled;
-    private LocalDateTime createdAt;
-    private Long createdBy;
-    private LocalDateTime updatedAt;
-    private  Long updatedBy;
+
 
 }

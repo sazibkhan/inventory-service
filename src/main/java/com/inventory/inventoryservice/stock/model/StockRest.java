@@ -14,8 +14,5 @@ public class StockRest {
     private Long productId;
     private Double currentStock;
     private boolean enabled;
-    private LocalDateTime createdAt;
-    private Long createdBy;
-    private LocalDateTime updatedAt;
-    private Long updatedBy;
+
 }

@@ -2,7 +2,6 @@
 POST http://localhost:8099/api/v1/categorys
 Content-Type: application/json
 Accept: application/json
-
 {
   "categoryName": "Category2",
   "enabled": true
@@ -24,7 +23,6 @@ Accept: application/json
 PUT http://localhost:8099/api/v1/categorys/1
 Content-Type: application/json
 Accept: application/json
-
 {
   "categoryName": "Good",
   "enabled": true
@@ -34,7 +32,6 @@ Accept: application/json
 DELETE http://localhost:8099/api/v1/categorys/1
 Content-Type: application/json
 Accept: application/json
-
 {
   "categoryName": "Square2",
   "enabled": true
@@ -47,18 +44,15 @@ Accept: application/json
 POST http://localhost:8099/api/v1/categorys/search-page
 Content-Type: application/json
 Accept: application/json
-
 {
   "categoryName": "Category1",
   "enabled": true
 }
 
-
 ### CategoryController::searchList
 POST http://localhost:8099/api/v1/categorys/search-list
 Content-Type: application/json
 Accept: application/json
-
 {
   "categoryName": "Category1",
   "enabled": true

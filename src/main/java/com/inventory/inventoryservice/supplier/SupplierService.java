@@ -20,19 +20,16 @@ public class SupplierService {
   public SupplierRest saveSupplier(SupplierDto supplierDto) {
     SupplierEntity supplier = SupplierTransform.toSupplierEntity(supplierDto);
     supplier.setEnabled(Boolean.TRUE);
-    supplier.setCreatedAt(LocalDateTime.now());
+
     supplierRepository.save(supplier);
     return SupplierTransform.toSupplierRest(supplier);
   }
 
   public SupplierRest updateSupplier(Long id, SupplierDto supplierDto){
     SupplierEntity supplier = supplierValidatorService.ifFoundByIdReturnElseThrow(id);
-
     supplier.setSupplierName(supplierDto.getSupplierName());
     supplier.setSupplierAddress(supplierDto.getSupplierAddress());
     supplier.setPhoneNumber(supplierDto.getPhoneNumber());
-    supplier.setUpdatedAt(LocalDateTime.now());
-
     supplierRepository.save(supplier);
     return  SupplierTransform.toSupplierRest(supplier);
   }

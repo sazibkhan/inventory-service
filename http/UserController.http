@@ -37,7 +37,6 @@ Accept: application/json
   "enabled": true
 }
 
-
 ### UserController::searchList
 POST http://localhost:8099/api/v1/users/search-list
 Content-Type: application/json

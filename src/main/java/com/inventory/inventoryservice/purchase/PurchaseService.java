@@ -82,20 +82,16 @@ public class PurchaseService {
 
     List<PurchaseItemEntity> items = purchaseItemRepository.findAllByPurchaseId(id);
     purchaseItemRepository.deleteAll(items);
-
     PurchaseEntity purchase = purchaseValidatorService.ifFoundByIdReturnElseThrow(id);
     purchaseRepository.delete(purchase);
-
     stockService.decreaseStock(PurchaseItemTransform.toStockDto(items));
 
   }
 
 
   public Page<PurchaseRest> searchPage(PurchaseSearchDto searchDto) {
-
     Page<PurchaseEntity> page = purchaseQueryService.searchPage(searchDto);
     List<PurchaseRest> purchaseRestList = PurchaseTransform.toPurchaseRestList(page.getContent());
-
     return new PageImpl<>(purchaseRestList, page.getPageable(), page.getTotalElements());
   }
 

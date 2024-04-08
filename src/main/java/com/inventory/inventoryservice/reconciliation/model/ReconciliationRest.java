@@ -14,8 +14,5 @@ public class ReconciliationRest {
     private LocalDate reconciliationDate;
     private String  status;
     private boolean enabled;
-    private LocalDateTime createdAt;
-    private Long createdBy;
-    private LocalDateTime updatedAt;
-    private  Long updatedBy;
+
 }

@@ -46,15 +46,4 @@ public class SalesItemEntity {
     @Column(name = "enabled")
     private Boolean enabled;
 
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
-
-    @Column(name = "created_by")
-    private Long createdBy;
-
-    @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
-
-    @Column(name = "updated_by")
-    private  Long updatedBy;
 }

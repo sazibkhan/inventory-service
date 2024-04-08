@@ -39,7 +39,7 @@ public class StockService {
 
   public void decreaseStock(List<StockDto> items) {
 
-    //todo: need to check whether stock is available or not. if not available throw
+    // check whether stock is available or not. if not available throw
     items.forEach(item -> {
       Optional<StockEntity> stockEntityOptional = stockRepository.findByProductId(item.getProductId());
       StockEntity stock = stockEntityOptional.orElseThrow();

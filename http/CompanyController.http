@@ -2,7 +2,6 @@
 POST http://localhost:8099/api/v1/companys
 Content-Type: application/json
 Accept: application/json
-
 {
   "companyName": "Square-1",
   "email": "s@gmail.com",
@@ -16,7 +15,6 @@ Accept: application/json
 PUT http://localhost:8099/api/v1/companys/1
 Content-Type: application/json
 Accept: application/json
-
 {
   "companyName": "Square",
   "email": "s@gmail.com",
@@ -24,7 +22,6 @@ Accept: application/json
   "address": "Dhaka",
   "enabled": true
 }
-
 
 ### CompanyController::deleteCompany
 DELETE http://localhost:8099/api/v1/companys/1

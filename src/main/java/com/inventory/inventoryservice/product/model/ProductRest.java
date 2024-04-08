@@ -24,8 +24,5 @@ public class ProductRest {
     private Double salesPrice;
     private Double discountAmount;
     private Boolean enabled;
-    private LocalDateTime createdAt;
-    private Long createdBy;
-    private LocalDateTime updatedAt;
-    private  Long updatedBy;
+
 }

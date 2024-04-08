@@ -12,8 +12,5 @@ public class CategoryDto {
 
     private String categoryName;
     private Boolean enabled;
-    private LocalDateTime createdAt;
-    private Long createdBy;
-    private LocalDateTime updatedAt;
-    private  Long updatedBy;
+
 }
