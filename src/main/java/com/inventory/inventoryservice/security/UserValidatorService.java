@@ -2,6 +2,7 @@ package com.inventory.inventoryservice.security;
 
 import com.inventory.inventoryservice.security.model.UserEntity;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
@@ -17,6 +18,12 @@ public class UserValidatorService {
     return userRepository.findById(id)
       .orElseThrow(() -> new IllegalArgumentException(String
         .format("User not found with id [%s]", id)));
+  }
+
+  public UserEntity ifFoundByUsernameReturnElseThrow(String username) {
+    return userRepository.findByUsername(username)
+      .orElseThrow(() -> new UsernameNotFoundException(String
+        .format("User not found by username [%s]", username)));
   }
 
 
