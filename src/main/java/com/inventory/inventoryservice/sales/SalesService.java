@@ -1,13 +1,5 @@
 package com.inventory.inventoryservice.sales;
 
-import com.inventory.inventoryservice.category.CategoryTransform;
-import com.inventory.inventoryservice.category.model.CategoryDto;
-import com.inventory.inventoryservice.category.model.CategoryEntity;
-import com.inventory.inventoryservice.category.model.CategoryRest;
-import com.inventory.inventoryservice.product.ProductValidatorService;
-import com.inventory.inventoryservice.purchase.PurchaseItemTransform;
-import com.inventory.inventoryservice.purchase.model.PurchaseEntity;
-import com.inventory.inventoryservice.purchase.model.PurchaseItemEntity;
 import com.inventory.inventoryservice.sales.model.*;
 import com.inventory.inventoryservice.stock.StockService;
 import lombok.RequiredArgsConstructor;
