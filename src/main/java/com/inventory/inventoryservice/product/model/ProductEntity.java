@@ -57,5 +57,4 @@ public class ProductEntity {
     private boolean enabled;
 
 
-
 }
