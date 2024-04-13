@@ -20,79 +20,79 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class SalesQueryService {
+public class SalesQueryService{
 
-    private final EntityManager entityManager;
-    private final SalesRepository salesRepository;
+  private final EntityManager entityManager;
+  private final SalesRepository salesRepository;
 
-    public Page<SalesEntity> searchPage(SalesSearchDto searchDto) {
+  public Page<SalesEntity> searchPage(SalesSearchDto searchDto){
 
-        QSalesEntity qSalesEntity = QSalesEntity.salesEntity;
-        QCustomerEntity qCustomerEntity = QCustomerEntity.customerEntity;
+    QSalesEntity qSalesEntity = QSalesEntity.salesEntity;
+    QCustomerEntity qCustomerEntity = QCustomerEntity.customerEntity;
 
-        Pageable pageable = PageRequest.of(searchDto.getPage(), searchDto.getSize());
-        JPAQuery<SalesEntity> query = new JPAQuery<>(entityManager);
+    Pageable pageable = PageRequest.of(searchDto.getPage(), searchDto.getSize());
+    JPAQuery<SalesEntity> query = new JPAQuery<>(entityManager);
 
-        List<SalesEntity> salesList = query.from(qSalesEntity)
-                .leftJoin(qSalesEntity.customer, qCustomerEntity).fetchJoin()
-                .where(SalesPredicate.search(searchDto))
-                .orderBy(qSalesEntity.salesDate.asc())
-                .limit(pageable.getPageSize()).offset(pageable.getOffset())
-                .fetch();
+    List<SalesEntity> salesList = query.from(qSalesEntity)
+      .leftJoin(qSalesEntity.customer, qCustomerEntity).fetchJoin()
+      .where(SalesPredicate.search(searchDto))
+      .orderBy(qSalesEntity.salesDate.asc())
+      .limit(pageable.getPageSize()).offset(pageable.getOffset())
+      .fetch();
 
-        return new PageImpl<>(salesList, pageable, query.fetchCount());
-    }
+    return new PageImpl<>(salesList, pageable, query.fetchCount());
+  }
 
-    public Page<SalesEntity> searchPageWithDetail(SalesSearchDto searchDto) {
+  public Page<SalesEntity> searchPageWithDetail(SalesSearchDto searchDto){
 
-        QSalesEntity qSalesEntity = QSalesEntity.salesEntity;
-        QCustomerEntity qCustomerEntity = QCustomerEntity.customerEntity;
-        QSalesItemEntity qSalesItemEntity = QSalesItemEntity.salesItemEntity;
+    QSalesEntity qSalesEntity = QSalesEntity.salesEntity;
+    QCustomerEntity qCustomerEntity = QCustomerEntity.customerEntity;
+    QSalesItemEntity qSalesItemEntity = QSalesItemEntity.salesItemEntity;
 
-        Pageable pageable = PageRequest.of(searchDto.getPage(), searchDto.getSize());
-        JPAQuery<SalesEntity> query = new JPAQuery<>(entityManager);
+    Pageable pageable = PageRequest.of(searchDto.getPage(), searchDto.getSize());
+    JPAQuery<SalesEntity> query = new JPAQuery<>(entityManager);
 
-        List<SalesEntity> salesList = query.from(qSalesEntity)
-            .leftJoin(qSalesEntity.customer, qCustomerEntity).fetchJoin()
-            .leftJoin(qSalesEntity.items, qSalesItemEntity).fetchJoin()
-            .where(SalesPredicate.search(searchDto))
-            .orderBy(qSalesEntity.salesDate.asc())
-            .limit(pageable.getPageSize()).offset(pageable.getOffset())
-            .fetch();
+    List<SalesEntity> salesList = query.from(qSalesEntity)
+      .leftJoin(qSalesEntity.customer, qCustomerEntity).fetchJoin()
+      .leftJoin(qSalesEntity.items, qSalesItemEntity).fetchJoin()
+      .where(SalesPredicate.search(searchDto))
+      .orderBy(qSalesEntity.salesDate.asc())
+      .limit(pageable.getPageSize()).offset(pageable.getOffset())
+      .fetch();
 
-        return new PageImpl<>(salesList, pageable, query.fetchCount());
-    }
+    return new PageImpl<>(salesList, pageable, query.fetchCount());
+  }
 
-    public List<SalesEntity> searchList(SalesSearchDto searchDto) {
+  public List<SalesEntity> searchList(SalesSearchDto searchDto){
 
-        Predicate predicate = SalesPredicate.search(searchDto);
-        return IterableUtils.toList(salesRepository.findAll(predicate));
-    }
+    Predicate predicate = SalesPredicate.search(searchDto);
+    return IterableUtils.toList(salesRepository.findAll(predicate));
+  }
 
-    public List<SalesEntity> searchListWithDetail(SalesSearchDto searchDto) {
+  public List<SalesEntity> searchListWithDetail(SalesSearchDto searchDto){
 
-        QSalesEntity qSalesEntity = QSalesEntity.salesEntity;
-        QCustomerEntity qCustomerEntity = QCustomerEntity.customerEntity;
-        QSalesItemEntity qSalesItemEntity = QSalesItemEntity.salesItemEntity;
+    QSalesEntity qSalesEntity = QSalesEntity.salesEntity;
+    QCustomerEntity qCustomerEntity = QCustomerEntity.customerEntity;
+    QSalesItemEntity qSalesItemEntity = QSalesItemEntity.salesItemEntity;
 
-        return new JPAQuery<SalesEntity>(entityManager).from(qSalesEntity)
-            .leftJoin(qSalesEntity.customer, qCustomerEntity).fetchJoin()
-            .leftJoin(qSalesEntity.items, qSalesItemEntity).fetchJoin()
-            .where(SalesPredicate.search(searchDto))
-            .orderBy(qSalesEntity.salesDate.asc())
-            .fetch();
-    }
+    return new JPAQuery<SalesEntity>(entityManager).from(qSalesEntity)
+      .leftJoin(qSalesEntity.customer, qCustomerEntity).fetchJoin()
+      .leftJoin(qSalesEntity.items, qSalesItemEntity).fetchJoin()
+      .where(SalesPredicate.search(searchDto))
+      .orderBy(qSalesEntity.salesDate.asc())
+      .fetch();
+  }
 
-    public List<SalesEntity> getSalesWithDetailById(Long id) {
+  public List<SalesEntity> getSalesWithDetailById(Long id){
 
-        QSalesEntity qSalesEntity = QSalesEntity.salesEntity;
-        QCustomerEntity qCustomerEntity = QCustomerEntity.customerEntity;
-        QSalesItemEntity qSalesItemEntity = QSalesItemEntity.salesItemEntity;
+    QSalesEntity qSalesEntity = QSalesEntity.salesEntity;
+    QCustomerEntity qCustomerEntity = QCustomerEntity.customerEntity;
+    QSalesItemEntity qSalesItemEntity = QSalesItemEntity.salesItemEntity;
 
-        return new JPAQuery<SalesEntity>(entityManager).from(qSalesEntity)
-            .leftJoin(qSalesEntity.customer, qCustomerEntity).fetchJoin()
-            .leftJoin(qSalesEntity.items, qSalesItemEntity).fetchJoin()
-            .where(qSalesEntity.id.eq(id))
-            .fetch();
-    }
+    return new JPAQuery<SalesEntity>(entityManager).from(qSalesEntity)
+      .leftJoin(qSalesEntity.customer, qCustomerEntity).fetchJoin()
+      .leftJoin(qSalesEntity.items, qSalesItemEntity).fetchJoin()
+      .where(qSalesEntity.id.eq(id))
+      .fetch();
+  }
 }

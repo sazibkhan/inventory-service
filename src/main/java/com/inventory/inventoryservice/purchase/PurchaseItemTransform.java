@@ -10,29 +10,25 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-public class PurchaseItemTransform {
+public class PurchaseItemTransform{
 
-    public  static PurchaseItemEntity toPurchaseItemEntity(PurchaseItemDto purchaseItemDto){
-        var entity=new PurchaseItemEntity();
-        BeanUtils.copyProperties(purchaseItemDto, entity);
-        return  entity;
-    }
-
-
-    public static List<StockDto> toStockDto(List<PurchaseItemEntity> items) {
-        return items.stream()
-            .map(itm-> {
-                var stockDto = new StockDto();
-                stockDto.setProductId(itm.getProductId());
-                stockDto.setCurrentStock(itm.getQuantity());
-                return stockDto;
-            }).collect(Collectors.toList());
-
-    }
+  public static PurchaseItemEntity toPurchaseItemEntity(PurchaseItemDto purchaseItemDto){
+    var entity = new PurchaseItemEntity();
+    BeanUtils.copyProperties(purchaseItemDto, entity);
+    return entity;
+  }
 
 
+  public static List<StockDto> toStockDto(List<PurchaseItemEntity> items){
+    return items.stream()
+      .map(itm -> {
+        var stockDto = new StockDto();
+        stockDto.setProductId(itm.getProductId());
+        stockDto.setCurrentStock(itm.getQuantity());
+        return stockDto;
+      }).collect(Collectors.toList());
 
-
+  }
 
 
 }
