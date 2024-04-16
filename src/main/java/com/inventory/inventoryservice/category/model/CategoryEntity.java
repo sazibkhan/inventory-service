@@ -1,5 +1,6 @@
 package com.inventory.inventoryservice.category.model;
 
+import com.inventory.inventoryservice.model.Auditable;
 import com.inventory.inventoryservice.product.model.ProductEntity;
 import lombok.*;
 
@@ -11,7 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @Table(name = "categories")
-public class CategoryEntity {
+public class CategoryEntity extends Auditable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
