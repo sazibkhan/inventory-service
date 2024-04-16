@@ -2,6 +2,7 @@
 POST http://localhost:8099/api/v1/brands
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {{token}}
 
 {
   "brandName": "Brand3"

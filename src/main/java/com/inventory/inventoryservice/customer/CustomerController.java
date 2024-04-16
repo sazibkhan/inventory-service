@@ -1,6 +1,5 @@
 package com.inventory.inventoryservice.customer;
 
-import com.inventory.inventoryservice.brand.model.BrandRest;
 import com.inventory.inventoryservice.customer.model.CustomerDto;
 import com.inventory.inventoryservice.customer.model.CustomerRest;
 import com.inventory.inventoryservice.customer.model.CustomerSearchDto;

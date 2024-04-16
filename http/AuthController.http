@@ -1,0 +1,12 @@
+
+### AuthController::authenticate
+POST http://localhost:8099/authenticate
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "092624"
+}
+
+> {% client.global.set("token", response.body.token);
+    client.global.set("authority", response.body.token);  %}
