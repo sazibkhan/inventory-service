@@ -1,5 +1,6 @@
 package com.inventory.inventoryservice.purchase.model;
 
+import com.inventory.inventoryservice.model.Auditable;
 import com.inventory.inventoryservice.supplier.model.SupplierEntity;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,7 +13,7 @@ import java.time.LocalDateTime;
 @Setter
 @Getter
 @Table(name = "purchases")
-public class PurchaseEntity {
+public class PurchaseEntity extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

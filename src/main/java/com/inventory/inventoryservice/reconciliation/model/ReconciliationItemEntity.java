@@ -1,5 +1,6 @@
 package com.inventory.inventoryservice.reconciliation.model;
 
+import com.inventory.inventoryservice.model.Auditable;
 import com.inventory.inventoryservice.product.model.ProductEntity;
 import com.inventory.inventoryservice.purchase.model.PurchaseEntity;
 import lombok.Getter;
@@ -12,7 +13,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Table(name = "reconciliation_items")
-public class ReconciliationItemEntity {
+public class ReconciliationItemEntity extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

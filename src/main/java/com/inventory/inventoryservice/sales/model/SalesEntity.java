@@ -1,6 +1,7 @@
 package com.inventory.inventoryservice.sales.model;
 
 import com.inventory.inventoryservice.customer.model.CustomerEntity;
+import com.inventory.inventoryservice.model.Auditable;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,7 +15,7 @@ import java.util.List;
 @Getter
 @Setter
 @Table(name = "sales")
-public class SalesEntity {
+public class SalesEntity extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

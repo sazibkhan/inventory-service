@@ -1,5 +1,6 @@
 package com.inventory.inventoryservice.stock.model;
 
+import com.inventory.inventoryservice.model.Auditable;
 import com.inventory.inventoryservice.product.model.ProductEntity;
 import lombok.*;
 
@@ -10,7 +11,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Table(name = "stocks")
-public class StockEntity {
+public class StockEntity extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

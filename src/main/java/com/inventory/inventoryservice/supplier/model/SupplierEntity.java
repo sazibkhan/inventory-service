@@ -1,5 +1,6 @@
 package com.inventory.inventoryservice.supplier.model;
 
+import com.inventory.inventoryservice.model.Auditable;
 import lombok.*;
 
 import javax.persistence.*;
@@ -9,7 +10,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Table(name = "suppliers")
-public class SupplierEntity {
+public class SupplierEntity extends Auditable {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,5 +1,6 @@
 package com.inventory.inventoryservice.reconciliation.model;
 
+import com.inventory.inventoryservice.model.Auditable;
 import lombok.*;
 
 import javax.persistence.*;
@@ -10,7 +11,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Table(name = "reconciliations")
-public class ReconciliationEntity {
+public class ReconciliationEntity extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
