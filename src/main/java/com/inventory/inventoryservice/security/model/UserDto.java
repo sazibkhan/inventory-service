@@ -12,6 +12,6 @@ public class UserDto {
     private String username;
     private String password;
     private String authority;
-    private List<UserRoleEntity> roles = new ArrayList<>();
+    private List<UserRoleDto> roles;
     private Boolean enabled;
 }

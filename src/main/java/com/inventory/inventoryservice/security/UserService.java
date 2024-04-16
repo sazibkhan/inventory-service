@@ -19,6 +19,16 @@ public class UserService {
   private final UserValidatorService userValidatorService;
   private final UserQueryService userQueryService;
 
+  public UserRest registerUser(UserDto userDto) {
+
+    // var password = new BCryptPasswordEncoder().encode("092624");
+
+    // todo: save data in user table
+    // todo: save data in user roles table
+
+    return new UserRest();
+  }
+
   public UserRest saveUser(UserDto userDto) {
     UserEntity user = UserTransform.toUserEntity(userDto);
     userRepository.save(user);
