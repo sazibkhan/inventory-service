@@ -18,38 +18,41 @@ public class BrandController {
   private final BrandService brandService;
 
   @PostMapping
-  @PreAuthorize("hasRole('BRAND_CREATE')")
+  @PreAuthorize("hasAnyRole('BRAND_CREATE','ROLE_ADMIN')")
   public ResponseEntity<BrandRest> saveBrand(@RequestBody BrandDto brandDto) {
     BrandRest brandRest = brandService.saveBrand(brandDto);
     return ResponseEntity.status(HttpStatus.OK).body(brandRest);
   }
 
   @GetMapping("/{id}")
-  @PreAuthorize("hasRole('BRAND_GET')")
+  @PreAuthorize("hasAnyRole('BRAND_GET','ROLE_ADMIN')")
   public ResponseEntity<BrandRest> getBrandById(@PathVariable Long id) {
     return ResponseEntity.status(HttpStatus.OK).body(brandService.getBrandById(id));
   }
 
   @PutMapping("/{id}")
-  @PreAuthorize("hasRole('BRAND_UPDATE')")
+  @PreAuthorize("hasAnyRole('BRAND_UPDATE', 'ROLE_ADMIN')")
   public ResponseEntity<BrandRest> updateBrand(@PathVariable Long id, @RequestBody BrandDto brandDto) {
     BrandRest brandRest = brandService.updateBrand(id, brandDto);
     return ResponseEntity.status(HttpStatus.OK).body(brandRest);
   }
 
   @DeleteMapping("/{id}")
+  @PreAuthorize("hasAnyRole('BRAND_DELETE', 'ROLE_ADMIN')")
   public ResponseEntity<String> deleteBrand(@PathVariable Long id) {
     brandService.deleteBrand(id);
     return ResponseEntity.status(HttpStatus.OK).body("Deleted Successfully.");
   }
 
   @PostMapping("/search-page")
+  @PreAuthorize("hasAnyRole('BRAND_SEARCH', 'ROLE_ADMIN')")
   public ResponseEntity<?> searchPage(@RequestBody BrandSearchDto searchDto) {
     return ResponseEntity.status(HttpStatus.OK)
       .body(brandService.searchPage(searchDto));
   }
 
   @PostMapping("/search-list")
+  @PreAuthorize("hasAnyRole('BRAND_SEARCH', 'ROLE_ADMIN')")
   public ResponseEntity<?> searchList(@RequestBody BrandSearchDto searchDto) {
     return ResponseEntity.status(HttpStatus.OK)
       .body(brandService.searchList(searchDto));

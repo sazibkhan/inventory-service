@@ -5,7 +5,7 @@ Accept: application/json
 Authorization: Bearer {{token}}
 
 {
-  "brandName": "Brand6"
+  "brandName": "iPhone16"
 }
 
 ### BrandController::getBrandById
