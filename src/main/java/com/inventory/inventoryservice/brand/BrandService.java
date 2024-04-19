@@ -1,12 +1,12 @@
 package com.inventory.inventoryservice.brand;
 
+import com.inventory.inventoryservice.brand.mapper.BrandEntityMapper;
 import com.inventory.inventoryservice.brand.mapper.BrandRestMapper;
 import com.inventory.inventoryservice.brand.model.BrandDto;
 import com.inventory.inventoryservice.brand.model.BrandEntity;
 import com.inventory.inventoryservice.brand.model.BrandRest;
 import com.inventory.inventoryservice.brand.model.BrandSearchDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Service;
@@ -21,13 +21,14 @@ public class BrandService{
   private final BrandRepository brandRepository;
   private final BrandQueryService brandQueryService;
   private final BrandValidatorService brandValidatorService;
+  private final BrandEntityMapper brandEntityMapper;
   private final BrandRestMapper brandRestMapper;
 
   public BrandRest saveBrand(BrandDto brandDto){
-    BrandEntity brand = BrandTransform.toBrandEntity(brandDto);
+    BrandEntity brand = brandEntityMapper.apply(brandDto);
     brand.setEnabled(Boolean.TRUE);
     brandRepository.save(brand);
-    return BrandTransform.toBrandRest(brand);
+    return brandRestMapper.apply(brand);
   }
 
   public BrandRest getBrandById(Long id){
