@@ -12,16 +12,13 @@ public class BrandPredicate {
   private final static QBrandEntity qBrand = QBrandEntity.brandEntity;
 
   public static Predicate search(BrandSearchDto searchDto) {
-
     BooleanBuilder builder = new BooleanBuilder();
-
     if(StringUtils.isNotEmpty(searchDto.getBrandName())) {
       builder.and(qBrand.brandName.eq(searchDto.getBrandName()));
     }
     if(ObjectUtils.isNotEmpty(searchDto.getEnabled())) {
       builder.and(qBrand.enabled.eq(searchDto.getEnabled()));
     }
-
     return builder;
   }
 }
