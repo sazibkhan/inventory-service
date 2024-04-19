@@ -5,14 +5,20 @@ Accept: application/json
 Authorization: Bearer {{token}}
 
 {
-  "brandName": "Brand3"
+  "brandName": "Brand6"
 }
 
-
-### BrandController::updateBrand
-PUT http://localhost:8099/api/v1/brands/1
+### BrandController::getBrandById
+GET http://localhost:8099/api/v1/brands/8
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {{token}}
+
+### BrandController::updateBrand
+PUT http://localhost:8099/api/v1/brands/8
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
 
 {
   "brandName": "Square2",
@@ -22,13 +28,6 @@ Accept: application/json
 
 ### BrandController::getAllBrand
 GET http://localhost:8099/api/v1/brands/list
-Content-Type: application/json
-Accept: application/json
-
-
-
-### BrandController::getBrandById
-GET http://localhost:8099/api/v1/brands/1
 Content-Type: application/json
 Accept: application/json
 

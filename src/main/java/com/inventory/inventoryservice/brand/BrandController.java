@@ -6,6 +6,7 @@ import com.inventory.inventoryservice.brand.model.BrandSearchDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
@@ -17,17 +18,20 @@ public class BrandController {
   private final BrandService brandService;
 
   @PostMapping
+  @PreAuthorize("hasRole('BRAND_CREATE')")
   public ResponseEntity<BrandRest> saveBrand(@RequestBody BrandDto brandDto) {
     BrandRest brandRest = brandService.saveBrand(brandDto);
     return ResponseEntity.status(HttpStatus.OK).body(brandRest);
   }
 
-  @GetMapping("{id}")
+  @GetMapping("/{id}")
+  @PreAuthorize("hasRole('BRAND_GET')")
   public ResponseEntity<BrandRest> getBrandById(@PathVariable Long id) {
     return ResponseEntity.status(HttpStatus.OK).body(brandService.getBrandById(id));
   }
 
   @PutMapping("/{id}")
+  @PreAuthorize("hasRole('BRAND_UPDATE')")
   public ResponseEntity<BrandRest> updateBrand(@PathVariable Long id, @RequestBody BrandDto brandDto) {
     BrandRest brandRest = brandService.updateBrand(id, brandDto);
     return ResponseEntity.status(HttpStatus.OK).body(brandRest);

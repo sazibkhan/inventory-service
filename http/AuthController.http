@@ -4,7 +4,7 @@ POST http://localhost:8099/authenticate
 Content-Type: application/json
 
 {
-  "username": "admin",
+  "username": "sazib",
   "password": "092624"
 }
 
