@@ -20,16 +20,13 @@ public class BrandQueryService {
   private final BrandRepository brandRepository;
 
   public Page<BrandEntity> searchPage(BrandSearchDto searchDto) {
-
-    Pageable pageable = PageRequest.of(searchDto.getPage(), searchDto.getSize());
     Predicate predicate = BrandPredicate.search(searchDto);
-
-    return brandRepository.findAll(predicate, pageable);
+    return brandRepository.findAll(predicate, searchDto.getPageable());
   }
 
   public List<BrandEntity> searchList(BrandSearchDto searchDto) {
-
     Predicate predicate = BrandPredicate.search(searchDto);
     return IterableUtils.toList(brandRepository.findAll(predicate));
   }
+
 }
