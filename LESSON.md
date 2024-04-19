@@ -20,3 +20,7 @@
 05-April-2024
 - Remove createdAt, createdBy, updatedAt, updatedBy from all entities and dto if exists
 - Check if any missing CRUD functionality
+
+19-April-2024
+- Register user with roles
+- After user registration the user should log in to the system with provided credentials
