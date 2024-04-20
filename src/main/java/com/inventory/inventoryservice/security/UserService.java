@@ -1,15 +1,14 @@
 package com.inventory.inventoryservice.security;
 
-import com.inventory.inventoryservice.security.model.UserDto;
-import com.inventory.inventoryservice.security.model.UserEntity;
-import com.inventory.inventoryservice.security.model.UserRest;
-import com.inventory.inventoryservice.security.model.UserSearchDto;
+import com.inventory.inventoryservice.security.model.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -18,10 +17,26 @@ public class UserService {
   private final UserRepository userRepository;
   private final UserValidatorService userValidatorService;
   private final UserQueryService userQueryService;
+  private final UserRoleRepository userRoleRepository;
+
 
   public UserRest registerUser(UserDto userDto) {
 
-    // var password = new BCryptPasswordEncoder().encode("092624");
+    UserEntity user = UserTransform.toUserEntity(userDto);
+    var password = new BCryptPasswordEncoder().encode(userDto.getPassword());
+    user.setPassword(password);
+    userRepository.save(user);
+
+    List<UserRoleEntity> userRoleList = userDto.getRoles().stream()
+            .map(itm-> {
+              UserRoleEntity userRoleItem = UserRoleTransform.toUserRoleEntity(itm);
+              userRoleItem.setUser(user);
+              userRoleItem.setRoleName(itm.getRoleName());
+              return userRoleItem;
+            }).collect(Collectors.toList());
+
+    userRoleRepository.saveAll(userRoleList);
+
 
     // todo: save data in user table
     // todo: save data in user roles table
