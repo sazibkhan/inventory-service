@@ -1,8 +1,6 @@
 package com.inventory.inventoryservice.security;
 
-import com.inventory.inventoryservice.security.model.UserDto;
-import com.inventory.inventoryservice.security.model.UserEntity;
-import com.inventory.inventoryservice.security.model.UserRest;
+import com.inventory.inventoryservice.security.model.*;
 import org.springframework.beans.BeanUtils;
 
 import java.util.List;
@@ -28,4 +26,7 @@ public class UserTransform {
       .collect(Collectors.toList());
 
   }
+
+
+
 }

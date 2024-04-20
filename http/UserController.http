@@ -1,3 +1,28 @@
+### UserController::registerUser
+POST http://localhost:8099/api/v1/users/registration
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+{
+  "fullName": "Sazib Khan",
+  "username": "s@gmail.com",
+  "password": "123456",
+  "authority": "auth",
+  "roles": [
+    {
+      "roleName": "ROLE_BRAND_CREATE-1"
+    },
+    {
+      "roleName": "ROLE_ADMIN-1"
+    }
+  ],
+  "enabled": true
+}
+
+
+
+
 ### UserController::saveUser
 POST http://localhost:8099/api/v1/users
 Content-Type: application/json
