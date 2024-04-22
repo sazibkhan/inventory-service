@@ -17,17 +17,12 @@ public class UserController {
 
   private final UserService userService;
 
-  @PostMapping("/registration")
-  public ResponseEntity<UserRest> registerUser(@RequestBody UserDto userDto) {
-    UserRest userRest = userService.registerUser(userDto);
-    return ResponseEntity.status(HttpStatus.OK).body(userRest);
-  }
-
-  @PostMapping
+  @PostMapping("/create-user")
   public ResponseEntity<UserRest> saveUser(@RequestBody UserDto userDto) {
     UserRest userRest = userService.saveUser(userDto);
     return ResponseEntity.status(HttpStatus.OK).body(userRest);
   }
+
 
   @PutMapping("/{id}")
   public ResponseEntity<UserRest> updateUser(@PathVariable Long id,

@@ -1,20 +1,23 @@
-### UserController::registerUser
-POST http://localhost:8099/api/v1/users/registration
+### UserController::saveUser
+POST http://localhost:8099/api/v1/users/create-user
 Content-Type: application/json
 Accept: application/json
 Authorization: Bearer {{token}}
 
 {
-  "fullName": "Sazib Khan",
-  "username": "s@gmail.com",
+  "fullName": "Sazib Khan-1",
+  "username": "sazib2",
   "password": "123456",
-  "authority": "auth",
+  "authority": "USER",
   "roles": [
     {
-      "roleName": "ROLE_BRAND_CREATE-1"
+      "roleName": "ROLE_CATAGORY_CREATE"
     },
     {
-      "roleName": "ROLE_ADMIN-1"
+      "roleName": "ROLE_CATAGORY_CREATE"
+    },
+    {
+      "roleName": "ROLE_CATAGORY_UPDATE"
     }
   ],
   "enabled": true
@@ -27,10 +30,12 @@ Authorization: Bearer {{token}}
 POST http://localhost:8099/api/v1/users
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {{token}}
+
 {
   "fullName":"Sazib Khan",
-  "username": "sazib@gmail.com",
-  "password":"Sazib@321",
+  "username": "sazib1",
+  "password":"123456",
   "authority":"auth",
   "enabled": true
 }
@@ -39,6 +44,9 @@ Accept: application/json
 PUT  http://localhost:8099/api/v1/users/1
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {{token}}
+
+
 {
   "fullName":"Sazib Khan",
   "username": "sazib@gmail.com",
@@ -51,12 +59,15 @@ Accept: application/json
 DELETE  http://localhost:8099/api/v1/users/1
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {{token}}
 
 
 ### UserController::searchPage
 POST http://localhost:8099/api/v1/users/search-page
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {{token}}
+
 {
   "fullName":"Sazib Khan",
   "username": "sazib@gmail.com",
@@ -69,6 +80,8 @@ Accept: application/json
 POST http://localhost:8099/api/v1/users/search-list
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {{token}}
+
 {
   "fullName":"Sazib Khan",
   "username": "sazib@gmail.com",

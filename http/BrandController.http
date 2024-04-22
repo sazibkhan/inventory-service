@@ -5,17 +5,17 @@ Accept: application/json
 Authorization: Bearer {{token}}
 
 {
-  "brandName": "iPhone16"
+  "brandName": "iPhone-1"
 }
 
 ### BrandController::getBrandById
-GET http://localhost:8099/api/v1/brands/8
+GET http://localhost:8099/api/v1/brands/3
 Content-Type: application/json
 Accept: application/json
 Authorization: Bearer {{token}}
 
 ### BrandController::updateBrand
-PUT http://localhost:8099/api/v1/brands/8
+PUT http://localhost:8099/api/v1/brands/3
 Content-Type: application/json
 Accept: application/json
 Authorization: Bearer {{token}}
@@ -30,24 +30,26 @@ Authorization: Bearer {{token}}
 GET http://localhost:8099/api/v1/brands/list
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {{token}}
 
 
 ### BrandController::deleteBrand
-DELETE http://localhost:8099/api/v1/brands/1
+DELETE http://localhost:8099/api/v1/brands/3
 Content-Type: application/json
 Accept: application/json
-
+Authorization: Bearer {{token}}
 
 
 ###
 GET http://localhost:8099/api/v1/brands?name=mahadi&age=87
 Accept: application/json
-
+Authorization: Bearer {{token}}
 
 ### BrandController::searchPage
 POST http://localhost:8099/api/v1/brands/search-page
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {{token}}
 
 {
   "brandName": "Brand3",
