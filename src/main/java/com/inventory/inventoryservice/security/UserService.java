@@ -20,7 +20,7 @@ public class UserService {
   private final UserRoleRepository userRoleRepository;
 
 
-  public UserRest registerUser(UserDto userDto) {
+  public UserRest saveUser(UserDto userDto) {
 
     UserEntity user = UserTransform.toUserEntity(userDto);
     var password = new BCryptPasswordEncoder().encode(userDto.getPassword());
@@ -44,11 +44,7 @@ public class UserService {
     return new UserRest();
   }
 
-  public UserRest saveUser(UserDto userDto) {
-    UserEntity user = UserTransform.toUserEntity(userDto);
-    userRepository.save(user);
-    return UserTransform.toUserRest(user);
-  }
+
 
   public UserRest updateUser(Long id, UserDto userDto) {
     UserEntity user = userValidatorService.ifFoundByIdReturnElseThrow(id);

@@ -6,6 +6,7 @@ import com.inventory.inventoryservice.category.model.CategorySearchDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,22 +20,26 @@ public class CategoryController {
   private final CategoryService categoryService;
 
   @PostMapping
+  @PreAuthorize("hasAnyRole('CATAGORY_CREATE','ROLE_ADMIN')")
   public ResponseEntity<CategoryRest> saveCategory(@RequestBody CategoryDto categoryDto) {
     CategoryRest categoryRest = categoryService.saveCategory(categoryDto);
     return ResponseEntity.status(HttpStatus.OK).body(categoryRest);
   }
 
   @GetMapping
+  @PreAuthorize("hasAnyRole('CATAGORY_GET','ROLE_ADMIN')")
   public ResponseEntity<List<CategoryRest>> getAllCategory() {
     return ResponseEntity.status(HttpStatus.OK).body(categoryService.getAllCategory());
   }
 
   @GetMapping("{id}")
+  @PreAuthorize("hasAnyRole('CATAGORY_GET','ROLE_ADMIN')")
   public ResponseEntity<CategoryRest> getCategoryById(@PathVariable Long id) {
     return ResponseEntity.status(HttpStatus.OK).body(categoryService.getCategoryById(id));
   }
 
   @PutMapping("/{id}")
+  @PreAuthorize("hasAnyRole('CATAGORY_UPDATE','ROLE_ADMIN')")
   public ResponseEntity<CategoryRest> updateCategory(@PathVariable Long id,
                                                      @RequestBody CategoryDto categoryDto) {
     CategoryRest categoryRest = categoryService.updateCategory(id, categoryDto);
@@ -42,18 +47,21 @@ public class CategoryController {
   }
 
   @DeleteMapping("/{id}")
+  @PreAuthorize("hasAnyRole('CATAGORY_DELETE','ROLE_ADMIN')")
   public ResponseEntity<String> deleteCategory(@PathVariable Long id) {
     categoryService.deleteCategory(id);
     return ResponseEntity.status(HttpStatus.OK).body("Deleted Successfully.");
   }
 
   @PostMapping("/search-page")
+  @PreAuthorize("hasAnyRole('CATAGORY_SEARCH','ROLE_ADMIN')")
   public ResponseEntity<?> searchPage(@RequestBody CategorySearchDto searchDto) {
     return ResponseEntity.status(HttpStatus.OK)
       .body(categoryService.searchPage(searchDto));
   }
 
   @PostMapping("/search-list")
+  @PreAuthorize("hasAnyRole('CATAGORY_SEARCH','ROLE_ADMIN')")
   public ResponseEntity<?> searchList(@RequestBody CategorySearchDto searchDto) {
     return ResponseEntity.status(HttpStatus.OK)
       .body(categoryService.searchList(searchDto));

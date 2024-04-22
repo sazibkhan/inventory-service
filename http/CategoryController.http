@@ -2,8 +2,10 @@
 POST http://localhost:8099/api/v1/categorys
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {{token}}
+
 {
-  "categoryName": "Category2",
+  "categoryName": "Category-3",
   "enabled": true
 }
 
@@ -12,26 +14,32 @@ Accept: application/json
 GET http://localhost:8099/api/v1/categorys
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {{token}}
 
 ### CategoryController::getCategoryById
-GET http://localhost:8099/api/v1/categorys/1
+GET http://localhost:8099/api/v1/categorys/3
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {{token}}
 
 
 ### CategoryController::updateCategory
-PUT http://localhost:8099/api/v1/categorys/1
+PUT http://localhost:8099/api/v1/categorys/3
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {{token}}
+
 {
   "categoryName": "Good",
   "enabled": true
 }
 
 ### CategoryController::deleteCategory
-DELETE http://localhost:8099/api/v1/categorys/1
+DELETE http://localhost:8099/api/v1/categorys/3
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {{token}}
+
 {
   "categoryName": "Square2",
   "enabled": true
@@ -44,6 +52,8 @@ Accept: application/json
 POST http://localhost:8099/api/v1/categorys/search-page
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {{token}}
+
 {
   "categoryName": "Category1",
   "enabled": true
@@ -53,6 +63,8 @@ Accept: application/json
 POST http://localhost:8099/api/v1/categorys/search-list
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {{token}}
+
 {
   "categoryName": "Category1",
   "enabled": true
