@@ -20,7 +20,7 @@ public class CategoryController {
   private final CategoryService categoryService;
 
   @PostMapping
-  @PreAuthorize("hasAnyRole('CATAGORY_CREATE','ROLE_ADMIN')")
+  @PreAuthorize("hasAnyRole('CATEGORY_CREATE','ROLE_ADMIN')")
   public ResponseEntity<CategoryRest> saveCategory(@RequestBody CategoryDto categoryDto) {
     CategoryRest categoryRest = categoryService.saveCategory(categoryDto);
     return ResponseEntity.status(HttpStatus.OK).body(categoryRest);

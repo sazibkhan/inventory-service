@@ -5,8 +5,7 @@ Accept: application/json
 Authorization: Bearer {{token}}
 
 {
-  "categoryName": "Category-3",
-  "enabled": true
+  "categoryName": "Category-7"
 }
 
 

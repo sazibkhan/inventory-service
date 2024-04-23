@@ -36,7 +36,7 @@ public class ProductValidatorService {
             entity.setBrand(brandValidatorService
                 .ifFoundByIdReturnElseThrow(productDto.getBrandId()));
         }
-        if(ObjectUtils.isNotEmpty(productDto.getBrandId())) {
+        if(ObjectUtils.isNotEmpty(productDto.getCategoryId())) {
             entity.setCategory(categoryValidatorService
                 .ifFoundByIdReturnElseThrow(productDto.getCategoryId()));
         }

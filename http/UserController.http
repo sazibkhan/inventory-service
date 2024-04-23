@@ -5,20 +5,55 @@ Accept: application/json
 Authorization: Bearer {{token}}
 
 {
-  "fullName": "Sazib Khan-1",
+  "fullName": "Sazib Khan",
   "username": "sazib2",
   "password": "123456",
-  "authority": "USER",
+  "authority": "ADMIN",
   "roles": [
+
     {
-      "roleName": "ROLE_CATAGORY_CREATE"
+      "roleName": "ROLE_BRAND_CREATE"
     },
     {
-      "roleName": "ROLE_CATAGORY_CREATE"
+      "roleName": "ROLE_BRAND_GET"
     },
     {
-      "roleName": "ROLE_CATAGORY_UPDATE"
+      "roleName": "ROLE_BRAND_UPDATE"
+    },
+    {
+      "roleName": "ROLE_CATEGORY_CREATE"
+    },
+    {
+      "roleName": "ROLE_CATEGORY_GET"
+    },
+    {
+      "roleName": "ROLE_CATEGORY_UPDATE"
+    },
+
+
+    {
+      "roleName": "ROLE_CUSTOMER_CREATE"
+    },
+    {
+      "roleName": "ROLE_CUSTOMER_GET"
+    },
+    {
+      "roleName": "ROLE_CUSTOMER_UPDATE"
+    },
+
+
+    {
+      "roleName": "ROLE_PRODUCT_CREATE"
+    },
+    {
+      "roleName": "ROLE_PRODUCT_GET"
+    },
+    {
+      "roleName": "ROLE_PRODUCT_UPDATE"
     }
+
+
+
   ],
   "enabled": true
 }
@@ -27,17 +62,16 @@ Authorization: Bearer {{token}}
 
 
 ### UserController::saveUser
-POST http://localhost:8099/api/v1/users
+POST http://localhost:8099/api/v1/users/create-user
 Content-Type: application/json
 Accept: application/json
 Authorization: Bearer {{token}}
 
 {
-  "fullName":"Sazib Khan",
-  "username": "sazib1",
-  "password":"123456",
-  "authority":"auth",
-  "enabled": true
+  "fullName": "Sazib Khan",
+  "username": "sazib",
+  "password": "123456",
+  "authority": "ADMIN",
 }
 
 ### UserController::updateUser

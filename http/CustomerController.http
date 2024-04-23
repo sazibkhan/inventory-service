@@ -2,8 +2,10 @@
 POST http://localhost:8099/api/v1/customers
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {{token}}
+
 {
-  "customerName":"Sazib Khan",
+  "customerName":"Sazib Khan7",
   "phoneNumber":"01717-226385",
   "customerType":"premium ",
   "email":"sazib@gmail.com",

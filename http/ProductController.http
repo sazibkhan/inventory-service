@@ -2,6 +2,8 @@
 POST http://localhost:8099/api/v1/products
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {{token}}
+
 {
   "productName":"Mango",
   "description":"WOW Product",
@@ -17,6 +19,7 @@ Accept: application/json
 PUT http://localhost:8099/api/v1/products/1
 Content-Type: application/json
 Accept: application/json
+
 {
   "productName":"Mango",
   "description":"WOW Product",
