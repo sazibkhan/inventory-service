@@ -1,5 +1,5 @@
 ### ProductController::saveProduct
-POST http://localhost:8099/api/v1/products
+POST http://localhost:8098/api/v1/products
 Content-Type: application/json
 Accept: application/json
 Authorization: Bearer {{token}}

@@ -28,18 +28,4 @@ public class ProductValidatorService {
                         .format("Product not found with id [%s]",id)));
 
     }
-
-
-    public ProductEntity validateAndReturnProductSave(ProductDto productDto) {
-        var entity = ProductTransform.toProductEntity(productDto);
-        if(ObjectUtils.isNotEmpty(productDto.getBrandId())) {
-            entity.setBrand(brandValidatorService
-                .ifFoundByIdReturnElseThrow(productDto.getBrandId()));
-        }
-        if(ObjectUtils.isNotEmpty(productDto.getCategoryId())) {
-            entity.setCategory(categoryValidatorService
-                .ifFoundByIdReturnElseThrow(productDto.getCategoryId()));
-        }
-        return entity;
-    }
 }
