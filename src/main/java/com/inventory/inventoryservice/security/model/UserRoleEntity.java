@@ -1,5 +1,6 @@
 package com.inventory.inventoryservice.security.model;
 
+import com.inventory.inventoryservice.model.Auditable;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +12,7 @@ import javax.validation.constraints.Size;
 @Getter
 @Setter
 @Table(name = "auth_users_role")
-public class UserRoleEntity{
+public class UserRoleEntity extends Auditable {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -10,48 +10,131 @@ Authorization: Bearer {{token}}
   "password": "123456",
   "authority": "ADMIN",
   "roles": [
-
     {
       "roleName": "ROLE_BRAND_CREATE"
-    },
-    {
+    }, {
       "roleName": "ROLE_BRAND_GET"
-    },
-    {
+    }, {
       "roleName": "ROLE_BRAND_UPDATE"
     },
+
     {
       "roleName": "ROLE_CATEGORY_CREATE"
-    },
-    {
+    }, {
       "roleName": "ROLE_CATEGORY_GET"
-    },
-    {
+    }, {
       "roleName": "ROLE_CATEGORY_UPDATE"
     },
 
 
     {
       "roleName": "ROLE_CUSTOMER_CREATE"
-    },
-    {
+    }, {
       "roleName": "ROLE_CUSTOMER_GET"
-    },
-    {
+    }, {
       "roleName": "ROLE_CUSTOMER_UPDATE"
     },
 
 
     {
       "roleName": "ROLE_PRODUCT_CREATE"
-    },
-    {
+    }, {
       "roleName": "ROLE_PRODUCT_GET"
-    },
-    {
+    }, {
       "roleName": "ROLE_PRODUCT_UPDATE"
+    },
+
+    {
+      "roleName": "ROLE_SUPPLIER_CREATE"
+    }, {
+      "roleName": "ROLE_SUPPLIER_GET"
+    }, {
+      "roleName": "ROLE_SUPPLIER_UPDATE"
+    }, {
+      "roleName": "ROLE_SUPPLIER_DELETE"
+    },
+
+    {
+      "roleName": "ROLE_SALES_CREATE"
+    }, {
+      "roleName": "ROLE_SALES_GET"
+    }, {
+      "roleName": "ROLE_SALES_UPDATE"
+    }, {
+      "roleName": "ROLE_SALES_DELETE"
     }
 
+
+  ],
+  "enabled": true
+}
+
+
+
+### UserController::updateUser
+PUT  http://localhost:8099/api/v1/users/15
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+{
+  "fullName": "Sazib Khan",
+  "username": "sazib2",
+  "authority": "ADMIN",
+  "roles": [
+    {
+      "roleName": "ROLE_BRAND_CREATE"
+    }, {
+      "roleName": "ROLE_BRAND_GET"
+    }, {
+      "roleName": "ROLE_BRAND_UPDATE"
+    },
+
+    {
+      "roleName": "ROLE_CATEGORY_CREATE"
+    }, {
+      "roleName": "ROLE_CATEGORY_GET"
+    }, {
+      "roleName": "ROLE_CATEGORY_UPDATE"
+    },
+
+
+    {
+      "roleName": "ROLE_CUSTOMER_CREATE"
+    }, {
+      "roleName": "ROLE_CUSTOMER_GET"
+    }, {
+      "roleName": "ROLE_CUSTOMER_UPDATE"
+    },
+
+
+    {
+      "roleName": "ROLE_PRODUCT_CREATE"
+    }, {
+      "roleName": "ROLE_PRODUCT_GET"
+    }, {
+      "roleName": "ROLE_PRODUCT_UPDATE"
+    },
+
+    {
+      "roleName": "ROLE_SUPPLIER_CREATE"
+    }, {
+      "roleName": "ROLE_SUPPLIER_GET"
+    }, {
+      "roleName": "ROLE_SUPPLIER_UPDATE"
+    }, {
+      "roleName": "ROLE_SUPPLIER_DELETE"
+    },
+
+    {
+      "roleName": "ROLE_SALES_CREATE"
+    }, {
+      "roleName": "ROLE_SALES_GET"
+    }, {
+      "roleName": "ROLE_SALES_UPDATE"
+    }, {
+      "roleName": "ROLE_SALES"
+    }
 
 
   ],
@@ -61,36 +144,8 @@ Authorization: Bearer {{token}}
 
 
 
-### UserController::saveUser
-POST http://localhost:8099/api/v1/users/create-user
-Content-Type: application/json
-Accept: application/json
-Authorization: Bearer {{token}}
-
-{
-  "fullName": "Sazib Khan",
-  "username": "sazib",
-  "password": "123456",
-  "authority": "ADMIN",
-}
-
-### UserController::updateUser
-PUT  http://localhost:8099/api/v1/users/1
-Content-Type: application/json
-Accept: application/json
-Authorization: Bearer {{token}}
-
-
-{
-  "fullName":"Sazib Khan",
-  "username": "sazib@gmail.com",
-  "password":"abc12",
-  "authority":"auth",
-  "enabled": true
-}
-
 ### UserController::deleteUser
-DELETE  http://localhost:8099/api/v1/users/1
+DELETE  http://localhost:8099/api/v1/users/15
 Content-Type: application/json
 Accept: application/json
 Authorization: Bearer {{token}}

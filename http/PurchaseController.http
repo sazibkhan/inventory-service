@@ -2,28 +2,18 @@
 POST http://localhost:8099/api/v1/purchases
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {{token}}
+
 {
-  "purchaseDate":"2023-08-26",
+  "purchaseDate":"2024-04-24",
   "supplierId": 1,
   "enabled": true,
   "items": [
     {
-      "productId": 1,
+      "productId": 4,
       "quantity": 25,
       "purchasePrice": 10.0,
       "salesPrice": 15.0
-    },
-    {
-      "productId": 2,
-      "quantity": 35,
-      "purchasePrice": 20.0,
-      "salesPrice": 30.0
-    },
-    {
-      "productId": 3,
-      "quantity": 45,
-      "purchasePrice": 40.0,
-      "salesPrice": 45.0
     }
   ]
 }
@@ -56,6 +46,7 @@ Accept: application/json
       "purchasePrice": 40.0,
       "salesPrice": 45.0
     }
+
   ]
 }
 

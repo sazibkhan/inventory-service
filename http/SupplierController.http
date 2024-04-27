@@ -2,6 +2,8 @@
 POST http://localhost:8099/api/v1/suppliers
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {{token}}
+
 {
   "supplierName": "Square",
   "supplierAddress": "sazib@gmail.com",
@@ -12,6 +14,7 @@ Accept: application/json
 PUT http://localhost:8099/api/v1/suppliers/10
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {{token}}
 
 {
   "supplierName": "Square",
@@ -24,12 +27,15 @@ Accept: application/json
 DELETE http://localhost:8099/api/v1/suppliers/9
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {{token}}
 
 
 ### SupplierController::searchPage
 POST http://localhost:8099/api/v1/suppliers/search-page
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {{token}}
+
 {
   "supplierName": "Square",
   "supplierAddress": "sazib@gmail.com",
@@ -41,6 +47,8 @@ Accept: application/json
 POST http://localhost:8099/api/v1/suppliers/search-list
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {{token}}
+
 {
   "supplierName": "Square",
   "supplierAddress": "sazib@gmail.com",

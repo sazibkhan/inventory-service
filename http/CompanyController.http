@@ -2,6 +2,7 @@
 POST http://localhost:8099/api/v1/companys
 Content-Type: application/json
 Accept: application/json
+
 {
   "companyName": "Square-1",
   "email": "s@gmail.com",

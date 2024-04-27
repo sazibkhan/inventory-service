@@ -2,12 +2,15 @@ package com.inventory.inventoryservice.security;
 
 import com.inventory.inventoryservice.security.model.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -19,7 +22,7 @@ public class UserService {
   private final UserQueryService userQueryService;
   private final UserRoleRepository userRoleRepository;
 
-
+  @Transactional
   public UserRest saveUser(UserDto userDto) {
 
     UserEntity user = UserTransform.toUserEntity(userDto);
@@ -46,22 +49,33 @@ public class UserService {
 
 
 
+  @Transactional
   public UserRest updateUser(Long id, UserDto userDto) {
+
+//    List<UserRoleEntity> items = userRoleRepository.findAllByUserId(id);
+//    userRoleRepository.deleteAll(items);
+
     UserEntity user = userValidatorService.ifFoundByIdReturnElseThrow(id);
-    user.setFullName(userDto.getFullName());
-    user.setUsername(userDto.getUsername());
-    user.setPassword(userDto.getPassword());
+    BeanUtils.copyProperties(userDto,user);
+    user.setId(id);
     userRepository.save(user);
+
+    List<UserRoleEntity> userRole =
+            userValidatorService.validateAndReturnUserRoleList(userDto,user);
+    userRoleRepository.saveAll(userRole);
 
     return UserTransform.toUserRest(user);
   }
+
+
+
+
+
 
   public void deleteUser(Long id){
     UserEntity  user= userValidatorService.ifFoundByIdReturnElseThrow(id);
     userRepository.deleteById(user.getId());
   }
-
-
 
   public Page<UserRest> searchPage(UserSearchDto searchDto) {
     Page<UserEntity> page = userQueryService.searchPage(searchDto);

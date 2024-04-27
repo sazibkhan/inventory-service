@@ -1,8 +1,15 @@
 package com.inventory.inventoryservice.security.model;
 
 public enum UserRoleEnum{
-  ROLE_USER,
-  ROLE_ADMIN,
+
+
+
+
+  ROLE_USER_CREATE,
+  ROLE_USER_UPDATE,
+  ROLE_USER_DELETE,
+
+  ROLE_ADMIN_CREATE,
   ROLE_Super_ADMIN,
 
 
@@ -38,6 +45,8 @@ public enum UserRoleEnum{
   ROLE_PURCHASE_DELETE,
   ROLE_PURCHASE_SEARCH,
 
+
+  ROLE_STOCK_CREATE,
 
 
   ROLE_SALES_CREATE, // GROUP -> CREATE -> ROLE_SALES_CREATE, ROLE_PRODUCT_CREATE

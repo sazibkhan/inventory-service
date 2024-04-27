@@ -1,27 +1,28 @@
 ### ProductController::saveProduct
-POST http://localhost:8098/api/v1/products
+POST http://localhost:8099/api/v1/products
 Content-Type: application/json
 Accept: application/json
 Authorization: Bearer {{token}}
 
 {
-  "productName":"Mango",
+  "productName":"Mango -4",
   "description":"WOW Product",
   "barCode":"inv-00123",
-  "brandId": 1,
-  "categoryId": 1,
-  "purchasePrice": 100,
-  "salesPrice": 150,
-  "discountAmount": 10
+  "brandId": 4,
+  "categoryId": 2,
+  "purchasePrice": 10,
+  "salesPrice": 15,
+  "discountAmount": 1
 }
 
 ### ProductController::updateProduct
 PUT http://localhost:8099/api/v1/products/1
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {{token}}
 
 {
-  "productName":"Mango",
+  "productName":"Mango-2",
   "description":"WOW Product",
   "barCode":"inv-00123",
   "brandId": 1,
@@ -36,6 +37,7 @@ Accept: application/json
 DELETE http://localhost:8099/api/v1/products/1
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {{token}}
 
 
 
@@ -45,6 +47,8 @@ Accept: application/json
 POST http://localhost:8099/api/v1/products/search-page
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer {{token}}
+
 {
   "productName":"Mango"
 }

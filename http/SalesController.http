@@ -3,7 +3,7 @@ POST http://localhost:8099/api/v1/sales
 Content-Type: application/json
 Accept: application/json
 {
-  "salesDate":"2023-08-19",
+  "salesDate":"2024-04-24",
   "customerId": 1,
   "enabled": true,
   "items": [

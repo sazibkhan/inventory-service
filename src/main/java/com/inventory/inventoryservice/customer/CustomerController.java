@@ -46,12 +46,14 @@ public class CustomerController {
   }
 
   @PostMapping("/search-page")
+  @PreAuthorize("hasAnyRole('CUSTOMER_SEARCH','ROLE_ADMIN')")
   public ResponseEntity<?> searchPage(@RequestBody CustomerSearchDto searchDto) {
     return ResponseEntity.status(HttpStatus.OK)
       .body(customerService.searchPage(searchDto));
   }
 
   @PostMapping("/search-list")
+  @PreAuthorize("hasAnyRole('CUSTOMER_SEARCH','ROLE_ADMIN')")
   public ResponseEntity<?> searchList(@RequestBody CustomerSearchDto searchDto) {
     return ResponseEntity.status(HttpStatus.OK)
       .body(customerService.searchList(searchDto));

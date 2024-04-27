@@ -18,6 +18,7 @@ public class UserController {
   private final UserService userService;
 
   @PostMapping("/create-user")
+  @PreAuthorize("hasAnyRole('USER_CREATE','ROLE_ADMIN')")
   public ResponseEntity<UserRest> saveUser(@RequestBody UserDto userDto) {
     UserRest userRest = userService.saveUser(userDto);
     return ResponseEntity.status(HttpStatus.OK).body(userRest);
@@ -25,6 +26,7 @@ public class UserController {
 
 
   @PutMapping("/{id}")
+  @PreAuthorize("hasAnyRole('USER_UPDATE','ROLE_ADMIN')")
   public ResponseEntity<UserRest> updateUser(@PathVariable Long id,
                                              @RequestBody UserDto userDto) {
     UserRest userRest = userService.updateUser(id, userDto);
@@ -32,18 +34,21 @@ public class UserController {
   }
 
   @DeleteMapping("/{id}")
+  @PreAuthorize("hasAnyRole('USER_DELETE','ROLE_ADMIN')")
   public  ResponseEntity<String>deleteUser(@PathVariable Long id){
     userService.deleteUser(id);
     return ResponseEntity.status(HttpStatus.OK).body("Deleted Successfully.");
   }
 
   @PostMapping("/search-page")
+  @PreAuthorize("hasAnyRole('USER_SEARCH','ROLE_ADMIN')")
   public ResponseEntity<?> searchPage(@RequestBody UserSearchDto searchDto) {
     return ResponseEntity.status(HttpStatus.OK)
       .body(userService.searchPage(searchDto));
   }
 
   @PostMapping("/search-list")
+  @PreAuthorize("hasAnyRole('USER_SEARCH','ROLE_ADMIN')")
   public ResponseEntity<?> searchList(@RequestBody UserSearchDto searchDto) {
     return ResponseEntity.status(HttpStatus.OK)
       .body(userService.searchList(searchDto));
