@@ -26,7 +26,6 @@ public class UserValidatorService {
 
   private final UserRepository userRepository;
 
-
   public UserEntity ifFoundByIdReturnElseThrow(Long id) {
     Objects.requireNonNull(id);
     return userRepository.findById(id)

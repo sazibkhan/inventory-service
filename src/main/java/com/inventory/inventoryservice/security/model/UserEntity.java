@@ -1,6 +1,5 @@
 package com.inventory.inventoryservice.security.model;
 
-import com.inventory.inventoryservice.model.Auditable;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,7 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 @Table(name = "auth_users")
-public class UserEntity extends Auditable {
+public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

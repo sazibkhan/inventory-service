@@ -15,9 +15,8 @@ public class UserRest {
 
     private String fullName;
     private String username;
-    private String password;
     private String authority;
-    private List<UserRoleEntity> roles = new ArrayList<>();
+    private List<UserRoleRest> roles;
     private Boolean enabled;
 
 

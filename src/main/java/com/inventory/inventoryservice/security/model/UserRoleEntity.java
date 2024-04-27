@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 @Getter
 @Setter
 @Table(name = "auth_users_role")
-public class UserRoleEntity extends Auditable {
+public class UserRoleEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
