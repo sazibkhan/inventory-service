@@ -19,7 +19,6 @@ public class SupplierController {
   private final SupplierService supplierService;
 
   @PostMapping
-
   @PreAuthorize("hasAnyRole('SUPPLIER_CREATE','ROLE_ADMIN')")
   public ResponseEntity<SupplierRest> saveSupplier(@RequestBody SupplierDto supplierDto) {
     SupplierRest supplierRest = supplierService.saveSupplier(supplierDto);
