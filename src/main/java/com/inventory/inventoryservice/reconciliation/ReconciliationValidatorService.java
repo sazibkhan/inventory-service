@@ -31,8 +31,7 @@ public class ReconciliationValidatorService {
       .map(itm -> {
         ReconciliationItemEntity reconciliationItem = ReconciliationItemTransform.toReconciliationItemEntity(itm);
         reconciliationItem.setReconciliation(reconciliation);
-        reconciliationItem.setProduct(productValidatorService
-          .ifFoundByIdReturnElseThrow(itm.getProductId()));
+        reconciliationItem.setProduct(productValidatorService.ifFoundByIdReturnElseThrow(itm.getProductId()));
         reconciliationItem.setQuantity(itm.getQuantity());
         reconciliationItem.setEnabled(Boolean.TRUE);
         return reconciliationItem;

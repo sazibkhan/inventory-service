@@ -21,6 +21,23 @@ public class UserService{
   private final UserQueryService userQueryService;
   private final UserRoleRepository userRoleRepository;
 
+  public UserRest registration(UserDto userDto) {
+    UserEntity user = UserTransform.toUserEntity(userDto);
+    var password = new BCryptPasswordEncoder().encode(userDto.getPassword());
+    user.setPassword(password);
+    userRepository.save(user);
+
+    List<UserRoleEntity> userRoleList = userDto.getRoles().stream()
+            .map(itm -> {
+              UserRoleEntity userRoleItem = UserRoleTransform.toUserRoleEntity(itm);
+              userRoleItem.setUser(user);
+              userRoleItem.setRoleName(itm.getRoleName());
+              return userRoleItem;
+            }).collect(Collectors.toList());
+    userRoleRepository.saveAll(userRoleList);
+    return UserTransform.toUserRest(user);
+  }
+
   @Transactional
   public UserRest saveUser(UserDto userDto){
     UserEntity user = UserTransform.toUserEntity(userDto);
@@ -38,7 +55,6 @@ public class UserService{
     userRoleRepository.saveAll(userRoleList);
     return UserTransform.toUserRest(user);
   }
-
 
   @Transactional
   public UserRest updateUser(Long id, UserDto userDto){
@@ -75,5 +91,6 @@ public class UserService{
   public List<UserRest> searchList(UserSearchDto searchDto){
     return UserTransform.toUserRestList(userQueryService.searchList(searchDto));
   }
+
 
 }

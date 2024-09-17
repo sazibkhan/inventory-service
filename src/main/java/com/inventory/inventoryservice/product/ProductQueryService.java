@@ -1,9 +1,6 @@
 package com.inventory.inventoryservice.product;
 
-import com.inventory.inventoryservice.brand.BrandPredicate;
-import com.inventory.inventoryservice.brand.BrandRepository;
-import com.inventory.inventoryservice.brand.model.BrandEntity;
-import com.inventory.inventoryservice.brand.model.BrandSearchDto;
+
 import com.inventory.inventoryservice.brand.model.QBrandEntity;
 import com.inventory.inventoryservice.category.model.QCategoryEntity;
 import com.inventory.inventoryservice.product.model.ProductEntity;

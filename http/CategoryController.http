@@ -5,7 +5,7 @@ Accept: application/json
 Authorization: Bearer {{token}}
 
 {
-  "categoryName": "Category-7"
+  "categoryName": "Category-78"
 }
 
 
@@ -54,8 +54,7 @@ Accept: application/json
 Authorization: Bearer {{token}}
 
 {
-  "categoryName": "Category1",
-  "enabled": true
+  "categoryName": "Category-78"
 }
 
 ### CategoryController::searchList
@@ -65,6 +64,5 @@ Accept: application/json
 Authorization: Bearer {{token}}
 
 {
-  "categoryName": "Category1",
-  "enabled": true
+  "categoryName": "Category-78"
 }

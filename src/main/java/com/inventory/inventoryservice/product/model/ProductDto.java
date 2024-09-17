@@ -9,19 +9,17 @@ import lombok.*;
 @NoArgsConstructor
 public class ProductDto {
 
-    private String productName;
-    private String description;
-    private String barCode;
-
     private Long brandId;
     private String brandName;
     private Long categoryId;
     private String categoryName;
 
-    private String productImages;
+    private String productName;
+    private String barCode;
     private Double purchasePrice;
     private Double salesPrice;
     private Double discountAmount;
-
+    private String description;
+    private String productImages;
     private Boolean enabled;
 }

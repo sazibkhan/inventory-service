@@ -17,8 +17,16 @@ public class UserController {
 
   private final UserService userService;
 
+  @PostMapping("/registration")
+  //@PreAuthorize("hasAnyRole('USER_CREATE','ROLE_ADMIN')")
+  public ResponseEntity<UserRest> registration(@RequestBody UserDto userDto) {
+    UserRest userRest = userService.registration(userDto);
+    return ResponseEntity.status(HttpStatus.OK).body(userRest);
+  }
+
+
   @PostMapping("/create-user")
-  @PreAuthorize("hasAnyRole('USER_CREATE','ROLE_ADMIN')")
+  //@PreAuthorize("hasAnyRole('USER_CREATE','ROLE_ADMIN')")
   public ResponseEntity<UserRest> saveUser(@RequestBody UserDto userDto) {
     UserRest userRest = userService.saveUser(userDto);
     return ResponseEntity.status(HttpStatus.OK).body(userRest);

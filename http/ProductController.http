@@ -8,8 +8,8 @@ Authorization: Bearer {{token}}
   "productName":"Mango -4",
   "description":"WOW Product",
   "barCode":"inv-00123",
-  "brandId": 4,
-  "categoryId": 2,
+  "brandId": 1,
+  "categoryId": 1,
   "purchasePrice": 10,
   "salesPrice": 15,
   "discountAmount": 1

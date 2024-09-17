@@ -43,7 +43,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     http.csrf().disable();
     http.cors().and()
       .authorizeRequests()
-      .antMatchers("/authenticate", "api/v1/users/registration").permitAll()
+      .antMatchers("/authenticate",
+              "api/v1/users/registration",
+              "api/v1/users/create-user").permitAll()
       .anyRequest().authenticated()
       .and().sessionManagement()
       .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
@@ -54,6 +56,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
   public void configure(WebSecurity web) throws Exception {
     web.ignoring().antMatchers("/api/v1/versions/**");
     web.ignoring().antMatchers("/swagger-resources/**");
+    web.ignoring().antMatchers("/api/v1/users/registration");
     web.ignoring().antMatchers("/**/swagger-ui.html");
     web.ignoring().antMatchers("/webjars/**");
     web.ignoring().antMatchers("/v2/api-docs/**");
