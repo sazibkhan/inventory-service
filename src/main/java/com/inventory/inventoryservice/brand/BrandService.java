@@ -6,7 +6,9 @@ import com.inventory.inventoryservice.brand.model.BrandDto;
 import com.inventory.inventoryservice.brand.model.BrandEntity;
 import com.inventory.inventoryservice.brand.model.BrandRest;
 import com.inventory.inventoryservice.brand.model.BrandSearchDto;
+import com.inventory.inventoryservice.category.model.CategoryRest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Service;
@@ -47,6 +49,15 @@ public class BrandService{
   public void deleteBrand(Long id){
     BrandEntity brand = brandValidatorService.ifFoundByIdReturnElseThrow(id);
     brandRepository.deleteById(brand.getId());
+  }
+
+  public List<BrandRest> getAllBrand(){
+    return brandRepository.findAll().stream()
+            .map(itm->{
+              var res =new BrandRest();
+              BeanUtils.copyProperties(itm, res);
+              return res;
+            }).collect(Collectors.toList());
   }
 
   public Page<BrandRest> searchPage(BrandSearchDto searchDto){
