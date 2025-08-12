@@ -15,6 +15,13 @@ Authorization: Bearer {{token}}
   "discountAmount": 1
 }
 
+### ProductController::getProductById
+GET http://localhost:8099/api/v1/products/3
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+
 ### ProductController::updateProduct
 PUT http://localhost:8099/api/v1/products/1
 Content-Type: application/json

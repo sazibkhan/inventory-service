@@ -7,6 +7,7 @@ import com.inventory.inventoryservice.brand.model.BrandEntity;
 import com.inventory.inventoryservice.brand.model.BrandRest;
 import com.inventory.inventoryservice.brand.model.BrandSearchDto;
 import com.inventory.inventoryservice.category.CategoryValidatorService;
+import com.inventory.inventoryservice.category.model.CategoryEntity;
 import com.inventory.inventoryservice.category.model.CategoryRest;
 import com.inventory.inventoryservice.product.model.ProductDto;
 import com.inventory.inventoryservice.product.model.ProductEntity;
@@ -45,6 +46,14 @@ public class ProductService{
     productRepository.save(product);
     return ProductTransform.toProductRest(product);
   }
+
+  public ProductRest getProductById(Long id){
+    ProductEntity product = productValidatorService.ifFoundByIdReturnElseThrow(id);
+    var response =new ProductRest();
+    BeanUtils.copyProperties(product,response);
+    return response;
+  }
+
 
   public ProductRest updateProduct(Long id, ProductDto productDTO){
     var productEntity = productValidatorService.ifFoundByIdReturnElseThrow(id);

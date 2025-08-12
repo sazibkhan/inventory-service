@@ -1,5 +1,6 @@
 package com.inventory.inventoryservice.product;
 
+import com.inventory.inventoryservice.category.model.CategoryRest;
 import com.inventory.inventoryservice.product.model.ProductDto;
 import com.inventory.inventoryservice.product.model.ProductRest;
 import com.inventory.inventoryservice.product.model.ProductSearchDto;
@@ -25,6 +26,12 @@ public class ProductController {
     ProductRest productRest = productService.saveProduct(productDto);
     return ResponseEntity.status(HttpStatus.OK).body(productRest);
   }
+  @GetMapping("{id}")
+  @PreAuthorize("hasAnyRole('PRODUCT_GET','ROLE_SUPER_ADMIN','ROLE_ADMIN')")
+  public ResponseEntity<ProductRest> getProductById(@PathVariable Long id) {
+    return ResponseEntity.status(HttpStatus.OK).body(productService.getProductById(id));
+  }
+
 
   @PutMapping("/{id}")
   @PreAuthorize("hasAnyRole('PRODUCT_UPDATE','ROLE_SUPER_ADMIN','ROLE_ADMIN')")
@@ -33,6 +40,8 @@ public class ProductController {
     ProductRest productRest = productService.updateProduct(id, productDto);
     return ResponseEntity.status(HttpStatus.OK).body(productRest);
   }
+
+
 
   @DeleteMapping("/{id}")
   @PreAuthorize("hasAnyRole('PRODUCT_DELETE','ROLE_SUPER_ADMIN','ROLE_ADMIN')")
