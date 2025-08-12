@@ -27,19 +27,19 @@ public class CategoryController {
   }
 
   @GetMapping
-  @PreAuthorize("hasAnyRole('CATAGORY_GET','ROLE_SUPER_ADMIN','ROLE_ADMIN')")
+  @PreAuthorize("hasAnyRole('CATEGORY_GET','ROLE_SUPER_ADMIN','ROLE_ADMIN')")
   public ResponseEntity<List<CategoryRest>> getAllCategory() {
     return ResponseEntity.status(HttpStatus.OK).body(categoryService.getAllCategory());
   }
 
   @GetMapping("{id}")
-  @PreAuthorize("hasAnyRole('CATAGORY_GET','ROLE_SUPER_ADMIN','ROLE_ADMIN')")
+  @PreAuthorize("hasAnyRole('CATEGORY_GET','ROLE_SUPER_ADMIN','ROLE_ADMIN')")
   public ResponseEntity<CategoryRest> getCategoryById(@PathVariable Long id) {
     return ResponseEntity.status(HttpStatus.OK).body(categoryService.getCategoryById(id));
   }
 
   @PutMapping("/{id}")
-  @PreAuthorize("hasAnyRole('CATAGORY_UPDATE','ROLE_SUPER_ADMIN','ROLE_ADMIN')")
+  @PreAuthorize("hasAnyRole('CATEGORY_UPDATE','ROLE_SUPER_ADMIN','ROLE_ADMIN')")
   public ResponseEntity<CategoryRest> updateCategory(@PathVariable Long id,
                                                      @RequestBody CategoryDto categoryDto) {
     CategoryRest categoryRest = categoryService.updateCategory(id, categoryDto);
@@ -47,21 +47,21 @@ public class CategoryController {
   }
 
   @DeleteMapping("/{id}")
-  @PreAuthorize("hasAnyRole('CATAGORY_DELETE','ROLE_SUPER_ADMIN','ROLE_ADMIN')")
+  @PreAuthorize("hasAnyRole('CATEGORY_DELETE','ROLE_SUPER_ADMIN','ROLE_ADMIN')")
   public ResponseEntity<String> deleteCategory(@PathVariable Long id) {
     categoryService.deleteCategory(id);
     return ResponseEntity.status(HttpStatus.OK).body("Deleted Successfully.");
   }
 
   @PostMapping("/search-page")
-  @PreAuthorize("hasAnyRole('CATAGORY_SEARCH','ROLE_SUPER_ADMIN','ROLE_ADMIN')")
+  @PreAuthorize("hasAnyRole('CATEGORY_SEARCH','ROLE_SUPER_ADMIN','ROLE_ADMIN')")
   public ResponseEntity<?> searchPage(@RequestBody CategorySearchDto searchDto) {
     return ResponseEntity.status(HttpStatus.OK)
       .body(categoryService.searchPage(searchDto));
   }
 
   @PostMapping("/search-list")
-  @PreAuthorize("hasAnyRole('CATAGORY_SEARCH','ROLE_SUPER_ADMIN','ROLE_ADMIN')")
+  @PreAuthorize("hasAnyRole('CATEGORY_SEARCH','ROLE_SUPER_ADMIN','ROLE_ADMIN')")
   public ResponseEntity<?> searchList(@RequestBody CategorySearchDto searchDto) {
     return ResponseEntity.status(HttpStatus.OK)
       .body(categoryService.searchList(searchDto));

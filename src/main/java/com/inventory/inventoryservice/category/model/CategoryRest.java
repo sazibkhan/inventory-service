@@ -9,6 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 public class CategoryRest {
 
+    private Long id;
     private String categoryName;
     private Boolean enabled;
 }

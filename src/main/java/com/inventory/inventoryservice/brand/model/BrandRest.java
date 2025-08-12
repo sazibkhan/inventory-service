@@ -8,7 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BrandRest {
-
+  private  Long id;
   private String brandName;
   private Boolean enabled;
 }

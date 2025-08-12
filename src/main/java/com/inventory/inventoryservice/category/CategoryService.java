@@ -60,7 +60,6 @@ public class CategoryService {
     }
 
     public void deleteCategory(Long id) {
-
         CategoryEntity category = categoryValidatorService.ifFoundByIdReturnElseThrow(id);
         categoryRepository.deleteById(category.getId());
     }
