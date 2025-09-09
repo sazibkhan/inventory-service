@@ -32,27 +32,22 @@ public class AuthController{
           authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(req.getUsername(), req.getPassword())
           );
-    }  catch (DisabledException e) {
-      // যদি user disabled থাকে
+
+      // Load user & generate JWT
+      final UserDetails userDetails = appUserDetailService.loadUserByUsername(req.getUsername());
+      final String jwt = jwtUtil.generateToken(userDetails);
+      UserEntity user = userValidatorService.ifFoundByUsernameReturnElseThrow(req.getUsername());
+      return ResponseEntity.ok(new AuthenticationResponse(jwt, user.getAuthority()));
+
+
+    } catch (DisabledException e) {
       return ResponseEntity.status(HttpStatus.FORBIDDEN).body("User account is disabled");
     } catch (BadCredentialsException e) {
-      // If password ভুল হয়
       return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
+    } catch (UsernameNotFoundException e) {
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
     } catch (Exception e) {
-      // অন্য কোনো unexpected exception
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred: " + e.getMessage());
     }
-
-    try {
-      // 2️⃣ [Load user details] &&  3️⃣ [Generate JWT token] &&  4️⃣ [Return JWT token with 200 OK]
-    final UserDetails userDetails = appUserDetailService.loadUserByUsername(req.getUsername());
-    final String jwt = jwtUtil.generateToken(userDetails);
-    UserEntity user = userValidatorService.ifFoundByUsernameReturnElseThrow(req.getUsername());
-
-    return ResponseEntity.ok(new AuthenticationResponse(jwt, user.getAuthority()));
-  }catch (UsernameNotFoundException e) {
-      return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
-    }
   }
-
 }

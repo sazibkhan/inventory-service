@@ -9,7 +9,7 @@ Authorization: Bearer {{token}}
 }
 
 ### BrandController::getBrandById
-GET http://localhost:8099/api/v1/brands/8
+GET http://localhost:8099/api/v1/brands/1
 Content-Type: application/json
 Accept: application/json
 Authorization: Bearer {{token}}
